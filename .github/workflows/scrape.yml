@@ -1,0 +1,44 @@
+name: scrape cartelera
+
+on:
+  schedule:
+    - cron: '0 13 * * *'   # 07:00 America/Mexico_City
+    - cron: '0 21 * * *'   # 15:00 America/Mexico_City
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: install dependencies
+        run: pip install -r scraper/requirements.txt
+
+      - name: run scraper
+        env:
+          TZ: America/Mexico_City
+        run: python scraper/scrape.py
+
+      - name: commit schedule.json if changed
+        run: |
+          if git diff --quiet -- docs/data/schedule.json; then
+            echo "no changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/schedule.json
+          git commit -m "actualizar cartelera $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git push
