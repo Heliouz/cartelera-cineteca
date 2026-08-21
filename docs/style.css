@@ -57,6 +57,13 @@
 
 * { box-sizing: border-box; }
 
+/* app.js toggles visibility via the `hidden` attribute throughout (agenda vs.
+   empty/error states, search-clear, stale banner). Several component rules
+   below set their own `display` (flex/grid) at equal-or-higher specificity
+   than the UA `[hidden]{display:none}` rule, which would otherwise win and
+   keep the "hidden" element showing. This settles it unconditionally. */
+[hidden] { display: none !important; }
+
 html, body {
   min-height: 100%;
   margin: 0;
