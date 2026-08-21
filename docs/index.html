@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>cartelera: la cartelera de Cineteca Nacional, todas las sedes</title>
+<meta name="description" content="la programación de Cineteca Nacional México, Chapultepec y Las Artes en un solo lugar, agrupada por día y sede, con boletos a un clic." />
+<meta name="theme-color" id="theme-color-meta" content="#f8f8f8" />
+<meta name="color-scheme" content="light" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="cartelera" />
+<meta property="og:description" content="la programación de Cineteca Nacional, las tres sedes en un solo lugar." />
+<meta property="og:locale" content="es_MX" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="cartelera" />
+<meta name="twitter:description" content="la programación de Cineteca Nacional, las tres sedes en un solo lugar." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<noscript>
+  <div>cartelera necesita JavaScript para mostrar la programación. activa JavaScript en tu navegador.</div>
+</noscript>
+
+<div id="app">
+  <header id="top-bar">
+    <div class="topbar-row">
+      <h1 class="brand">cartelera</h1>
+      <div class="topbar-right">
+        <span id="updated-kicker" class="kicker">actualizado&nbsp;–</span>
+        <button id="info-btn" class="icon-btn" type="button" aria-label="acerca de cartelera">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 11v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="7.5" r="1.1" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="day-strip" role="tablist" aria-label="elegir día"></div>
+
+    <div id="filters-row">
+      <div id="sede-filter" role="tablist" aria-label="elegir sede"></div>
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/>
+          <path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <input id="search-input" type="search" placeholder="buscar película, director…" aria-label="buscar película, director o país" autocomplete="off" />
+        <button id="search-clear" class="icon-btn" type="button" aria-label="limpiar búsqueda" hidden>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <select id="ciclo-select" aria-label="filtrar por ciclo">
+        <option value="">todos los ciclos</option>
+      </select>
+    </div>
+  </header>
+
+  <div id="stale-banner" class="stale-banner" hidden role="status">
+    los datos podrían estar desactualizados.
+    <a href="https://www.cinetecanacional.net/cartelera.php" target="_blank" rel="noopener noreferrer">ver cartelera oficial</a>
+  </div>
+
+  <main id="agenda-wrap">
+    <div id="agenda" aria-live="polite"></div>
+    <div id="global-empty" class="empty-state" hidden>
+      <p class="empty-state-title">ningún resultado para tu búsqueda</p>
+      <button id="clear-filters-btn" class="pill-btn secondary" type="button">limpiar filtros</button>
+    </div>
+  </main>
+
+  <div id="error-state" class="error-state" hidden>
+    <p class="error-state-title">no se pudo cargar la cartelera</p>
+    <p class="error-state-body">intenta recargar la página, o consulta la cartelera oficial directamente.</p>
+    <a class="pill-btn" href="https://www.cinetecanacional.net/cartelera.php" target="_blank" rel="noopener noreferrer">cinetecanacional.net</a>
+  </div>
+
+  <footer id="site-footer">
+    <div class="hairline" aria-hidden="true"></div>
+    <div class="signature">datos no oficiales · cinetecanacional.net</div>
+    <a id="kofi-btn-compact" class="kofi-btn kofi-btn-compact" href="https://ko-fi.com/heliouz" target="_blank" rel="noopener noreferrer" aria-label="invítame un café en Ko-fi">
+      <svg class="kofi-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M18 8h1a4 4 0 0 1 0 8h-1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 1v3M10 1v3M14 1v3" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <span class="kofi-btn-label">café</span>
+    </a>
+  </footer>
+</div>
+
+<div id="about-modal" hidden role="dialog" aria-modal="true" aria-labelledby="about-title">
+  <div class="about-backdrop" aria-hidden="true"></div>
+  <div class="about-content">
+    <div class="about-title" id="about-title">cartelera</div>
+    <p class="about-body">
+      la programación de las tres sedes de Cineteca Nacional
+      —México, Chapultepec y Las Artes— agrupada por día,
+      con posters y boletos a un clic. la información se actualiza
+      dos veces al día a partir de la cartelera oficial.
+    </p>
+    <p class="about-body">
+      todo lo relacionado con boletos y compras ocurre en el sistema
+      oficial de Cineteca Nacional; este sitio solo ayuda a encontrarlo.
+    </p>
+
+    <button class="pill-btn about-start-btn" type="button">empezar</button>
+
+    <div class="about-author">
+      <div class="about-author-name">helios ocaña</div>
+      <div class="about-author-links">
+        <a href="https://www.heliouz.com" target="_blank" rel="noopener noreferrer">heliouz.com</a>
+        <span class="about-link-sep" aria-hidden="true">·</span>
+        <a href="https://www.tiktok.com/@heliouz_" target="_blank" rel="noopener noreferrer">tiktok</a>
+        <span class="about-link-sep" aria-hidden="true">·</span>
+        <a href="https://x.com/Heliouz__" target="_blank" rel="noopener noreferrer">x</a>
+        <span class="about-link-sep" aria-hidden="true">·</span>
+        <a href="mailto:contacto@heliouz.com">email</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="about-modal.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

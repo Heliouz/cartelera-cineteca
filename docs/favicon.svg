@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- cartelera favicon — a projector beam widening onto the screen. -->
+  <circle cx="16" cy="16" r="14" fill="#f8f8f8"/>
+  <rect x="5" y="13" width="6" height="6" rx="1.5" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="11.5" cy="16" r="1.3" fill="#1a1a1a"/>
+  <path d="M13 13.5 L23 8 M13 18.5 L23 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+  <rect x="23" y="7" width="4" height="18" rx="1" fill="none" stroke="#EB1C23" stroke-width="2"/>
+</svg>
