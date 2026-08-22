@@ -1,0 +1,6 @@
+# The scraper writes schedule.json with LF from both Windows and the Linux
+# runner; pinning text files to LF in the repo keeps the two from producing
+# line-ending-only diffs against each other.
+* text=auto eol=lf
+*.png binary
+*.svg text eol=lf

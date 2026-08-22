@@ -5,7 +5,9 @@ returns plain data structures. Keeps scrape.py (orchestration + I/O) testable
 against saved fixtures.
 """
 import re
+import unicodedata
 from datetime import datetime
+from html import unescape as html_unescape
 from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
@@ -21,15 +23,22 @@ MESES = {
 DAY_RE = re.compile(r"cartelera\.php\?dia=(\d{4}-\d{2}-\d{2})")
 FILM_REF_RE = re.compile(r"detallePelicula\.php\?FilmId=(\w+)&cinemas=([\d,]+)")
 CICLO_SPLIT_RE = re.compile(r'<p class="font-weight-bold text-uppercase h3 py-5">(.*?)</p>')
-SHOWTIME_RE = re.compile(
-    r"cinemacode=(\d+)&amp;txtSessionId=(\d+)&amp;visLang=1'"
-    r'.*?small">([^<]+)<br>\s*(\d{1,2}:\d{2})\s*H', re.S)
+TICKET_HREF_RE = re.compile(
+    r"visSelectTickets\.aspx\?cinemacode=(\d+)&(?:amp;)?txtSessionId=(\d+)")
 DATE_RE = re.compile(r"(\d{1,2})\s+de\s+(\w+)", re.I)
+TIME_RE = re.compile(r"(\d{1,2}:\d{2})\s*H", re.I)
+
+# Distinctive word from the sede name Cineteca puts in each ticket anchor's own
+# confirm() dialog — an independent second source for the cinemacode, inside the
+# same element. See _sede_agrees_with_confirm().
+SEDE_CONFIRM_KEYWORD = {"001": "CHAPULTEPEC", "002": "ARTES", "003": "MEXICO"}
 TRAILER_RE = re.compile(r"youtube\.com/embed/([\w-]+)")
 DUR_RE = re.compile(r"Dur\.?:\s*(\d+)\s*mins?", re.I)
 YEAR_RANGE_RE = re.compile(r"\b((?:19|20)\d{2})\s*-\s*(?:19|20)?\d{2}\b")
 YEAR_RE = re.compile(r"\b(?:19|20)\d{2}\b")
 YEAR_ONLY_SEGMENT_RE = re.compile(r"^(?:19|20)\d{2}(\s*-\s*(?:19|20)?\d{2})?$")
+TAG_RE = re.compile(r"<[^>]+>")
+WS_RE = re.compile(r"\s+")
 
 
 def extract_day_window(html):
@@ -55,16 +64,35 @@ def extract_film_refs(html):
     return FILM_REF_RE.findall(html)
 
 
+def clean_html_text(raw):
+    """Plain text out of a raw HTML fragment: tags dropped, entities decoded.
+
+    Ciclo names are captured straight out of the markup by CICLO_SPLIT_RE, so
+    anything Cineteca puts inside that heading — an `&amp;`, a stray `<br>` —
+    would otherwise reach the page verbatim: these strings go into `<option>`
+    labels and kickers via textContent, which renders them literally.
+    """
+    if raw is None:
+        return None
+    text = html_unescape(TAG_RE.sub(" ", raw))
+    return WS_RE.sub(" ", text.replace("\xa0", " ")).strip()
+
+
 def extract_ciclo_map(html):
     """film_id -> ciclo name, from a `vista=events` HTML fragment."""
     parts = CICLO_SPLIT_RE.split(html)
     mapping = {}
     for i in range(1, len(parts), 2):
-        ciclo_name = parts[i].strip()
+        ciclo_name = clean_html_text(parts[i])
         block = parts[i + 1] if i + 1 < len(parts) else ""
         for film_id, _cinemas in FILM_REF_RE.findall(block):
             mapping.setdefault(film_id, ciclo_name)
     return mapping
+
+
+def _strip_accents(text):
+    decomposed = unicodedata.normalize("NFKD", text)
+    return "".join(c for c in decomposed if not unicodedata.combining(c))
 
 
 def _clean(text):
@@ -119,19 +147,63 @@ def _extract_raw_meta(soup):
     return None
 
 
-def parse_parenthetical(raw_meta):
-    """original_title, country, year, duration_min — field-by-field, all nullable."""
+def _norm_for_match(text):
+    return WS_RE.sub(" ", _strip_accents(text or "").replace("\xa0", " ")).strip().lower()
+
+
+def _title_segment_span(segments, title):
+    """How many leading comma-separated segments belong to the original title.
+
+    The parenthetical is comma-delimited, but an original title can contain a
+    comma of its own ("Oh, fortuna" / "Frankie, Maniac Woman") — splitting
+    blindly leaves the tail of the title sitting in `country`, where it shows
+    up on every row and card. The display title is an independent witness for
+    the same string, so keep absorbing leading segments while the joined
+    result still reads as a prefix of it.
+
+    A prefix, not an equality, because Cineteca truncates long titles. When
+    nothing matches — the parenthetical is in another language, or isn't a
+    title at all — this falls back to one segment, the original behaviour.
+    """
+    if not title or not segments:
+        return 1
+    norm_title = _norm_for_match(title)
+    if not norm_title:
+        return 1
+    span = 1
+    for count in range(1, len(segments) + 1):
+        joined = _norm_for_match(", ".join(segments[:count]))
+        if not joined or not norm_title.startswith(joined):
+            break
+        span = count
+    return span
+
+
+def parse_parenthetical(raw_meta, title=None):
+    """original_title, country, year, duration_min — field-by-field, all nullable.
+
+    `title` is the film's display title, used only to keep a comma inside the
+    original title from spilling into `country`. See _title_segment_span().
+    """
     if not raw_meta:
         return None, None, None, None
     inner = raw_meta.strip()
     if inner.startswith("(") and inner.endswith(")"):
         inner = inner[1:-1]
     segments = [s.strip() for s in inner.split(",")]
-    original_title = segments[0] or None if segments else None
+
+    span = _title_segment_span(segments, title)
+    original_title = ", ".join(segments[:span]).strip() or None
+    rest = segments[span:]
 
     dur_m = DUR_RE.search(inner)
     duration_min = int(dur_m.group(1)) if dur_m else None
-    search_region = inner[: dur_m.start()] if dur_m else inner
+
+    # Year is looked for only past the title, so a title carrying a year of its
+    # own ("Blade Runner 2049") can't be mistaken for the production year.
+    rest_text = ", ".join(rest)
+    rest_dur_m = DUR_RE.search(rest_text)
+    search_region = rest_text[: rest_dur_m.start()] if rest_dur_m else rest_text
 
     range_m = YEAR_RANGE_RE.search(search_region)
     if range_m:
@@ -141,7 +213,9 @@ def parse_parenthetical(raw_meta):
         year = int(year_matches[-1]) if year_matches else None
 
     filtered = []
-    for seg in segments[1:]:
+    for seg in rest:
+        if not seg:
+            continue
         low = seg.lower()
         if low.startswith("dir."):
             continue
@@ -155,14 +229,48 @@ def parse_parenthetical(raw_meta):
     return original_title, country, year, duration_min
 
 
+def _sede_agrees_with_confirm(cinemacode, onclick):
+    """Does the anchor's own confirm() dialog name the sede its cinemacode means?
+
+    Cineteca writes the sede out in words in the onclick handler, so a showtime
+    row carries the sede twice. Disagreement means we misread the row — drop it
+    rather than publish a screening at the wrong sede. Silence (no dialog, or
+    wording we don't recognise) isn't disagreement: the cinemacode stands alone.
+    """
+    if not onclick:
+        return True
+    text = _strip_accents(onclick).upper()
+    present = {code for code, kw in SEDE_CONFIRM_KEYWORD.items() if kw in text}
+    if not present:
+        return True
+    return present == {cinemacode}
+
+
 def extract_showtimes(html, date_lookup):
-    """Deduplicated showtimes (by session_id) with resolved ISO dates/datetimes."""
-    matches = SHOWTIME_RE.findall(html)
+    """Deduplicated showtimes (by session_id) with resolved ISO dates/datetimes.
+
+    Parsed one `<a>` at a time on purpose: an anchor whose label doesn't carry a
+    readable date and time is skipped alone. A regex spanning href-to-label used
+    to run past such a row into the next one, pairing a session's cinemacode
+    with the following session's time and dropping that row entirely.
+    """
+    soup = BeautifulSoup(html, "html.parser")
     by_session = {}
-    for cinemacode, session_id, date_text, time_text in matches:
+    for a in soup.find_all("a", href=True):
+        href_m = TICKET_HREF_RE.search(a["href"])
+        if not href_m:
+            continue
+        cinemacode, session_id = href_m.groups()
         if session_id in by_session:
             continue
-        day_m = DATE_RE.search(date_text.strip())
+        if not _sede_agrees_with_confirm(cinemacode, a.get("onclick")):
+            continue
+        label = a.get_text(" ", strip=True)
+        time_m = TIME_RE.search(label)
+        if not time_m:
+            continue
+        time_text = time_m.group(1)
+        day_m = DATE_RE.search(label[: time_m.start()])
         if not day_m:
             continue
         day_num = int(day_m.group(1))
@@ -181,10 +289,6 @@ def extract_showtimes(html, date_lookup):
             "time": time_text,
             "datetime": dt.isoformat(),
             "session_id": session_id,
-            "buy_url": (
-                "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx"
-                f"?cinemacode={cinemacode}&txtSessionId={session_id}&visLang=1"
-            ),
         }
     return list(by_session.values())
 
@@ -207,7 +311,7 @@ def parse_film_detail_html(html, film_id, cinemas_csv, date_lookup, ciclo=None):
 
     meta = _extract_metadata_fields(soup)
     raw_meta = _extract_raw_meta(soup)
-    original_title, country, year, duration_min = parse_parenthetical(raw_meta)
+    original_title, country, year, duration_min = parse_parenthetical(raw_meta, title)
     synopsis = _extract_synopsis(soup)
 
     trailer_m = TRAILER_RE.search(html)

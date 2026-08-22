@@ -1,6 +1,7 @@
 """Offline tests against saved HTML/JSON fixtures — no network access."""
 import json
 import os
+import sys
 
 import pytest
 
@@ -71,8 +72,56 @@ def test_showtimes_deduplicated_by_session_id(date_lookup):
     session_ids = [s["session_id"] for s in showtimes]
     assert len(session_ids) == len(set(session_ids))
     # the raw markup ships each showtime twice (mobile + desktop markup)
-    raw_matches = parsing.SHOWTIME_RE.findall(html)
+    raw_matches = parsing.TICKET_HREF_RE.findall(html)
     assert len(raw_matches) == 2 * len(showtimes)
+
+
+def _ticket_anchor(cinemacode, session_id, sede_name, label):
+    return (
+        "<a href='https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx"
+        f"?cinemacode={cinemacode}&amp;txtSessionId={session_id}&amp;visLang=1'"
+        f' onclick="return confirm(\'Estás a punto de comprar entradas para {sede_name}.\')">'
+        f'<div class="small">{label}</div></a>'
+    )
+
+
+def test_unreadable_showtime_does_not_shift_onto_the_next(date_lookup):
+    """An anchor with no readable time must be dropped alone, not absorb its
+    neighbour's time (which would publish a screening at the wrong sede/hour)."""
+    html = (
+        _ticket_anchor("001", "13835", "CINETECA NACIONAL CHAPULTEPEC",
+                       "Jueves 27 de Agosto AGOTADO")
+        + _ticket_anchor("002", "51008", "CINETECA NACIONAL DE LAS ARTES",
+                         "Jueves 27 de Agosto <br> 19:00 H")
+    )
+    showtimes = parsing.extract_showtimes(html, date_lookup)
+    assert len(showtimes) == 1
+    (s,) = showtimes
+    assert s["session_id"] == "51008"
+    assert s["sede"] == "002"
+    assert s["time"] == "19:00"
+
+
+def test_showtime_dropped_when_confirm_dialog_contradicts_cinemacode(date_lookup):
+    """The sede is in the row twice — cinemacode and Cineteca's own confirm()
+    text. If they disagree we misread the row, so publish neither reading."""
+    html = _ticket_anchor("001", "13835", "CINETECA NACIONAL DE LAS ARTES",
+                          "Jueves 27 de Agosto <br> 19:00 H")
+    assert parsing.extract_showtimes(html, date_lookup) == []
+
+
+def test_showtime_kept_when_confirm_dialog_is_absent_or_unrecognised(date_lookup):
+    """Silence isn't disagreement: an anchor with no usable dialog still counts."""
+    plain = (
+        "<a href='https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx"
+        "?cinemacode=001&amp;txtSessionId=13835&amp;visLang=1'>"
+        '<div class="small">Jueves 27 de Agosto <br> 19:00 H</div></a>'
+    )
+    reworded = _ticket_anchor("001", "13836", "NUESTRA NUEVA SALA",
+                              "Jueves 27 de Agosto <br> 20:00 H")
+    showtimes = parsing.extract_showtimes(plain + reworded, date_lookup)
+    assert {s["session_id"] for s in showtimes} == {"13835", "13836"}
+    assert all(s["sede"] == "001" for s in showtimes)
 
 
 def test_showtime_datetime_has_mexico_city_offset(date_lookup):
@@ -83,14 +132,12 @@ def test_showtime_datetime_has_mexico_city_offset(date_lookup):
         assert s["datetime"].endswith("-06:00") or s["datetime"].endswith("-05:00")
 
 
-def test_showtime_buy_url_matches_session(date_lookup):
+def test_showtime_has_no_buy_url(date_lookup):
     html = load_fixture("detail_one_sede.html")
     showtimes = parsing.extract_showtimes(html, date_lookup)
+    assert showtimes
     for s in showtimes:
-        assert s["buy_url"] == (
-            "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx"
-            f"?cinemacode={s['sede']}&txtSessionId={s['session_id']}&visLang=1"
-        )
+        assert set(s.keys()) == {"sede", "date", "time", "datetime", "session_id"}
 
 
 # ---------- parenthetical field extraction (format varies — §3.5) ----------
@@ -141,6 +188,83 @@ def test_parse_parenthetical_variants(
 
 def test_parse_parenthetical_handles_none():
     assert parsing.parse_parenthetical(None) == (None, None, None, None)
+
+
+@pytest.mark.parametrize(
+    "raw_meta,title,expected_original,expected_country",
+    [
+        # A comma inside the original title used to push its own tail into
+        # `country`, which shows on every row and card ("un lémur en fuga,
+        # México"). The display title settles where the title actually ends.
+        (
+            "(Bem, un lémur en fuga, México, 2026, Dur.: 90 mins.)",
+            "Bem, un lémur en fuga",
+            "Bem, un lémur en fuga",
+            "México",
+        ),
+        (
+            "(Oh, fortuna, México, 2025, Dur.: 95 mins.)",
+            "Oh, fortuna",
+            "Oh, fortuna",
+            "México",
+        ),
+        (
+            "(Frankie, Maniac Woman, Estados Unidos, 2025, Dur.: 95 mins.)",
+            "Frankie, Maniac Woman",
+            "Frankie, Maniac Woman",
+            "Estados Unidos",
+        ),
+        # No relation between the two titles (original is in another language):
+        # falls back to one segment, exactly as before.
+        (
+            "(Teenage Sex and Death at Camp Miasma, Estados Unidos-Canadá, 2026, "
+            "Dur.: 112 mins.)",
+            "Adolescencia, sexo y muerte en Campamento Miasma",
+            "Teenage Sex and Death at Camp Miasma",
+            "Estados Unidos-Canadá",
+        ),
+        # Empty segments from doubled commas must not survive into `country`
+        # as a leading ", ".
+        (
+            "(Contratos/ El rey de los vagabundos, , México y Bélgica, 2025, "
+            "Dur.: 97 mins.)",
+            "El rey de los vagabundos",
+            "Contratos/ El rey de los vagabundos",
+            "México y Bélgica",
+        ),
+    ],
+)
+def test_parse_parenthetical_keeps_comma_bearing_title_out_of_country(
+    raw_meta, title, expected_original, expected_country
+):
+    original_title, country, _year, _duration = parsing.parse_parenthetical(raw_meta, title)
+    assert original_title == expected_original
+    assert country == expected_country
+
+
+def test_parse_parenthetical_ignores_a_year_inside_the_title():
+    """The production year is read past the title, so a title carrying a year
+    of its own can't be mistaken for it."""
+    _t, _c, year, _d = parsing.parse_parenthetical(
+        "(Blade Runner 2049, Estados Unidos, 2017, Dur.: 164 mins.)", "Blade Runner 2049"
+    )
+    assert year == 2017
+
+
+def test_clean_html_text_strips_tags_and_entities():
+    """Ciclo names are sliced out of raw markup and rendered via textContent,
+    so tags and entities have to be resolved here or they reach the page."""
+    assert parsing.clean_html_text("Cine &amp; Video<br>2026") == "Cine & Video 2026"
+    assert parsing.clean_html_text("  Foro\xa0 Internacional  ") == "Foro Internacional"
+    assert parsing.clean_html_text(None) is None
+
+
+def test_extract_ciclo_map_cleans_names():
+    html = (
+        '<p class="font-weight-bold text-uppercase h3 py-5">Ciclo &amp; Muestra<br></p>'
+        "<a href='detallePelicula.php?FilmId=HO0001&cinemas=003'>x</a>"
+    )
+    assert parsing.extract_ciclo_map(html) == {"HO0001": "Ciclo & Muestra"}
 
 
 # ---------- full film detail parsing ----------
@@ -226,8 +350,23 @@ def test_validate_schedule_rejects_duplicate_session_id():
             },
         ],
     }
-    with pytest.raises(AssertionError):
+    with pytest.raises(scrape.ScheduleInvalid):
         scrape.validate_schedule(data)
+
+
+def test_validate_schedule_survives_optimised_mode():
+    """The last gate before overwriting live data can't be an `assert`, which
+    `python -O` strips out entirely."""
+    import subprocess
+
+    src = (
+        "import sys; sys.path.insert(0, %r); import scrape;"
+        "scrape.validate_schedule({'days': [], 'sedes': {}, 'films': []})"
+        % os.path.dirname(os.path.abspath(__file__))
+    )
+    proc = subprocess.run([sys.executable, "-O", "-c", src], capture_output=True, text=True)
+    assert proc.returncode != 0
+    assert "ScheduleInvalid" in proc.stderr
 
 
 def test_run_aborts_when_failure_ratio_exceeds_threshold(monkeypatch, tmp_path, days, date_lookup):
@@ -255,6 +394,36 @@ def test_run_aborts_when_failure_ratio_exceeds_threshold(monkeypatch, tmp_path, 
         scrape.run()
     assert exc_info.value.code != 0
     assert not out_path.exists()
+
+
+def test_run_writes_a_canonically_ordered_file(monkeypatch, tmp_path, days):
+    """Films arrive in thread-completion order, which varies run to run. The
+    written file has to be sorted, or an unchanged cartelera still rewrites all
+    ~200KB in a fresh arrangement twice a day."""
+    detail_html = load_fixture("detail_two_sede.html")
+    film_refs = {f"HO0000{i}": "001,002" for i in range(6)}
+    out_path = tmp_path / "schedule.json"
+
+    monkeypatch.setattr(scrape, "get_day_window", lambda: days)
+    monkeypatch.setattr(scrape, "get_film_refs", lambda d: film_refs)
+    monkeypatch.setattr(scrape, "get_ciclo_map", lambda: {})
+    monkeypatch.setattr(scrape, "fetch_film_detail_html", lambda fid, c: detail_html)
+    monkeypatch.setattr(scrape, "load_previous", lambda: None)
+    monkeypatch.setattr(scrape, "DATA_PATH", str(out_path))
+    # Every fake film reuses one fixture, so they share session ids — that trips
+    # the duplicate check, which isn't what's under test here.
+    monkeypatch.setattr(scrape, "validate_schedule", lambda data: None)
+
+    scrape.run()
+
+    with open(out_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    ids = [f["id"] for f in data["films"]]
+    assert ids == sorted(ids)
+    for film in data["films"]:
+        stamps = [st["datetime"] for st in film["showtimes"]]
+        assert stamps == sorted(stamps)
 
 
 def test_validate_schedule_accepts_clean_data():

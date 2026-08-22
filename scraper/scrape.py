@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Scrapes cinetecanacional.net's cartelera into docs/data/schedule.json.
 
-Run twice a day by .github/workflows/scrape.yml. See plan.md for the full
-data-source writeup. Safety rails (abort thresholds, atomic write, duplicate
-session_id check) matter more than anything else here — a silently-broken
-scrape must never overwrite good data with an empty or partial file.
+Run twice a day by .github/workflows/scrape.yml. Safety rails (abort
+thresholds, atomic write, duplicate session_id check) matter more than
+anything else here — a silently-broken scrape must never overwrite good data
+with an empty or partial file. Output is sorted so that an unchanged cartelera
+produces a one-line diff (the `generated_at` timestamp) rather than a
+whole-file reshuffle.
 """
 import json
 import logging
@@ -75,6 +77,9 @@ def fetch_with_retry(method, url, **kwargs):
             return resp
         except requests.RequestException as exc:
             last_exc = exc
+            if attempt == MAX_RETRIES - 1:
+                log.warning("request failed (%s): %s — giving up", url, exc)
+                break
             wait = 2 ** attempt
             log.warning("request failed (%s): %s — retrying in %ss", url, exc, wait)
             time.sleep(wait)
@@ -165,19 +170,30 @@ def should_abort_for_film_count(current_count, previous_count):
     return current_count < previous_count * FILM_COUNT_MIN_RATIO
 
 
+class ScheduleInvalid(Exception):
+    """The assembled schedule failed its own contract — never write it."""
+
+
+def _check(condition, message):
+    # Not `assert`: these are the last gate before overwriting live data, and
+    # `python -O` strips assert statements.
+    if not condition:
+        raise ScheduleInvalid(message)
+
+
 def validate_schedule(data):
-    assert isinstance(data.get("days"), list) and data["days"], "empty day window"
-    assert isinstance(data.get("sedes"), dict) and data["sedes"], "empty sedes"
+    _check(isinstance(data.get("days"), list) and data["days"], "empty day window")
+    _check(isinstance(data.get("sedes"), dict) and data["sedes"], "empty sedes")
     films = data.get("films")
-    assert isinstance(films, list) and films, "empty films list"
+    _check(isinstance(films, list) and films, "empty films list")
 
     session_ids = set()
     for film in films:
         for key in ("id", "title", "poster", "official_url", "showtimes"):
-            assert key in film, f"film {film.get('id')} missing required key {key}"
+            _check(key in film, f"film {film.get('id')} missing required key {key}")
         for st in film["showtimes"]:
             sid = st["session_id"]
-            assert sid not in session_ids, f"duplicate session_id {sid} across dataset"
+            _check(sid not in session_ids, f"duplicate session_id {sid} across dataset")
             session_ids.add(sid)
 
 
@@ -242,6 +258,16 @@ def run():
             )
             sys.exit(1)
 
+    # Deterministic order. Films arrive in thread-completion order, so without
+    # this an unchanged cartelera still rewrites all ~200KB in a different
+    # arrangement. `generated_at` moves every run either way — that's deliberate,
+    # the frontend's "actualizado hace N h" and stale banner read it — so the
+    # point here isn't to avoid the commit, it's to keep that commit a
+    # one-line timestamp diff instead of a whole-file reshuffle.
+    films.sort(key=lambda f: f["id"])
+    for film in films:
+        film["showtimes"].sort(key=lambda st: (st["datetime"], st["sede"], st["session_id"]))
+
     data = {
         "generated_at": datetime.now(TZ).isoformat(),
         "source": f"{BASE}/",
@@ -252,7 +278,7 @@ def run():
 
     try:
         validate_schedule(data)
-    except AssertionError as exc:
+    except ScheduleInvalid as exc:
         log.error("abort: validation failed: %s", exc)
         sys.exit(1)
 

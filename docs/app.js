@@ -8,11 +8,12 @@
 
   var DATA = null;
   var defaultDay = null;
-  var hasAutoScrolled = false;
   var searchDebounceTimer = null;
 
-  var state = { day: null, sede: "000", ciclo: "", q: "" };
+  var state = { view: "dia", day: null, sede: "000", ciclo: "", q: "", film: "" };
   var els = {};
+  var sheetPushedState = false;
+  var sheetTriggerEl = null;
 
   function qs(id) {
     return document.getElementById(id);
@@ -61,8 +62,12 @@
     return Math.max(0, Math.floor((Date.now() - then) / 3600000));
   }
 
-  function dayLabel(iso, index) {
-    if (index === 0) return "HOY";
+  // "HOY" is decided by the actual date, never by position in DATA.days. If a
+  // scrape is missed, days[0] is yesterday — labelling it "HOY" would present a
+  // day of already-finished screenings as today's agenda, and the stale banner
+  // doesn't fire until STALE_HOURS.
+  function dayLabel(iso) {
+    if (iso === todayISO()) return "HOY";
     var d = new Date(iso + "T12:00:00-06:00");
     var weekday = new Intl.DateTimeFormat("es-MX", { weekday: "short", timeZone: TZ }).format(d);
     weekday = weekday.replace(".", "");
@@ -84,9 +89,16 @@
     els.staleBanner = qs("stale-banner");
     els.errorState = qs("error-state");
     els.globalEmpty = qs("global-empty");
+    els.resultsStatus = qs("results-status");
     els.clearFiltersBtn = qs("clear-filters-btn");
     els.infoBtn = qs("info-btn");
     els.agendaWrap = qs("agenda-wrap");
+    els.viewToggle = qs("view-toggle");
+    els.filmSheet = qs("film-sheet");
+    els.sheetBody = els.filmSheet ? els.filmSheet.querySelector(".sheet-body") : null;
+    els.sheetContent = els.filmSheet ? els.filmSheet.querySelector(".sheet-content") : null;
+    els.sheetClose = els.filmSheet ? els.filmSheet.querySelector(".sheet-close") : null;
+    els.appRoot = qs("app");
 
     bindAboutModalTrigger();
 
@@ -111,6 +123,14 @@
     els.errorState.hidden = false;
   }
 
+  function isRenderableSede(code) {
+    return code === "000" || (SEDE_ORDER.indexOf(code) !== -1 && Boolean(DATA.sedes[code]));
+  }
+
+  function announce(text) {
+    if (els.resultsStatus) els.resultsStatus.textContent = text;
+  }
+
   function uniqueCiclos() {
     var set = new Set();
     DATA.films.forEach(function (f) {
@@ -126,11 +146,17 @@
     defaultDay = DATA.days.indexOf(today) !== -1 ? today : DATA.days[0];
 
     var params = new URLSearchParams(location.search);
+
+    state.view = params.get("v") === "peli" ? "pelicula" : "dia";
+
     var dia = params.get("dia");
     state.day = dia && DATA.days.indexOf(dia) !== -1 ? dia : defaultDay;
 
+    // Validated against SEDE_ORDER, not just DATA.sedes: the agenda is keyed
+    // by SEDE_ORDER, so a sede present in the data but missing from that list
+    // would reach renderAgenda as an undefined bucket and throw.
     var sede = params.get("sede");
-    state.sede = sede && (sede === "000" || DATA.sedes[sede]) ? sede : "000";
+    state.sede = sede && isRenderableSede(sede) ? sede : "000";
 
     var ciclos = uniqueCiclos();
     var ciclo = params.get("ciclo");
@@ -140,28 +166,37 @@
     els.searchInput.value = state.q;
     els.searchClear.hidden = !state.q;
 
+    var filmId = params.get("film");
+    var initialFilm = filmId ? findFilm(filmId) : null;
+    state.film = initialFilm ? initialFilm.id : "";
+
     renderDayStrip();
     renderSedeFilter();
     renderCicloSelect(ciclos);
     renderUpdatedKicker();
     renderStaleBanner();
-    renderAgenda();
+    renderViewToggle();
+    els.dayStrip.hidden = state.view === "pelicula";
+    if (state.view === "pelicula") renderFilmIndex();
+    else renderAgenda();
     syncUrl();
     bindFilterEvents();
+    bindFilmSheetEvents();
+
+    if (initialFilm) openFilmSheet(initialFilm, false);
   }
 
   // ---------- header controls ----------
 
   function renderDayStrip() {
     els.dayStrip.innerHTML = "";
-    DATA.days.forEach(function (iso, i) {
+    DATA.days.forEach(function (iso) {
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "day-chip";
-      btn.setAttribute("role", "tab");
       btn.dataset.day = iso;
-      btn.setAttribute("aria-selected", String(iso === state.day));
-      btn.textContent = dayLabel(iso, i);
+      btn.setAttribute("aria-pressed", String(iso === state.day));
+      btn.textContent = dayLabel(iso);
       btn.addEventListener("click", function () {
         setState({ day: iso });
       });
@@ -172,7 +207,7 @@
   function updateDayStripSelection() {
     var chips = els.dayStrip.querySelectorAll(".day-chip");
     for (var i = 0; i < chips.length; i++) {
-      chips[i].setAttribute("aria-selected", String(chips[i].dataset.day === state.day));
+      chips[i].setAttribute("aria-pressed", String(chips[i].dataset.day === state.day));
     }
   }
 
@@ -189,9 +224,8 @@
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "sede-chip";
-      btn.setAttribute("role", "tab");
       btn.dataset.sede = item.code;
-      btn.setAttribute("aria-selected", String(item.code === state.sede));
+      btn.setAttribute("aria-pressed", String(item.code === state.sede));
       if (item.code !== "000") {
         var dot = document.createElement("span");
         dot.className = "sede-dot";
@@ -209,7 +243,34 @@
   function updateSedeFilterSelection() {
     var chips = els.sedeFilter.querySelectorAll(".sede-chip");
     for (var i = 0; i < chips.length; i++) {
-      chips[i].setAttribute("aria-selected", String(chips[i].dataset.sede === state.sede));
+      chips[i].setAttribute("aria-pressed", String(chips[i].dataset.sede === state.sede));
+    }
+  }
+
+  function renderViewToggle() {
+    els.viewToggle.innerHTML = "";
+    var items = [
+      { code: "dia", label: "por día" },
+      { code: "pelicula", label: "por película" },
+    ];
+    items.forEach(function (item) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "view-chip";
+      btn.dataset.view = item.code;
+      btn.setAttribute("aria-pressed", String(item.code === state.view));
+      btn.textContent = item.label;
+      btn.addEventListener("click", function () {
+        setState({ view: item.code });
+      });
+      els.viewToggle.appendChild(btn);
+    });
+  }
+
+  function updateViewToggleSelection() {
+    var chips = els.viewToggle.querySelectorAll(".view-chip");
+    for (var i = 0; i < chips.length; i++) {
+      chips[i].setAttribute("aria-pressed", String(chips[i].dataset.view === state.view));
     }
   }
 
@@ -273,18 +334,26 @@
     syncUrl();
     updateDayStripSelection();
     updateSedeFilterSelection();
-    renderAgenda();
+    updateViewToggleSelection();
+    els.dayStrip.hidden = state.view === "pelicula";
+    if (state.view === "pelicula") renderFilmIndex();
+    else renderAgenda();
+  }
+
+  function urlFor(s) {
+    var params = new URLSearchParams();
+    if (s.view === "pelicula") params.set("v", "peli");
+    if (s.day && s.day !== defaultDay) params.set("dia", s.day);
+    if (s.sede !== "000") params.set("sede", s.sede);
+    if (s.ciclo) params.set("ciclo", s.ciclo);
+    if (s.q.trim()) params.set("q", s.q.trim());
+    if (s.film) params.set("film", s.film);
+    var qsStr = params.toString();
+    return location.pathname + (qsStr ? "?" + qsStr : "");
   }
 
   function syncUrl() {
-    var params = new URLSearchParams();
-    if (state.day && state.day !== defaultDay) params.set("dia", state.day);
-    if (state.sede !== "000") params.set("sede", state.sede);
-    if (state.ciclo) params.set("ciclo", state.ciclo);
-    if (state.q.trim()) params.set("q", state.q.trim());
-    var qsStr = params.toString();
-    var url = location.pathname + (qsStr ? "?" + qsStr : "");
-    history.replaceState(null, "", url);
+    history.replaceState(null, "", urlFor(state));
   }
 
   // ---------- agenda ----------
@@ -330,6 +399,13 @@
     return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
   }
 
+  function showGlobalEmpty(filtersActive, title) {
+    els.globalEmpty.hidden = false;
+    els.globalEmpty.querySelector(".empty-state-title").textContent = title;
+    els.clearFiltersBtn.hidden = !filtersActive;
+    announce(title);
+  }
+
   function renderAgenda() {
     var bySede = buildAgendaData();
     var sedeCodes = state.sede === "000" ? SEDE_ORDER : [state.sede];
@@ -344,17 +420,20 @@
     if (total === 0) {
       els.agenda.innerHTML = "";
       els.agenda.hidden = true;
-      els.globalEmpty.hidden = false;
-      els.globalEmpty.querySelector(".empty-state-title").textContent = filtersActive
-        ? "ningún resultado para tu búsqueda"
-        : "sin funciones este día";
-      els.clearFiltersBtn.hidden = !filtersActive;
+      showGlobalEmpty(filtersActive, filtersActive ? "ningún resultado para tu búsqueda" : "sin funciones este día");
       return;
     }
 
     els.agenda.hidden = false;
     els.globalEmpty.hidden = true;
     els.agenda.innerHTML = "";
+
+    var dayText = dayLabel(state.day);
+    announce(
+      total +
+        (total === 1 ? " función " : " funciones ") +
+        (dayText === "HOY" ? "hoy" : "el " + dayText.toLowerCase())
+    );
 
     var isToday = state.day === todayISO();
     var nowMin = isToday ? nowMinutesCDMX() : -1;
@@ -400,35 +479,49 @@
         empty.textContent = "sin funciones este día";
         column.appendChild(empty);
       } else {
-        var list = document.createElement("div");
-        list.className = "show-list";
-        var placedDivider = false;
+        var upcoming = [];
+        var past = [];
         rows.forEach(function (entry) {
           var minutes = timeToMinutes(entry.st.time);
-          var isPast = isToday && minutes < nowMin;
-          if (isToday && !placedDivider && minutes >= nowMin) {
-            var divider = document.createElement("div");
-            divider.className = "now-divider";
-            divider.textContent = "ahora";
-            divider.dataset.nowDivider = "true";
-            list.appendChild(divider);
-            placedDivider = true;
+          if (isToday && minutes < nowMin) {
+            past.push(entry);
+          } else {
+            upcoming.push(entry);
           }
-          list.appendChild(buildShowRow(entry.film, entry.st, isPast));
         });
-        column.appendChild(list);
+
+        if (upcoming.length === 0) {
+          var empty2 = document.createElement("p");
+          empty2.className = "sede-empty";
+          empty2.textContent = "sin funciones este día";
+          column.appendChild(empty2);
+        } else {
+          var list = document.createElement("div");
+          list.className = "show-list";
+          upcoming.forEach(function (entry) {
+            list.appendChild(buildShowRow(entry.film, entry.st, false));
+          });
+          column.appendChild(list);
+        }
+
+        if (past.length > 0) {
+          var details = document.createElement("details");
+          details.className = "past-details";
+          var summary = document.createElement("summary");
+          summary.textContent = "ya pasaron (" + past.length + ")";
+          details.appendChild(summary);
+          var pastList = document.createElement("div");
+          pastList.className = "show-list";
+          past.forEach(function (entry) {
+            pastList.appendChild(buildShowRow(entry.film, entry.st, true));
+          });
+          details.appendChild(pastList);
+          column.appendChild(details);
+        }
       }
 
       els.agenda.appendChild(column);
     });
-
-    if (!hasAutoScrolled && isToday) {
-      hasAutoScrolled = true;
-      requestAnimationFrame(function () {
-        var marker = els.agenda.querySelector("[data-now-divider]");
-        if (marker) marker.scrollIntoView({ block: "center", behavior: "auto" });
-      });
-    }
   }
 
   function buildShowRow(film, st, isPast) {
@@ -436,12 +529,14 @@
     row.className = "show-row";
     row.dataset.past = String(isPast);
 
-    var link = document.createElement("a");
+    var link = document.createElement("button");
+    link.type = "button";
     link.className = "show-row-link";
-    link.href = film.official_url;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    if (isPast) link.tabIndex = -1;
+    link.setAttribute("aria-haspopup", "dialog");
+    if (isPast) link.disabled = true;
+    link.addEventListener("click", function () {
+      openFilmSheet(film, true);
+    });
 
     var posterWrap = document.createElement("div");
     posterWrap.className = "poster-wrap";
@@ -500,68 +595,464 @@
 
     var buyBtn = document.createElement("a");
     buyBtn.className = "pill-btn buy-btn";
-    buyBtn.href = st.buy_url;
+    buyBtn.href = film.official_url;
     buyBtn.target = "_blank";
     buyBtn.rel = "noopener noreferrer";
     buyBtn.textContent = "boletos";
     if (isPast) buyBtn.tabIndex = -1;
     actions.appendChild(buyBtn);
-
-    var hasDetail = Boolean(film.synopsis || film.cast || film.trailer_youtube_id);
-    if (hasDetail) {
-      var detailId = "detail-" + st.session_id;
-      var chevron = document.createElement("button");
-      chevron.type = "button";
-      chevron.className = "chevron-btn";
-      chevron.setAttribute("aria-expanded", "false");
-      chevron.setAttribute("aria-controls", detailId);
-      chevron.setAttribute("aria-label", "ver más detalles de " + film.title);
-      chevron.innerHTML =
-        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-        '<path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      actions.appendChild(chevron);
-      row.appendChild(actions);
-
-      var detail = document.createElement("div");
-      detail.className = "show-detail";
-      detail.id = detailId;
-      detail.hidden = true;
-      if (film.synopsis) {
-        var syn = document.createElement("p");
-        syn.textContent = film.synopsis;
-        detail.appendChild(syn);
-      }
-      if (film.cast) {
-        var cast = document.createElement("p");
-        cast.className = "show-detail-cast";
-        cast.textContent = "con " + film.cast;
-        detail.appendChild(cast);
-      }
-      if (film.trailer_youtube_id) {
-        var trailer = document.createElement("a");
-        trailer.className = "show-detail-trailer";
-        trailer.href = "https://www.youtube.com/watch?v=" + film.trailer_youtube_id;
-        trailer.target = "_blank";
-        trailer.rel = "noopener noreferrer";
-        trailer.textContent = "ver tráiler ↗";
-        detail.appendChild(trailer);
-      }
-      row.appendChild(detail);
-
-      chevron.addEventListener("click", function () {
-        var expanded = chevron.getAttribute("aria-expanded") === "true";
-        chevron.setAttribute("aria-expanded", String(!expanded));
-        detail.hidden = expanded;
-      });
-    } else {
-      row.appendChild(actions);
-    }
+    row.appendChild(actions);
 
     return row;
   }
 
-  // ---------- about modal (manual trigger; about-modal.js owns the
-  // first-visit auto-show, ported unchanged from croquis) ----------
+  // ---------- film sheet + film index helpers ----------
+
+  function findFilm(id) {
+    for (var i = 0; i < DATA.films.length; i++) {
+      if (DATA.films[i].id === id) return DATA.films[i];
+    }
+    return null;
+  }
+
+  function futureShowtimes(film) {
+    var today = todayISO();
+    var nowMin = nowMinutesCDMX();
+    return film.showtimes
+      .filter(function (st) {
+        if (st.date > today) return true;
+        if (st.date === today) return timeToMinutes(st.time) >= nowMin;
+        return false;
+      })
+      .sort(function (a, b) {
+        if (a.date !== b.date) return a.date < b.date ? -1 : 1;
+        return timeToMinutes(a.time) - timeToMinutes(b.time);
+      });
+  }
+
+  function groupByDate(sts) {
+    var byDate = {};
+    sts.forEach(function (st) {
+      if (!byDate[st.date]) byDate[st.date] = [];
+      byDate[st.date].push(st);
+    });
+    return DATA.days
+      .filter(function (d) {
+        return byDate[d];
+      })
+      .map(function (d) {
+        return { date: d, times: byDate[d] };
+      });
+  }
+
+  function shortDate(iso) {
+    var d = new Date(iso + "T12:00:00-06:00");
+    var s = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "short", timeZone: TZ }).format(d);
+    return s.replace(".", "");
+  }
+
+  function dateRangeLabel(sts) {
+    if (!sts.length) return "";
+    var min = sts[0].date,
+      max = sts[0].date;
+    sts.forEach(function (st) {
+      if (st.date < min) min = st.date;
+      if (st.date > max) max = st.date;
+    });
+    if (min === max) return shortDate(min);
+    var monMin = min.slice(5, 7),
+      monMax = max.slice(5, 7);
+    var dMin = parseInt(min.slice(8, 10), 10);
+    var dMax = parseInt(max.slice(8, 10), 10);
+    if (monMin === monMax) {
+      var monLabel = shortDate(max).split(" ")[1];
+      return dMin + "–" + dMax + " " + monLabel;
+    }
+    return shortDate(min) + "–" + shortDate(max);
+  }
+
+  function buildFilmSheetBody(film) {
+    var frag = document.createDocumentFragment();
+    var futures = futureShowtimes(film);
+
+    var head = document.createElement("div");
+    head.className = "sheet-head";
+
+    var posterWrap = document.createElement("div");
+    posterWrap.className = "poster-wrap";
+    var img = document.createElement("img");
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.alt = "";
+    img.src = film.poster;
+    img.addEventListener(
+      "error",
+      function () {
+        posterWrap.innerHTML = '<div class="poster-placeholder">' + escapeHtml(film.title) + "</div>";
+      },
+      { once: true }
+    );
+    posterWrap.appendChild(img);
+    head.appendChild(posterWrap);
+
+    var info = document.createElement("div");
+    info.className = "sheet-head-info";
+
+    var h2 = document.createElement("h2");
+    h2.className = "sheet-title";
+    h2.id = "film-sheet-title";
+    h2.textContent = film.title;
+    info.appendChild(h2);
+
+    if (film.original_title && film.original_title !== film.title) {
+      var orig = document.createElement("div");
+      orig.className = "sheet-original";
+      orig.textContent = film.original_title;
+      info.appendChild(orig);
+    }
+
+    var metaParts = [film.director, film.country, film.year].filter(Boolean);
+    if (metaParts.length) {
+      var meta = document.createElement("div");
+      meta.className = "show-meta";
+      meta.textContent = metaParts.join(" · ");
+      info.appendChild(meta);
+    }
+
+    var subParts = [];
+    if (film.duration_min) subParts.push(film.duration_min + "'");
+    if (film.classification) subParts.push(film.classification);
+    if (subParts.length) {
+      var sub = document.createElement("div");
+      sub.className = "show-sub";
+      sub.textContent = subParts.join(" · ");
+      info.appendChild(sub);
+    }
+
+    if (film.ciclo) {
+      var ciclo = document.createElement("span");
+      ciclo.className = "kicker";
+      ciclo.textContent = film.ciclo;
+      info.appendChild(ciclo);
+    }
+
+    head.appendChild(info);
+    frag.appendChild(head);
+
+    if (film.synopsis) {
+      var syn = document.createElement("p");
+      syn.className = "sheet-synopsis";
+      syn.textContent = film.synopsis;
+      frag.appendChild(syn);
+    }
+
+    if (film.cast) {
+      var cast = document.createElement("p");
+      cast.className = "sheet-cast";
+      cast.textContent = "con " + film.cast;
+      frag.appendChild(cast);
+    }
+
+    var links = document.createElement("div");
+    links.className = "sheet-links";
+    if (film.trailer_youtube_id) {
+      var trailer = document.createElement("a");
+      trailer.className = "sheet-link";
+      trailer.href = "https://www.youtube.com/watch?v=" + film.trailer_youtube_id;
+      trailer.target = "_blank";
+      trailer.rel = "noopener noreferrer";
+      trailer.textContent = "ver tráiler ↗";
+      links.appendChild(trailer);
+    }
+    if (links.children.length) frag.appendChild(links);
+
+    var hr = document.createElement("div");
+    hr.className = "hairline";
+    hr.setAttribute("aria-hidden", "true");
+    frag.appendChild(hr);
+
+    if (futures.length === 0) {
+      var empty = document.createElement("p");
+      empty.className = "sheet-empty";
+      empty.textContent = "sin funciones próximas esta semana";
+      frag.appendChild(empty);
+      return frag;
+    }
+
+    var distinctSedes = [];
+    futures.forEach(function (st) {
+      if (distinctSedes.indexOf(st.sede) === -1) distinctSedes.push(st.sede);
+    });
+    var multiSede = distinctSedes.length > 1;
+
+    var timesHead = document.createElement("div");
+    timesHead.className = "sheet-times-head";
+
+    var timesKicker = document.createElement("span");
+    timesKicker.className = "kicker";
+    timesKicker.textContent = "PRÓXIMAS FUNCIONES";
+    timesHead.appendChild(timesKicker);
+
+    var count = document.createElement("span");
+    count.className = "sheet-count";
+    count.textContent = futures.length + (futures.length === 1 ? " función" : " funciones");
+    timesHead.appendChild(count);
+
+    if (!multiSede && DATA.sedes[distinctSedes[0]]) {
+      var sedeLabel = document.createElement("span");
+      sedeLabel.className = "kicker";
+      sedeLabel.style.setProperty("--ink-4", "var(--sede-" + distinctSedes[0] + ")");
+      sedeLabel.textContent = DATA.sedes[distinctSedes[0]].name;
+      timesHead.appendChild(sedeLabel);
+    }
+
+    frag.appendChild(timesHead);
+
+    var daysWrap = document.createElement("div");
+    daysWrap.className = "sheet-days";
+    groupByDate(futures).forEach(function (group) {
+      var row = document.createElement("div");
+      row.className = "sheet-day-row";
+
+      var label = document.createElement("div");
+      label.className = "sheet-day-label";
+      label.textContent = dayLabel(group.date);
+      row.appendChild(label);
+
+      var chips = document.createElement("div");
+      chips.className = "sheet-day-chips";
+      group.times.forEach(function (st) {
+        var chip = document.createElement("a");
+        chip.className = "time-chip";
+        chip.href = film.official_url;
+        chip.target = "_blank";
+        chip.rel = "noopener noreferrer";
+
+        var dot = document.createElement("span");
+        dot.className = "sede-dot";
+        dot.style.setProperty("--dot-color", "var(--sede-" + st.sede + ")");
+        chip.appendChild(dot);
+
+        var time = document.createElement("time");
+        time.className = "time-chip-time";
+        time.dateTime = st.datetime;
+        time.textContent = st.time;
+        chip.appendChild(time);
+
+        if (multiSede && DATA.sedes[st.sede]) {
+          var sedeSpan = document.createElement("span");
+          sedeSpan.className = "time-chip-sede";
+          sedeSpan.textContent = DATA.sedes[st.sede].name;
+          chip.appendChild(sedeSpan);
+        }
+
+        chips.appendChild(chip);
+      });
+      row.appendChild(chips);
+      daysWrap.appendChild(row);
+    });
+    frag.appendChild(daysWrap);
+
+    return frag;
+  }
+
+  function openFilmSheet(film, push) {
+    var sheet = els.filmSheet;
+    if (!sheet) return;
+    sheetTriggerEl = document.activeElement;
+    state.film = film.id;
+    els.sheetBody.innerHTML = "";
+    els.sheetBody.appendChild(buildFilmSheetBody(film));
+    sheet.hidden = false;
+    document.documentElement.classList.add("sheet-open");
+    if (els.appRoot) els.appRoot.inert = true;
+    requestAnimationFrame(function () {
+      sheet.classList.add("visible");
+    });
+    if (push) {
+      history.pushState({ sheet: film.id }, "", urlFor(state));
+      sheetPushedState = true;
+    } else {
+      syncUrl();
+    }
+    if (els.sheetClose) els.sheetClose.focus();
+  }
+
+  function closeFilmSheet(fromPop) {
+    var sheet = els.filmSheet;
+    if (!sheet || sheet.hidden) return;
+    if (sheetPushedState && !fromPop) {
+      sheetPushedState = false;
+      history.back();
+      return;
+    }
+    sheetPushedState = false;
+    sheet.classList.remove("visible");
+    document.documentElement.classList.remove("sheet-open");
+    if (els.appRoot) els.appRoot.inert = false;
+    state.film = "";
+    setTimeout(function () {
+      sheet.hidden = true;
+    }, 240);
+    syncUrl();
+    if (sheetTriggerEl && typeof sheetTriggerEl.focus === "function") {
+      sheetTriggerEl.focus();
+    }
+    sheetTriggerEl = null;
+  }
+
+  function bindFilmSheetEvents() {
+    var sheet = els.filmSheet;
+    if (!sheet) return;
+
+    if (els.sheetClose) {
+      els.sheetClose.addEventListener("click", function () {
+        closeFilmSheet(false);
+      });
+    }
+    sheet.addEventListener("click", function (ev) {
+      if (sheet.hidden) return;
+      if (els.sheetContent && els.sheetContent.contains(ev.target)) return;
+      closeFilmSheet(false);
+    });
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape" && !sheet.hidden) closeFilmSheet(false);
+    });
+    window.addEventListener("popstate", function () {
+      if (!sheet.hidden) closeFilmSheet(true);
+    });
+  }
+
+  function buildFilmCard(film, futures) {
+    var card = document.createElement("button");
+    card.type = "button";
+    card.className = "film-card";
+    card.setAttribute("aria-haspopup", "dialog");
+
+    var posterWrap = document.createElement("div");
+    posterWrap.className = "poster-wrap";
+    var img = document.createElement("img");
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.alt = "";
+    img.src = film.poster;
+    img.addEventListener(
+      "error",
+      function () {
+        posterWrap.innerHTML = '<div class="poster-placeholder">' + escapeHtml(film.title) + "</div>";
+      },
+      { once: true }
+    );
+    posterWrap.appendChild(img);
+    card.appendChild(posterWrap);
+
+    var info = document.createElement("div");
+    info.className = "film-card-info";
+
+    var title = document.createElement("div");
+    title.className = "show-title";
+    title.textContent = film.title;
+    info.appendChild(title);
+
+    var metaParts = [film.director, film.country].filter(Boolean);
+    if (metaParts.length) {
+      var meta = document.createElement("div");
+      meta.className = "show-meta";
+      meta.textContent = metaParts.join(" · ");
+      info.appendChild(meta);
+    }
+
+    var runs = document.createElement("div");
+    runs.className = "film-card-runs";
+    runs.textContent =
+      futures.length + (futures.length === 1 ? " función · " : " funciones · ") + dateRangeLabel(futures);
+    info.appendChild(runs);
+
+    var distinctSedes = [];
+    futures.forEach(function (st) {
+      if (distinctSedes.indexOf(st.sede) === -1) distinctSedes.push(st.sede);
+    });
+    if (distinctSedes.length) {
+      var sedesRow = document.createElement("div");
+      sedesRow.className = "film-card-sedes";
+      distinctSedes.forEach(function (code) {
+        var sedeInfo = DATA.sedes[code];
+        if (!sedeInfo) return;
+        var dot = document.createElement("span");
+        dot.className = "sede-dot";
+        dot.style.setProperty("--dot-color", "var(--sede-" + code + ")");
+        sedesRow.appendChild(dot);
+        var label = document.createElement("span");
+        label.textContent = sedeInfo.name;
+        sedesRow.appendChild(label);
+      });
+      info.appendChild(sedesRow);
+    }
+
+    card.appendChild(info);
+    card.addEventListener("click", function () {
+      openFilmSheet(film, true);
+    });
+
+    return card;
+  }
+
+  function renderFilmIndex() {
+    els.agenda.className = "mode-films";
+
+    var normQuery = normalize(state.q.trim());
+    var filtered = [];
+    DATA.films.forEach(function (film) {
+      if (state.ciclo && film.ciclo !== state.ciclo) return;
+      if (normQuery && !matchesQuery(film, normQuery)) return;
+      var futures = futureShowtimes(film);
+      if (state.sede !== "000") {
+        futures = futures.filter(function (st) {
+          return st.sede === state.sede;
+        });
+      }
+      if (!futures.length) return;
+      filtered.push({ film: film, futures: futures });
+    });
+
+    filtered.sort(function (a, b) {
+      return a.film.title.localeCompare(b.film.title, "es");
+    });
+
+    var filtersActive = Boolean(state.q.trim() || state.ciclo || state.sede !== "000");
+
+    if (filtered.length === 0) {
+      els.agenda.innerHTML = "";
+      els.agenda.hidden = true;
+      showGlobalEmpty(filtersActive, filtersActive ? "ningún resultado para tu búsqueda" : "sin funciones esta semana");
+      return;
+    }
+
+    els.agenda.hidden = false;
+    els.globalEmpty.hidden = true;
+    els.agenda.innerHTML = "";
+
+    var summary =
+      filtered.length + (filtered.length === 1 ? " película" : " películas") + " esta semana";
+    announce(summary);
+
+    var head = document.createElement("div");
+    head.className = "film-index-head";
+    var kicker = document.createElement("span");
+    kicker.className = "kicker";
+    kicker.textContent = summary;
+    head.appendChild(kicker);
+    els.agenda.appendChild(head);
+
+    filtered.forEach(function (entry) {
+      els.agenda.appendChild(buildFilmCard(entry.film, entry.futures));
+    });
+  }
+
+  // ---------- about modal (opens only from the header info button) ----------
+  // croquis's about-modal.js gated a first-visit auto-show on localStorage.
+  // That was deliberately not ported: visitors here want the agenda straight
+  // away, not an intro screen. Don't reintroduce an auto-show on load.
 
   function bindAboutModalTrigger() {
     var modal = qs("about-modal");

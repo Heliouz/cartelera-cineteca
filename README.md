@@ -13,6 +13,7 @@ Sitio: `docs/` (GitHub Pages, `/docs` en `main`).
 scraper/        scraper en Python (requests + BeautifulSoup)
 docs/           sitio estático (GitHub Pages root)
 docs/data/      schedule.json, generado por el scraper
+docs/og.png     imagen de preview al compartir cualquier URL del sitio
 .github/workflows/scrape.yml   cron 2x/día + workflow_dispatch
 ```
 
@@ -59,6 +60,24 @@ GitHub Pages, deploy desde `main` / `/docs`. El workflow de scraping commitea
 Para un subdominio propio: CNAME en el registrador → `<usuario>.github.io`, y
 configurar el dominio personalizado en Settings → Pages (esto escribe
 `docs/CNAME`).
+
+### Checklist de lanzamiento
+
+Pendiente antes de publicar:
+
+- [ ] La rama local es `master`; Pages y este README asumen `main`. Renombrar
+      (`git branch -m master main`) o ajustar ambos.
+- [ ] No hay remote configurado (`git remote -v` está vacío) — agregarlo y
+      hacer push.
+- [ ] Settings → Pages → source `main` / `/docs`.
+- [ ] Una vez definido el dominio, en `docs/index.html`: volver absolutas
+      `og:image` y `twitter:image`, agregar `og:url` y
+      `<link rel="canonical">`. Hay un comentario `DEPLOY:` marcando el lugar.
+      Los crawlers modernos resuelven rutas relativas, los viejos no.
+- [ ] Verificar la preview con el debugger de cada red antes de compartir.
+
+El workflow abre un issue etiquetado `scrape-failure` si una corrida falla, así
+que un scrape roto no pasa desapercibido.
 
 ## No oficial
 
