@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-08-21T20:20:04.626093-06:00",
+  "generated_at": "2026-08-22T07:33:40.552029-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
-    "2026-08-21",
     "2026-08-22",
     "2026-08-23",
     "2026-08-24",
     "2026-08-25",
     "2026-08-26",
-    "2026-08-27"
+    "2026-08-27",
+    "2026-08-28"
   ],
   "sedes": {
     "003": {
@@ -412,13 +412,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-21",
-          "time": "20:45",
-          "datetime": "2026-08-21T20:45:00-06:00",
-          "session_id": "47011"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-22",
           "time": "13:30",
           "datetime": "2026-08-22T13:30:00-06:00",
@@ -478,13 +471,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009256&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-21",
-          "time": "21:00",
-          "datetime": "2026-08-21T21:00:00-06:00",
-          "session_id": "48761"
-        },
         {
           "sede": "003",
           "date": "2026-08-22",
@@ -586,13 +572,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009397&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-08-21",
-          "time": "19:50",
-          "datetime": "2026-08-21T19:50:00-06:00",
-          "session_id": "13687"
-        },
         {
           "sede": "002",
           "date": "2026-08-22",
@@ -862,13 +841,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-21",
-          "time": "21:00",
-          "datetime": "2026-08-21T21:00:00-06:00",
-          "session_id": "47016"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-22",
           "time": "14:30",
           "datetime": "2026-08-22T14:30:00-06:00",
@@ -1038,13 +1010,6 @@
       "ciclo": "Estrenos de la semana",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009555&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-21",
-          "time": "20:00",
-          "datetime": "2026-08-21T20:00:00-06:00",
-          "session_id": "50715"
-        },
         {
           "sede": "002",
           "date": "2026-08-22",
@@ -1597,13 +1562,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009563&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-21",
-          "time": "20:50",
-          "datetime": "2026-08-21T20:50:00-06:00",
-          "session_id": "50705"
-        },
         {
           "sede": "002",
           "date": "2026-08-22",
@@ -2250,13 +2208,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009756&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-21",
-          "time": "20:40",
-          "datetime": "2026-08-21T20:40:00-06:00",
-          "session_id": "50730"
-        },
         {
           "sede": "002",
           "date": "2026-08-22",
@@ -3037,13 +2988,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-21",
-          "time": "20:45",
-          "datetime": "2026-08-21T20:45:00-06:00",
-          "session_id": "48755"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-22",
           "time": "15:45",
           "datetime": "2026-08-22T15:45:00-06:00",
@@ -3474,6 +3418,20 @@
           "time": "18:45",
           "datetime": "2026-08-27T18:45:00-06:00",
           "session_id": "47077"
+        },
+        {
+          "sede": "003",
+          "date": "2026-08-28",
+          "time": "16:45",
+          "datetime": "2026-08-28T16:45:00-06:00",
+          "session_id": "47123"
+        },
+        {
+          "sede": "003",
+          "date": "2026-08-28",
+          "time": "21:00",
+          "datetime": "2026-08-28T21:00:00-06:00",
+          "session_id": "47121"
         }
       ]
     },
@@ -3563,6 +3521,20 @@
           "time": "21:00",
           "datetime": "2026-08-27T21:00:00-06:00",
           "session_id": "47079"
+        },
+        {
+          "sede": "003",
+          "date": "2026-08-28",
+          "time": "14:45",
+          "datetime": "2026-08-28T14:45:00-06:00",
+          "session_id": "47120"
+        },
+        {
+          "sede": "003",
+          "date": "2026-08-28",
+          "time": "19:00",
+          "datetime": "2026-08-28T19:00:00-06:00",
+          "session_id": "47122"
         }
       ]
     },
@@ -3624,6 +3596,20 @@
           "time": "18:00",
           "datetime": "2026-08-27T18:00:00-06:00",
           "session_id": "47118"
+        },
+        {
+          "sede": "003",
+          "date": "2026-08-28",
+          "time": "15:30",
+          "datetime": "2026-08-28T15:30:00-06:00",
+          "session_id": "47125"
+        },
+        {
+          "sede": "003",
+          "date": "2026-08-28",
+          "time": "21:00",
+          "datetime": "2026-08-28T21:00:00-06:00",
+          "session_id": "47124"
         }
       ]
     },
@@ -3685,6 +3671,20 @@
           "time": "19:45",
           "datetime": "2026-08-27T19:45:00-06:00",
           "session_id": "47116"
+        },
+        {
+          "sede": "003",
+          "date": "2026-08-28",
+          "time": "12:00",
+          "datetime": "2026-08-28T12:00:00-06:00",
+          "session_id": "47126"
+        },
+        {
+          "sede": "003",
+          "date": "2026-08-28",
+          "time": "17:15",
+          "datetime": "2026-08-28T17:15:00-06:00",
+          "session_id": "47127"
         }
       ]
     },
@@ -3705,13 +3705,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009793&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-21",
-          "time": "20:45",
-          "datetime": "2026-08-21T20:45:00-06:00",
-          "session_id": "47107"
-        },
         {
           "sede": "003",
           "date": "2026-08-22",
@@ -3773,13 +3766,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009798&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-21",
-          "time": "20:20",
-          "datetime": "2026-08-21T20:20:00-06:00",
-          "session_id": "50697"
-        },
         {
           "sede": "002",
           "date": "2026-08-22",
@@ -4140,13 +4126,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-21",
-          "time": "20:45",
-          "datetime": "2026-08-21T20:45:00-06:00",
-          "session_id": "48746"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-23",
           "time": "20:45",
           "datetime": "2026-08-23T20:45:00-06:00",
@@ -4358,13 +4337,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009814&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-21",
-          "time": "19:50",
-          "datetime": "2026-08-21T19:50:00-06:00",
-          "session_id": "50726"
-        },
         {
           "sede": "002",
           "date": "2026-08-22",
@@ -4721,32 +4693,6 @@
           "time": "19:50",
           "datetime": "2026-08-27T19:50:00-06:00",
           "session_id": "51010"
-        }
-      ]
-    },
-    {
-      "id": "HO00009838",
-      "title": "Basement games",
-      "original_title": "Basement games",
-      "director": "Lucio A. Rojas",
-      "cast": "Giuliana Natalini, Herman Heyne, Martín Meza Acuña, Ximena del Solar, Mario Olivares",
-      "country": "Chile, Alemania",
-      "year": 2026,
-      "duration_min": 98,
-      "classification": "D",
-      "synopsis": "Basement Games cuenta la historia de Laura, una joven fotógrafa itinerante que, mientras viaja por el sur de Chile, es secuestrada por unos hermanos que viven en un pueblo rural, desatando un horrible calvario a manos de sus captores.",
-      "raw_meta": "(Basement games, Chile, Alemania, 2026, Dur.: 98 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009838?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": "Macabro 2026 Festival de Cine de Horror",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009838&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-21",
-          "time": "20:30",
-          "datetime": "2026-08-21T20:30:00-06:00",
-          "session_id": "48562"
         }
       ]
     },
@@ -5264,13 +5210,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-08-21",
-          "time": "21:00",
-          "datetime": "2026-08-21T21:00:00-06:00",
-          "session_id": "50701"
-        },
-        {
-          "sede": "002",
           "date": "2026-08-22",
           "time": "12:10",
           "datetime": "2026-08-22T12:10:00-06:00",
@@ -5470,13 +5409,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009872&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-21",
-          "time": "20:10",
-          "datetime": "2026-08-21T20:10:00-06:00",
-          "session_id": "50722"
-        },
         {
           "sede": "002",
           "date": "2026-08-22",
