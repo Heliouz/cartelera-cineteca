@@ -85,7 +85,7 @@
     els.searchInput = qs("search-input");
     els.searchClear = qs("search-clear");
     els.cicloSelect = qs("ciclo-select");
-    els.updatedKicker = qs("updated-kicker");
+    els.dateKicker = qs("date-kicker");
     els.staleBanner = qs("stale-banner");
     els.errorState = qs("error-state");
     els.globalEmpty = qs("global-empty");
@@ -173,7 +173,7 @@
     renderDayStrip();
     renderSedeFilter();
     renderCicloSelect(ciclos);
-    renderUpdatedKicker();
+    renderDateKicker();
     renderStaleBanner();
     renderViewToggle();
     els.dayStrip.hidden = state.view === "pelicula";
@@ -285,13 +285,23 @@
     });
   }
 
-  function renderUpdatedKicker() {
-    var hours = hoursSince(DATA.generated_at);
-    var label;
-    if (hours < 1) label = "actualizado hace unos minutos";
-    else if (hours === 1) label = "actualizado hace 1 h";
-    else label = "actualizado hace " + hours + " h";
-    els.updatedKicker.textContent = label;
+  // The actual calendar date, not tied to state.day: this is a header
+  // orientation cue, not a filter echo, so it never changes as you browse
+  // other days.
+  function renderDateKicker() {
+    var parts = new Intl.DateTimeFormat("es-MX", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      timeZone: TZ,
+    }).formatToParts(new Date());
+    var weekday, day, month;
+    parts.forEach(function (p) {
+      if (p.type === "weekday") weekday = p.value;
+      if (p.type === "day") day = p.value;
+      if (p.type === "month") month = p.value;
+    });
+    els.dateKicker.textContent = (weekday + " " + day + " de " + month).toLowerCase();
   }
 
   function renderStaleBanner() {

@@ -595,6 +595,11 @@ html.sheet-open { overflow: hidden; }
   align-items: center;
   gap: var(--sp-3);
 }
+.date-kicker {
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  color: var(--ink-3);
+}
 .topbar-right .icon-btn { width: 30px; height: 30px; }
 
 /* day strip: horizontal scroll + snap on mobile, wraps naturally on wide screens */
