@@ -57,23 +57,21 @@ ya cargado — cero requests adicionales por interacción.
 GitHub Pages, deploy desde `main` / `/docs`. El workflow de scraping commitea
 `schedule.json` solo si cambió; ese commit es el deploy — no hay paso de build.
 
-Para un subdominio propio: CNAME en el registrador → `<usuario>.github.io`, y
-configurar el dominio personalizado en Settings → Pages (esto escribe
-`docs/CNAME`).
+Dominio propio: `cartelera.heliouz.com`, vía registro CNAME en el registrador →
+`heliouz.github.io`. `docs/CNAME` ya está commiteado con ese hostname, y
+Settings → Pages → Custom domain lo debe reflejar (GitHub añade el check DNS y
+provisiona HTTPS automáticamente una vez que el registro propaga).
 
 ### Checklist de lanzamiento
 
-Pendiente antes de publicar:
-
-- [ ] La rama local es `master`; Pages y este README asumen `main`. Renombrar
-      (`git branch -m master main`) o ajustar ambos.
-- [ ] No hay remote configurado (`git remote -v` está vacío) — agregarlo y
-      hacer push.
+- [x] Rama local renombrada a `main`.
+- [x] Remote configurado (`github.com/Heliouz/cartelera-cineteca`) y pusheado.
 - [ ] Settings → Pages → source `main` / `/docs`.
-- [ ] Una vez definido el dominio, en `docs/index.html`: volver absolutas
-      `og:image` y `twitter:image`, agregar `og:url` y
-      `<link rel="canonical">`. Hay un comentario `DEPLOY:` marcando el lugar.
-      Los crawlers modernos resuelven rutas relativas, los viejos no.
+- [ ] En el registrador: registro CNAME `cartelera` → `heliouz.github.io`.
+- [ ] Settings → Pages → Custom domain → `cartelera.heliouz.com`, esperar el
+      check DNS y "Enforce HTTPS".
+- [x] `docs/index.html`: `og:image`, `twitter:image`, `og:url` y
+      `<link rel="canonical">` ya apuntan a `https://cartelera.heliouz.com/`.
 - [ ] Verificar la preview con el debugger de cada red antes de compartir.
 
 El workflow abre un issue etiquetado `scrape-failure` si una corrida falla, así
