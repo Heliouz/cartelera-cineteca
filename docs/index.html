@@ -5,15 +5,24 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>cartelera: la cartelera de Cineteca Nacional, todas las sedes</title>
 <meta name="description" content="la programación de Cineteca Nacional México, Chapultepec y Las Artes en un solo lugar, agrupada por día y sede, con boletos a un clic." />
-<meta name="theme-color" id="theme-color-meta" content="#f8f8f8" />
+<meta name="theme-color" content="#f8f8f8" />
 <meta name="color-scheme" content="light" />
+<!-- DEPLOY: og:image and og:url are relative. Modern crawlers (Facebook, X,
+     Slack, WhatsApp, iMessage) resolve them against the page URL, but some
+     older ones require absolute URLs — once the domain is decided, prefix
+     these three with it and add <link rel="canonical">. See README. -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="cartelera" />
 <meta property="og:description" content="la programación de Cineteca Nacional, las tres sedes en un solo lugar." />
 <meta property="og:locale" content="es_MX" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:image" content="og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="cartelera — la cartelera de Cineteca Nacional, todas las sedes" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="cartelera" />
 <meta name="twitter:description" content="la programación de Cineteca Nacional, las tres sedes en un solo lugar." />
+<meta name="twitter:image" content="og.png" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="apple-touch-icon" href="favicon.svg" />
 <link rel="stylesheet" href="style.css" />
@@ -39,10 +48,15 @@
       </div>
     </div>
 
-    <div id="day-strip" role="tablist" aria-label="elegir día"></div>
+    <!-- role=group + aria-pressed, not tablist/tab: these are toggle buttons
+         filtering one list in place, with no tabpanels to own and no roving
+         arrow-key focus. Claiming the tab pattern promises both. -->
+    <div id="view-toggle" role="group" aria-label="modo de vista"></div>
+
+    <div id="day-strip" role="group" aria-label="elegir día"></div>
 
     <div id="filters-row">
-      <div id="sede-filter" role="tablist" aria-label="elegir sede"></div>
+      <div id="sede-filter" role="group" aria-label="elegir sede"></div>
       <div class="search-wrap">
         <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/>
@@ -67,7 +81,11 @@
   </div>
 
   <main id="agenda-wrap">
-    <div id="agenda" aria-live="polite"></div>
+    <!-- The live region is this summary line, not #agenda itself: #agenda is
+         wiped and rebuilt on every keystroke, so announcing it would read the
+         whole cartelera aloud each time. -->
+    <p id="results-status" class="visually-hidden" role="status" aria-live="polite"></p>
+    <div id="agenda"></div>
     <div id="global-empty" class="empty-state" hidden>
       <p class="empty-state-title">ningún resultado para tu búsqueda</p>
       <button id="clear-filters-btn" class="pill-btn secondary" type="button">limpiar filtros</button>
@@ -123,6 +141,19 @@
         <a href="mailto:contacto@heliouz.com">email</a>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="film-sheet" hidden role="dialog" aria-modal="true" aria-labelledby="film-sheet-title">
+  <div class="sheet-backdrop" aria-hidden="true"></div>
+  <div class="sheet-content">
+    <div class="sheet-grab" aria-hidden="true"></div>
+    <button class="icon-btn sheet-close" type="button" aria-label="cerrar">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="sheet-body"></div>
   </div>
 </div>
 

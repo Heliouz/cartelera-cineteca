@@ -86,6 +86,18 @@ button, input, select {
 
 img { max-width: 100%; }
 
+/* Off-screen but readable by assistive tech — #results-status only. */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 noscript {
   display: block;
   padding: var(--sp-6);
@@ -328,6 +340,222 @@ noscript {
 .about-author-links a { color: inherit; text-decoration: none; }
 .about-author-links a:hover { color: var(--ink-1); }
 
+/* ---------- film sheet ---------- */
+
+#film-sheet {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  z-index: 160;
+  align-items: flex-end;
+  justify-content: center;
+}
+#film-sheet[hidden] { display: none; }
+.sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+#film-sheet.visible .sheet-backdrop { opacity: 1; }
+.sheet-content {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: 92dvh;
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  padding: var(--sp-6) var(--sp-5) max(var(--sp-6), env(safe-area-inset-bottom));
+  background: var(--bg-card);
+  border: 1px solid var(--ink-border-soft);
+  border-radius: var(--rad-lg) var(--rad-lg) 0 0;
+  box-shadow: var(--shadow-panel);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+#film-sheet.visible .sheet-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sheet-grab {
+  width: 36px;
+  height: 4px;
+  border-radius: var(--rad-pill);
+  background: var(--ink-border);
+  margin: 0 auto var(--sp-4);
+}
+.sheet-close {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-4);
+}
+
+@media (min-width: 640px) {
+  #film-sheet { align-items: center; padding: var(--sp-4); }
+  .sheet-content {
+    border-radius: var(--rad-md);
+    max-height: calc(100vh - 2 * var(--sp-4));
+    transform: translateY(8px) scale(0.985);
+  }
+  #film-sheet.visible .sheet-content { transform: translateY(0) scale(1); }
+  .sheet-grab { display: none; }
+}
+
+html.sheet-open { overflow: hidden; }
+
+.sheet-head {
+  display: flex;
+  gap: var(--sp-4);
+  align-items: flex-start;
+  padding-right: var(--sp-8);
+}
+.sheet-head .poster-wrap { width: 96px; flex: none; }
+.sheet-head-info { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.sheet-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: var(--fw-bold);
+  color: var(--ink-1);
+  text-transform: uppercase;
+  line-height: 1.25;
+  overflow-wrap: break-word;
+}
+.sheet-original {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ink-4);
+}
+.sheet-head-info .kicker { margin-top: var(--sp-1); }
+
+.sheet-synopsis {
+  margin: var(--sp-5) 0 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.sheet-cast {
+  margin: var(--sp-2) 0 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-4);
+}
+.sheet-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-top: var(--sp-3);
+}
+.sheet-link {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.sheet-link:hover { color: var(--ink-1); }
+
+.sheet-times-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+.sheet-count {
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  color: var(--ink-4);
+  font-feature-settings: "tnum" 1;
+}
+.sheet-empty {
+  font-size: 13px;
+  color: var(--ink-4);
+}
+
+.sheet-days { display: flex; flex-direction: column; gap: var(--sp-4); }
+.sheet-day-row { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-3); align-items: baseline; }
+.sheet-day-label {
+  flex: none;
+  min-width: 56px;
+  font-size: 11.5px;
+  font-weight: var(--fw-semibold);
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+.sheet-day-chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+
+.time-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 6px 14px;
+  border: 1px solid var(--ink-border-soft);
+  border-radius: var(--rad-pill);
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: border-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+.time-chip:hover { border-color: var(--ink-border); color: var(--ink-1); }
+.time-chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-strong);
+}
+.time-chip .sede-dot { width: 7px; height: 7px; }
+.time-chip-time {
+  font-size: 12.5px;
+  font-weight: var(--fw-semibold);
+  font-feature-settings: "tnum" 1;
+}
+.time-chip-sede { font-size: 11px; color: var(--ink-4); }
+
+/* ---------- film index (por película) ---------- */
+
+.film-index-head { padding: 0 0 var(--sp-2); }
+
+.film-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-3) 0;
+  border: none;
+  border-bottom: 1px solid var(--ink-rule);
+  background: none;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  border-radius: var(--rad-sm);
+}
+.film-card:last-child { border-bottom: none; }
+.film-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-strong);
+}
+.film-card .poster-wrap { width: 72px; flex: none; }
+.film-card-info { min-width: 0; flex: 1; }
+.film-card-runs {
+  font-size: 11.5px;
+  color: var(--ink-4);
+  font-feature-settings: "tnum" 1;
+  margin-top: 3px;
+}
+.film-card-sedes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--ink-4);
+}
+.film-card-sedes .sede-dot { width: 7px; height: 7px; }
+.film-card-sedes span + .sede-dot { margin-left: 6px; }
+
 /* ---------- app shell ---------- */
 
 #app {
@@ -400,7 +628,7 @@ noscript {
               background var(--dur-base) var(--ease-out);
 }
 .day-chip:hover { color: var(--ink-1); border-color: var(--ink-border); }
-.day-chip[aria-selected="true"] {
+.day-chip[aria-pressed="true"] {
   background: #1a1a1a;
   color: #ffffff;
   border-color: #1a1a1a;
@@ -437,7 +665,7 @@ noscript {
   transition: color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
 }
 .sede-chip:hover { color: var(--ink-1); }
-.sede-chip[aria-selected="true"] {
+.sede-chip[aria-pressed="true"] {
   background: var(--bg-card);
   color: var(--ink-1);
   box-shadow: var(--shadow-button);
@@ -447,6 +675,34 @@ noscript {
   border-radius: var(--rad-pill);
   background: var(--dot-color, var(--ink-4));
   flex: none;
+}
+
+/* view toggle: por día / por película, same segmented look as #sede-filter */
+#view-toggle {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border-radius: var(--rad-pill);
+  background: var(--bg-edge);
+  width: fit-content;
+}
+.view-chip {
+  min-height: 34px;
+  padding: 6px 15px;
+  border-radius: var(--rad-pill);
+  border: none;
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
+}
+.view-chip:hover { color: var(--ink-1); }
+.view-chip[aria-pressed="true"] {
+  background: var(--bg-card);
+  color: var(--ink-1);
+  box-shadow: var(--shadow-button);
 }
 
 .search-wrap {
@@ -488,6 +744,9 @@ noscript {
   background: transparent;
 }
 
+/* The chevron is a data: URI, which can't read a CSS custom property — %23707070
+   is that constraint, not a stray literal. It's --ink-3 flattened against --bg-card.
+   Note it survives CLAUDE.md's hex grep only because it's URL-encoded. */
 #ciclo-select {
   flex: none;
   min-height: 34px;
@@ -534,6 +793,7 @@ noscript {
   margin: 0 auto;
 }
 #agenda.mode-single { max-width: 720px; }
+#agenda.mode-films { max-width: 720px; }
 
 .sede-column { display: flex; flex-direction: column; min-width: 0; }
 
@@ -550,7 +810,8 @@ noscript {
   gap: var(--sp-2);
   min-width: 0;
 }
-.sede-header .kicker { color: var(--sede-color, var(--ink-4)); }
+/* app.js sets `--ink-4: var(--sede-NNN)` inline on this kicker, so the sede
+   colour arrives through the token .kicker already reads. No extra variable. */
 .sede-count {
   font-size: 11px;
   font-weight: var(--fw-medium);
@@ -566,24 +827,26 @@ noscript {
 
 .show-list { display: flex; flex-direction: column; }
 
-.now-divider {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  margin: var(--sp-2) 0;
-  color: var(--live);
+.past-details { margin-top: var(--sp-2); }
+.past-details > summary {
+  list-style: none;
+  cursor: pointer;
+  color: var(--ink-4);
   font-size: 10.5px;
   font-weight: var(--fw-bold);
   letter-spacing: 0.14em;
   text-transform: lowercase;
+  padding: var(--sp-3) 0;
+  border-top: 1px solid var(--ink-rule);
 }
-.now-divider::before, .now-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--live);
-  opacity: 0.35;
+.past-details > summary::-webkit-details-marker { display: none; }
+.past-details > summary::before {
+  content: "▸ ";
 }
+.past-details[open] > summary::before {
+  content: "▾ ";
+}
+.past-details .show-list { margin-top: var(--sp-1); }
 
 .show-row {
   display: flex;
@@ -594,7 +857,13 @@ noscript {
   border-bottom: 1px solid var(--ink-rule);
 }
 .show-row:last-child { border-bottom: none; }
-.show-row[data-past="true"] { opacity: 0.42; }
+/* Past rows are dimmed, but 0.42 on top of --ink-4 (itself 42% alpha) left the
+   meta line around 18% — unreadable, not merely de-emphasised. These sit behind
+   a collapsed <details>, so nobody opens them by accident; they just have to be
+   legible once opened. */
+.show-row[data-past="true"] { opacity: 0.72; }
+.show-row[data-past="true"] .show-meta,
+.show-row[data-past="true"] .show-sub { color: var(--ink-3); }
 
 .show-row-link {
   display: flex;
@@ -605,6 +874,13 @@ noscript {
   color: inherit;
   text-decoration: none;
   border-radius: var(--rad-sm);
+  border: none;
+  background: none;
+  padding: 0;
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 .show-row-link:focus-visible {
   outline: none;
@@ -685,39 +961,6 @@ noscript {
   font-size: 12px;
   min-height: 44px;
 }
-.chevron-btn {
-  width: 30px; height: 30px;
-  border: none;
-  background: none;
-  color: var(--ink-4);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
-}
-.chevron-btn:hover { color: var(--ink-2); }
-.chevron-btn[aria-expanded="true"] { transform: rotate(180deg); }
-
-.show-detail {
-  flex-basis: 100%;
-  width: 100%;
-  padding: 0 0 var(--sp-3);
-  font-size: 12.5px;
-  line-height: 1.55;
-  color: var(--ink-3);
-}
-.show-detail-cast { color: var(--ink-4); margin-top: var(--sp-1); }
-.show-detail-trailer {
-  display: inline-block;
-  margin-top: var(--sp-2);
-  color: var(--ink-2);
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  font-size: 12px;
-}
-.show-detail-trailer:hover { color: var(--ink-1); }
-
 .sede-empty {
   padding: var(--sp-4) 0;
   font-size: 12.5px;
@@ -755,6 +998,14 @@ noscript {
   .show-row { gap: var(--sp-4); }
   .poster-wrap { width: 84px; }
   .show-time { font-size: 16px; }
+
+  #agenda.mode-films {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 var(--sp-6);
+    max-width: 880px;
+  }
+  #agenda.mode-films .film-index-head { grid-column: 1 / -1; }
 }
 
 @media (min-width: 1024px) {
@@ -769,16 +1020,24 @@ noscript {
   }
   #agenda.mode-all .sede-column { min-width: 0; }
 
-  #agenda.mode-single {
+  /* Single-sede: two columns of showtimes under one full-width sede header.
+     The grid has to sit on .show-list, which is what actually contains the
+     .show-row children — #agenda's only child here is one .sede-column, so
+     making #agenda the grid just left half the page empty and put every
+     grid-column rule on elements that weren't grid items. */
+  #agenda.mode-single { max-width: 880px; }
+  #agenda.mode-single .show-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0 var(--sp-6);
-    max-width: 880px;
+    align-items: start;
   }
-  #agenda.mode-single .show-row { grid-column: span 1; }
   #agenda.mode-single .poster-wrap { width: 110px; }
-  #agenda.mode-single .sede-header,
-  #agenda.mode-single .sede-rule { grid-column: 1 / -1; }
+
+  #agenda.mode-films {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1240px;
+  }
 }
 
 @media (max-width: 420px) {
