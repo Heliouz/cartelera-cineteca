@@ -574,6 +574,34 @@ html.sheet-open { overflow: hidden; }
   padding: max(var(--sp-4), env(safe-area-inset-top)) var(--sp-4) var(--sp-3);
   background: var(--bg);
   border-bottom: 1px solid var(--ink-rule);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+/* Scrolling down slides the filter rows up behind the masthead, which is held in
+   place by an equal and opposite translate — "cartelera" and the date never leave.
+   --topbar-hide is measured in app.js (bindAutoHideTopBar) as exactly the filter
+   rows plus their gaps, so the bar's border-bottom lands right under .topbar-row.
+   Both halves are transforms: no layout changes, so the agenda never reflows. */
+#top-bar.is-collapsed {
+  transform: translateY(calc(var(--topbar-hide, 0px) * -1));
+}
+#top-bar.is-collapsed .topbar-row {
+  transform: translateY(var(--topbar-hide, 0px));
+}
+
+/* The fade covers the sliver of chip that would otherwise show past .topbar-row's
+   box, and visibility (discrete, so it flips only at the end of the slide) takes
+   the hidden chips and the search field out of the tab order. */
+#view-toggle,
+#day-strip,
+#filters-row {
+  transition: opacity var(--dur-base) var(--ease-out), visibility var(--dur-base);
+}
+#top-bar.is-collapsed #view-toggle,
+#top-bar.is-collapsed #day-strip,
+#top-bar.is-collapsed #filters-row {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .topbar-row {
@@ -581,6 +609,11 @@ html.sheet-open { overflow: hidden; }
   align-items: center;
   justify-content: space-between;
   gap: var(--sp-3);
+  /* opaque and raised so the filter rows pass behind it, not through it */
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  transition: transform var(--dur-base) var(--ease-out);
 }
 .brand {
   margin: 0;

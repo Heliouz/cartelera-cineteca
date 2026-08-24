@@ -100,8 +100,11 @@
     els.sheetContent = els.filmSheet ? els.filmSheet.querySelector(".sheet-content") : null;
     els.sheetClose = els.filmSheet ? els.filmSheet.querySelector(".sheet-close") : null;
     els.appRoot = qs("app");
+    els.topBar = qs("top-bar");
+    els.topbarRow = els.topBar ? els.topBar.querySelector(".topbar-row") : null;
 
     bindAboutModalTrigger();
+    bindAutoHideTopBar();
 
     fetch(DATA_URL, { cache: "no-cache" })
       .then(function (r) {
@@ -1185,6 +1188,71 @@
     document.addEventListener("keydown", function (ev) {
       if (ev.key === "Escape" && !modal.hidden) closeModal();
     });
+  }
+
+  // ---------- auto-hiding filter rows ----------
+
+  // Scrolling down parks the filter rows behind the masthead (see
+  // `#top-bar.is-collapsed` in style.css); scrolling up brings them back.
+  // Nothing here touches `state` or the URL — this is view chrome, not a filter.
+  function bindAutoHideTopBar() {
+    var bar = els.topBar;
+    var row = els.topbarRow;
+    if (!bar || !row) return;
+
+    var hideDistance = 0;
+    var lastY = Math.max(0, window.scrollY);
+    var ticking = false;
+
+    // offsetHeight is transform-independent, so this reads the same whether the
+    // bar is collapsed or not. The zero guard is showErrorState(), which hides
+    // the bar outright ([hidden] is display:none).
+    function measure() {
+      if (!bar.offsetHeight) return;
+      var cs = getComputedStyle(bar);
+      var chrome =
+        (parseFloat(cs.paddingTop) || 0) +
+        (parseFloat(cs.paddingBottom) || 0) +
+        (parseFloat(cs.borderBottomWidth) || 0);
+      hideDistance = Math.max(0, bar.offsetHeight - chrome - row.offsetHeight);
+      bar.style.setProperty("--topbar-hide", hideDistance + "px");
+    }
+
+    function update() {
+      ticking = false;
+      var y = Math.max(0, window.scrollY);
+      var delta = y - lastY;
+      lastY = y;
+
+      // Near the top, or while a chip or the search field holds focus, the bar
+      // stays whole — never pull a control out from under a keyboard user.
+      if (y <= hideDistance || bar.contains(document.activeElement)) {
+        bar.classList.remove("is-collapsed");
+        return;
+      }
+      // The 4px dead zone rides out trackpad and rubber-band jitter; the 80px
+      // floor keeps a short flick near the top from collapsing anything.
+      if (delta > 4 && y > hideDistance + 80) bar.classList.add("is-collapsed");
+      else if (delta < -4) bar.classList.remove("is-collapsed");
+    }
+
+    // Three things change the hide distance after load, and all three resize the
+    // bar: the chips don't exist until onDataLoaded() fills them, setState()
+    // hides #day-strip outright in "por película", and #filters-row wraps to a
+    // second line on narrow phones.
+    if (window.ResizeObserver) new ResizeObserver(measure).observe(bar);
+    else window.addEventListener("resize", measure);
+    measure();
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      },
+      { passive: true }
+    );
   }
 
   if (document.readyState === "loading") {
