@@ -6,8 +6,6 @@
   var STALE_HOURS = 36;
   var TZ = "America/Mexico_City";
 
-  var DAY_NOTE = "cineteca todavía no publica la cartelera completa de este día";
-
   var DATA = null;
   var defaultDay = null;
   var unpublishedDays = [];
@@ -93,7 +91,6 @@
     els.errorState = qs("error-state");
     els.globalEmpty = qs("global-empty");
     els.resultsStatus = qs("results-status");
-    els.dayNote = qs("day-note");
     els.clearFiltersBtn = qs("clear-filters-btn");
     els.infoBtn = qs("info-btn");
     els.agendaWrap = qs("agenda-wrap");
@@ -482,15 +479,12 @@
     announce(title);
   }
 
-  function renderDayNote(text) {
-    if (!els.dayNote) return;
-    els.dayNote.textContent = text || "";
-    els.dayNote.hidden = !text;
-  }
-
   // Why a column has nothing to list matters: an unpublished day and a sede
   // that is genuinely dark look identical in the data and read very
-  // differently to someone deciding whether to go.
+  // differently to someone deciding whether to go. Saying so takes three
+  // words — regulars already know the week goes up on Wednesday or Thursday,
+  // so the copy doesn't explain the schedule, it just stops claiming there
+  // are no screenings.
   function sedeEmptyText(unpublished, hadRows, isToday) {
     if (unpublished) return "sin información";
     if (hadRows && isToday) return "ya no hay funciones hoy";
@@ -529,13 +523,12 @@
     if (total === 0) {
       els.agenda.innerHTML = "";
       els.agenda.hidden = true;
-      renderDayNote("");
       showGlobalEmpty(
         filtersActive,
         filtersActive
           ? "ningún resultado para tu búsqueda"
           : unpublished
-          ? "todavía sin información de este día"
+          ? "sin información"
           : "sin funciones este día"
       );
       return;
@@ -547,13 +540,11 @@
 
     var dayText = dayLabel(state.day);
     var whenText = dayText === "HOY" ? "hoy" : "el " + dayText.toLowerCase();
-    var summary =
+    announce(
       listedTotal === 0
         ? "ya no hay funciones " + whenText
-        : listedTotal + (listedTotal === 1 ? " función " : " funciones ") + whenText;
-
-    renderDayNote(unpublished ? DAY_NOTE : "");
-    announce(unpublished ? summary + " · " + DAY_NOTE : summary);
+        : listedTotal + (listedTotal === 1 ? " función " : " funciones ") + whenText
+    );
 
     sedeCodes.forEach(function (code) {
       var sedeInfo = DATA.sedes[code];
@@ -1104,8 +1095,6 @@
 
   function renderFilmIndex() {
     els.agenda.className = "mode-films";
-    // The note belongs to a single day; this view spans the whole window.
-    renderDayNote("");
 
     var normQuery = normalize(state.q.trim());
     var filtered = [];
