@@ -972,6 +972,19 @@ html.sheet-open { overflow: hidden; }
   color: var(--ink-4);
 }
 
+/* A day at the tail of the window that Cineteca hasn't published in full yet.
+   Sits outside #agenda on purpose: #agenda's only children are .sede-column
+   sections, and in mode-all it is the grid container. */
+.day-note {
+  max-width: 640px;
+  margin: 0 auto var(--sp-5);
+  padding: var(--sp-2) var(--sp-3);
+  border-left: 2px solid var(--ink-border-soft);
+  color: var(--ink-4);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
 /* global empty / error states */
 .empty-state, .error-state {
   max-width: 360px;
