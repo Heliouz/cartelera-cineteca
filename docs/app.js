@@ -6,8 +6,11 @@
   var STALE_HOURS = 36;
   var TZ = "America/Mexico_City";
 
+  var DAY_NOTE = "cineteca todavía no publica la cartelera completa de este día";
+
   var DATA = null;
   var defaultDay = null;
+  var unpublishedDays = [];
   var searchDebounceTimer = null;
 
   var state = { view: "dia", day: null, sede: "000", ciclo: "", q: "", film: "" };
@@ -90,6 +93,7 @@
     els.errorState = qs("error-state");
     els.globalEmpty = qs("global-empty");
     els.resultsStatus = qs("results-status");
+    els.dayNote = qs("day-note");
     els.clearFiltersBtn = qs("clear-filters-btn");
     els.infoBtn = qs("info-btn");
     els.agendaWrap = qs("agenda-wrap");
@@ -141,9 +145,71 @@
     });
   }
 
+  // Cineteca publishes its cartelera a week at a time, a few days ahead, while
+  // the day picker always offers a rolling seven days. So the last days of the
+  // window routinely hold nothing but a handful of advance sales at a single
+  // sede — a real agenda, but a partial one. Left unmarked they render as two
+  // sede columns reading "sin funciones este día", which says "the cinema is
+  // dark" when the truth is "not published yet".
+  //
+  // A day only counts as unpublished if all three hold: it covers fewer sedes
+  // than the best-covered day in the window, it carries less than half the
+  // showtimes of a typical full day, and it sits in an unbroken run at the end
+  // of the window. A genuinely quiet closing day keeps the normal empty copy.
+  function computeUnpublishedDays() {
+    var totals = {};
+    var coverage = {};
+    DATA.days.forEach(function (iso) {
+      totals[iso] = 0;
+      coverage[iso] = {};
+    });
+    DATA.films.forEach(function (film) {
+      film.showtimes.forEach(function (st) {
+        if (!(st.date in totals)) return;
+        totals[st.date] += 1;
+        coverage[st.date][st.sede] = true;
+      });
+    });
+
+    function sedesOn(iso) {
+      return Object.keys(coverage[iso]).length;
+    }
+
+    var maxSedes = 0;
+    DATA.days.forEach(function (iso) {
+      maxSedes = Math.max(maxSedes, sedesOn(iso));
+    });
+
+    var fullTotals = DATA.days
+      .filter(function (iso) {
+        return sedesOn(iso) === maxSedes;
+      })
+      .map(function (iso) {
+        return totals[iso];
+      })
+      .sort(function (a, b) {
+        return a - b;
+      });
+    if (!fullTotals.length) return [];
+    var median = fullTotals[Math.floor(fullTotals.length / 2)];
+
+    var tail = [];
+    for (var i = DATA.days.length - 1; i >= 0; i--) {
+      var iso = DATA.days[i];
+      if (sedesOn(iso) < maxSedes && totals[iso] < median * 0.5) tail.unshift(iso);
+      else break;
+    }
+    return tail;
+  }
+
+  function isUnpublishedDay(iso) {
+    return unpublishedDays.indexOf(iso) !== -1;
+  }
+
   function onDataLoaded() {
     var today = todayISO();
     defaultDay = DATA.days.indexOf(today) !== -1 ? today : DATA.days[0];
+    unpublishedDays = computeUnpublishedDays();
 
     var params = new URLSearchParams(location.search);
 
@@ -416,12 +482,45 @@
     announce(title);
   }
 
+  function renderDayNote(text) {
+    if (!els.dayNote) return;
+    els.dayNote.textContent = text || "";
+    els.dayNote.hidden = !text;
+  }
+
+  // Why a column has nothing to list matters: an unpublished day and a sede
+  // that is genuinely dark look identical in the data and read very
+  // differently to someone deciding whether to go.
+  function sedeEmptyText(unpublished, hadRows, isToday) {
+    if (unpublished) return "sin información";
+    if (hadRows && isToday) return "ya no hay funciones hoy";
+    return "sin funciones este día";
+  }
+
   function renderAgenda() {
     var bySede = buildAgendaData();
     var sedeCodes = state.sede === "000" ? SEDE_ORDER : [state.sede];
-    var total = sedeCodes.reduce(function (sum, c) {
-      return sum + bySede[c].length;
-    }, 0);
+    var isToday = state.day === todayISO();
+    var nowMin = isToday ? nowMinutesCDMX() : -1;
+    var unpublished = isUnpublishedDay(state.day);
+
+    // Split before anything is drawn: the sede counter and the live-region
+    // summary both report what a column actually lists, not what the day held
+    // before its first screening started.
+    var split = {};
+    var total = 0;
+    var listedTotal = 0;
+    sedeCodes.forEach(function (code) {
+      var upcoming = [];
+      var past = [];
+      bySede[code].forEach(function (entry) {
+        if (isToday && timeToMinutes(entry.st.time) < nowMin) past.push(entry);
+        else upcoming.push(entry);
+      });
+      split[code] = { upcoming: upcoming, past: past };
+      total += bySede[code].length;
+      listedTotal += upcoming.length;
+    });
 
     els.agenda.className = state.sede === "000" ? "mode-all" : "mode-single";
 
@@ -430,7 +529,15 @@
     if (total === 0) {
       els.agenda.innerHTML = "";
       els.agenda.hidden = true;
-      showGlobalEmpty(filtersActive, filtersActive ? "ningún resultado para tu búsqueda" : "sin funciones este día");
+      renderDayNote("");
+      showGlobalEmpty(
+        filtersActive,
+        filtersActive
+          ? "ningún resultado para tu búsqueda"
+          : unpublished
+          ? "todavía sin información de este día"
+          : "sin funciones este día"
+      );
       return;
     }
 
@@ -439,19 +546,21 @@
     els.agenda.innerHTML = "";
 
     var dayText = dayLabel(state.day);
-    announce(
-      total +
-        (total === 1 ? " función " : " funciones ") +
-        (dayText === "HOY" ? "hoy" : "el " + dayText.toLowerCase())
-    );
+    var whenText = dayText === "HOY" ? "hoy" : "el " + dayText.toLowerCase();
+    var summary =
+      listedTotal === 0
+        ? "ya no hay funciones " + whenText
+        : listedTotal + (listedTotal === 1 ? " función " : " funciones ") + whenText;
 
-    var isToday = state.day === todayISO();
-    var nowMin = isToday ? nowMinutesCDMX() : -1;
+    renderDayNote(unpublished ? DAY_NOTE : "");
+    announce(unpublished ? summary + " · " + DAY_NOTE : summary);
 
     sedeCodes.forEach(function (code) {
       var sedeInfo = DATA.sedes[code];
       if (!sedeInfo) return;
       var rows = bySede[code];
+      var upcoming = split[code].upcoming;
+      var past = split[code].past;
 
       var column = document.createElement("section");
       column.className = "sede-column";
@@ -472,62 +581,48 @@
         escapeHtml(sedeInfo.name.toUpperCase()) +
         "</span>" +
         "</div>" +
-        '<span class="sede-count">' +
-        rows.length +
-        " " +
-        (rows.length === 1 ? "función" : "funciones") +
-        "</span>";
+        // No "0 funciones": the line underneath already says what is missing,
+        // and a zero next to "sin información" claims a fact we don't have.
+        (upcoming.length
+          ? '<span class="sede-count">' +
+            upcoming.length +
+            " " +
+            (upcoming.length === 1 ? "función" : "funciones") +
+            "</span>"
+          : "");
       column.appendChild(header);
 
       var rule = document.createElement("div");
       rule.className = "sede-rule";
       column.appendChild(rule);
 
-      if (rows.length === 0) {
+      if (upcoming.length === 0) {
         var empty = document.createElement("p");
         empty.className = "sede-empty";
-        empty.textContent = "sin funciones este día";
+        empty.textContent = sedeEmptyText(unpublished, rows.length > 0, isToday);
         column.appendChild(empty);
       } else {
-        var upcoming = [];
-        var past = [];
-        rows.forEach(function (entry) {
-          var minutes = timeToMinutes(entry.st.time);
-          if (isToday && minutes < nowMin) {
-            past.push(entry);
-          } else {
-            upcoming.push(entry);
-          }
+        var list = document.createElement("div");
+        list.className = "show-list";
+        upcoming.forEach(function (entry) {
+          list.appendChild(buildShowRow(entry.film, entry.st, false));
         });
+        column.appendChild(list);
+      }
 
-        if (upcoming.length === 0) {
-          var empty2 = document.createElement("p");
-          empty2.className = "sede-empty";
-          empty2.textContent = "sin funciones este día";
-          column.appendChild(empty2);
-        } else {
-          var list = document.createElement("div");
-          list.className = "show-list";
-          upcoming.forEach(function (entry) {
-            list.appendChild(buildShowRow(entry.film, entry.st, false));
-          });
-          column.appendChild(list);
-        }
-
-        if (past.length > 0) {
-          var details = document.createElement("details");
-          details.className = "past-details";
-          var summary = document.createElement("summary");
-          summary.textContent = "ya pasaron (" + past.length + ")";
-          details.appendChild(summary);
-          var pastList = document.createElement("div");
-          pastList.className = "show-list";
-          past.forEach(function (entry) {
-            pastList.appendChild(buildShowRow(entry.film, entry.st, true));
-          });
-          details.appendChild(pastList);
-          column.appendChild(details);
-        }
+      if (past.length > 0) {
+        var details = document.createElement("details");
+        details.className = "past-details";
+        var summaryEl = document.createElement("summary");
+        summaryEl.textContent = "ya pasaron (" + past.length + ")";
+        details.appendChild(summaryEl);
+        var pastList = document.createElement("div");
+        pastList.className = "show-list";
+        past.forEach(function (entry) {
+          pastList.appendChild(buildShowRow(entry.film, entry.st, true));
+        });
+        details.appendChild(pastList);
+        column.appendChild(details);
       }
 
       els.agenda.appendChild(column);
@@ -1009,6 +1104,8 @@
 
   function renderFilmIndex() {
     els.agenda.className = "mode-films";
+    // The note belongs to a single day; this view spans the whole window.
+    renderDayNote("");
 
     var normQuery = normalize(state.q.trim());
     var filtered = [];
