@@ -31,8 +31,6 @@ def date_lookup(days):
 def ciclo_map():
     html = json.loads(load_fixture("vista_events.json"))["html"]
     return parsing.extract_ciclo_map(html)
-
-
 # ---------- day window ----------
 
 def test_extract_day_window_returns_seven_ordered_days(days):
@@ -132,12 +130,39 @@ def test_showtime_datetime_has_mexico_city_offset(date_lookup):
         assert s["datetime"].endswith("-06:00") or s["datetime"].endswith("-05:00")
 
 
-def test_showtime_has_no_buy_url(date_lookup):
+def test_showtime_carries_the_buy_url_from_its_own_anchor(date_lookup):
+    """The link is part of the row, not a later addition: it is built from the
+    same `<a>` as the date, time and sede printed beside it."""
     html = load_fixture("detail_one_sede.html")
     showtimes = parsing.extract_showtimes(html, date_lookup)
     assert showtimes
     for s in showtimes:
-        assert set(s.keys()) == {"sede", "date", "time", "datetime", "session_id"}
+        assert set(s.keys()) == {
+            "sede", "date", "time", "datetime", "session_id", "buy_url",
+        }
+        assert s["buy_url"] == parsing.build_buy_url(s["sede"], s["session_id"])
+
+
+def test_build_buy_url_addresses_its_own_session():
+    url = parsing.build_buy_url("001", "13829")
+    assert "cinemacode=001" in url and "txtSessionId=13829" in url
+    assert url.startswith(parsing.TICKET_BASE)
+
+
+def test_unreadable_showtime_takes_its_buy_url_down_with_it(date_lookup):
+    """The mispairing worth fearing is a checkout link sitting beside another
+    session's hour. A row that can't be read whole is dropped whole, link and
+    all — there is no path that publishes one anchor's href under another's
+    label."""
+    html = (
+        _ticket_anchor("001", "13835", "CINETECA NACIONAL CHAPULTEPEC",
+                       "Jueves 27 de Agosto AGOTADO")
+        + _ticket_anchor("002", "51008", "CINETECA NACIONAL DE LAS ARTES",
+                         "Jueves 27 de Agosto <br> 19:00 H")
+    )
+    (kept,) = parsing.extract_showtimes(html, date_lookup)
+    assert kept["buy_url"] == parsing.build_buy_url("002", "51008")
+    assert "13835" not in kept["buy_url"]
 
 
 # ---------- parenthetical field extraction (format varies — §3.5) ----------
@@ -424,6 +449,35 @@ def test_run_writes_a_canonically_ordered_file(monkeypatch, tmp_path, days):
     for film in data["films"]:
         stamps = [st["datetime"] for st in film["showtimes"]]
         assert stamps == sorted(stamps)
+
+
+def test_validate_schedule_rejects_a_buy_url_for_another_session():
+    """The last gate before overwriting live data: a link that doesn't address
+    its own row is the one bug that could sell a stranger the wrong ticket."""
+    data = {
+        "days": ["2026-08-26"],
+        "sedes": {"001": {}},
+        "films": [
+            {
+                "id": "A",
+                "title": "A",
+                "poster": "x",
+                "official_url": "x",
+                "showtimes": [
+                    {
+                        "session_id": "13829",
+                        "sede": "001",
+                        "buy_url": parsing.build_buy_url("002", "50968"),
+                    }
+                ],
+            }
+        ],
+    }
+    with pytest.raises(scrape.ScheduleInvalid):
+        scrape.validate_schedule(data)
+
+    data["films"][0]["showtimes"][0]["buy_url"] = parsing.build_buy_url("001", "13829")
+    scrape.validate_schedule(data)
 
 
 def test_validate_schedule_accepts_clean_data():

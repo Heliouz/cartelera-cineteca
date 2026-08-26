@@ -340,6 +340,83 @@ noscript {
 .about-author-links a { color: inherit; text-decoration: none; }
 .about-author-links a:hover { color: var(--ink-1); }
 
+/* ---------- redirect warning (before any checkout link) ----------
+   Same visual language as the about modal, one layer above the film sheet
+   (z-index 160) so it can be raised from a time chip inside an open sheet.
+   Deliberately carries no film, sede or hour: naming the screening here would
+   invite a visitor to check our data against our own copy of it, when the
+   whole point is to send them to compare against Cineteca's page. */
+#buy-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 170;
+  padding: var(--sp-4);
+}
+#buy-modal[hidden] { display: none; }
+.buy-backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+#buy-modal.visible .buy-backdrop { opacity: 1; }
+.buy-content {
+  position: relative;
+  min-width: 0;
+  max-width: 400px;
+  width: 100%;
+  max-height: calc(100vh - 2 * var(--sp-4));
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  padding: 30px 30px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--ink-border-soft);
+  border-radius: var(--rad-md);
+  box-shadow: var(--shadow-panel);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px) scale(0.985);
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+#buy-modal.visible .buy-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+/* The warning carries its weight typographically. No alert red: on this site
+   red is --sede-003, and it means "México" and nothing else. */
+.buy-kicker {
+  display: block;
+  color: var(--ink-1);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--sp-3);
+}
+.buy-body {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0 0 var(--sp-2);
+}
+.buy-check {
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--ink-rule);
+  color: var(--ink-1);
+  font-weight: var(--fw-medium);
+}
+.buy-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+}
+.buy-actions .pill-btn { width: 100%; }
+
 /* ---------- film sheet ---------- */
 
 #film-sheet {

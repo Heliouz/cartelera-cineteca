@@ -25,6 +25,7 @@ FILM_REF_RE = re.compile(r"detallePelicula\.php\?FilmId=(\w+)&cinemas=([\d,]+)")
 CICLO_SPLIT_RE = re.compile(r'<p class="font-weight-bold text-uppercase h3 py-5">(.*?)</p>')
 TICKET_HREF_RE = re.compile(
     r"visSelectTickets\.aspx\?cinemacode=(\d+)&(?:amp;)?txtSessionId=(\d+)")
+TICKET_BASE = "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx"
 DATE_RE = re.compile(r"(\d{1,2})\s+de\s+(\w+)", re.I)
 TIME_RE = re.compile(r"(\d{1,2}:\d{2})\s*H", re.I)
 
@@ -252,7 +253,9 @@ def extract_showtimes(html, date_lookup):
     Parsed one `<a>` at a time on purpose: an anchor whose label doesn't carry a
     readable date and time is skipped alone. A regex spanning href-to-label used
     to run past such a row into the next one, pairing a session's cinemacode
-    with the following session's time and dropping that row entirely.
+    with the following session's time and dropping that row entirely. That rule
+    is what makes buy_url trustworthy: the checkout link and the date, time and
+    sede printed beside it all come from the same element or none do.
     """
     soup = BeautifulSoup(html, "html.parser")
     by_session = {}
@@ -289,8 +292,23 @@ def extract_showtimes(html, date_lookup):
             "time": time_text,
             "datetime": dt.isoformat(),
             "session_id": session_id,
+            "buy_url": build_buy_url(cinemacode, session_id),
         }
     return list(by_session.values())
+
+
+def build_buy_url(cinemacode, session_id):
+    """Vista's checkout deep link for one screening.
+
+    Not constructed so much as copied: both halves are read out of the same
+    single `<a href>` on detallePelicula.php, so this cannot address a session
+    that Cineteca didn't publish. Two things keep it pointed at the right one —
+    extract_showtimes() never lets a row's href and label come from different
+    anchors, and Vista namespaces session ids per cinema, so an id paired with
+    the wrong cinemacode resolves to nothing rather than to someone else's
+    screening.
+    """
+    return f"{TICKET_BASE}?cinemacode={cinemacode}&txtSessionId={session_id}&visLang=1"
 
 
 def poster_url(film_id):
