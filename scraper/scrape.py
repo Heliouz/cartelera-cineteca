@@ -20,6 +20,7 @@ import requests
 
 from parsing import (
     TZ,
+    build_buy_url,
     build_date_lookup,
     extract_ciclo_map,
     extract_day_window,
@@ -195,6 +196,14 @@ def validate_schedule(data):
             sid = st["session_id"]
             _check(sid not in session_ids, f"duplicate session_id {sid} across dataset")
             session_ids.add(sid)
+            buy_url = st.get("buy_url")
+            # Cheap, but it's the last gate: a link that doesn't address its own
+            # row's sede and session is the one bug that could sell a stranger
+            # the wrong ticket.
+            _check(
+                buy_url is None or buy_url == build_buy_url(st["sede"], sid),
+                f"session {sid}: buy_url does not address its own sede and session",
+            )
 
 
 def scrape_one_film(film_id, cinemas_csv, date_lookup, ciclo_map):

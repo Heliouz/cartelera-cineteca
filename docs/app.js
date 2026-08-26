@@ -3,6 +3,11 @@
 
   var DATA_URL = "data/schedule.json";
   var SEDE_ORDER = ["003", "001", "002"];
+  // Only these two origins may ever reach an href we hand a visitor. See
+  // ticketHref().
+  var TICKET_URL_PREFIX =
+    "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?";
+  var CINETECA_PREFIX = "https://www.cinetecanacional.net/";
   var STALE_HOURS = 36;
   var TZ = "America/Mexico_City";
 
@@ -15,6 +20,7 @@
   var els = {};
   var sheetPushedState = false;
   var sheetTriggerEl = null;
+  var buyTriggerEl = null;
 
   function qs(id) {
     return document.getElementById(id);
@@ -100,10 +106,12 @@
     els.sheetContent = els.filmSheet ? els.filmSheet.querySelector(".sheet-content") : null;
     els.sheetClose = els.filmSheet ? els.filmSheet.querySelector(".sheet-close") : null;
     els.appRoot = qs("app");
+    els.buyModal = qs("buy-modal");
     els.topBar = qs("top-bar");
     els.topbarRow = els.topBar ? els.topBar.querySelector(".topbar-row") : null;
 
     bindAboutModalTrigger();
+    bindBuyModal();
     bindAutoHideTopBar();
 
     fetch(DATA_URL, { cache: "no-cache" })
@@ -470,6 +478,44 @@
     return bySede;
   }
 
+  // Where "boletos" goes for one screening: the checkout page for that exact
+  // session, read straight off the ticket anchor the scraper parsed it from.
+  //
+  // The prefix checks are deliberate belt-and-braces on the one link that ends
+  // at a payment page. The scraper never propagates a scraped href — it rebuilds
+  // every checkout URL from a hardcoded base with digit-only parameters — so a
+  // hostile URL can't reach here through the normal path. This is the last point
+  // before a visitor is handed to a checkout, and refusing anything that isn't
+  // on a known Cineteca origin is cheaper than trusting the whole chain above
+  // it. It also covers an older cached schedule.json with no buy_url in it.
+  function isOn(value, prefix) {
+    return typeof value === "string" && value.lastIndexOf(prefix, 0) === 0;
+  }
+
+  function ticketHref(film, st) {
+    if (isOn(st.buy_url, TICKET_URL_PREFIX)) return st.buy_url;
+    if (isOn(film.official_url, CINETECA_PREFIX)) return film.official_url;
+    return CINETECA_PREFIX;
+  }
+
+  // Every checkout link goes through the redirect warning first. Wiring it here
+  // rather than at each call site means a new link can't quietly skip it.
+  function bindTicketLink(el, film, st) {
+    el.href = ticketHref(film, st);
+    el.target = "_blank";
+    el.rel = "noopener noreferrer";
+    el.addEventListener("click", function (ev) {
+      // Let ctrl/cmd/middle-click through: the visitor is deliberately opening
+      // it themselves, and swallowing that would be surprising.
+      if (ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey ||
+          ev.shiftKey || ev.altKey) {
+        return;
+      }
+      ev.preventDefault();
+      openBuyModal(el.href, el);
+    });
+  }
+
   function timeToMinutes(t) {
     var parts = t.split(":");
     return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
@@ -694,9 +740,7 @@
 
     var buyBtn = document.createElement("a");
     buyBtn.className = "pill-btn buy-btn";
-    buyBtn.href = film.official_url;
-    buyBtn.target = "_blank";
-    buyBtn.rel = "noopener noreferrer";
+    bindTicketLink(buyBtn, film, st);
     buyBtn.textContent = "boletos";
     if (isPast) buyBtn.tabIndex = -1;
     actions.appendChild(buyBtn);
@@ -923,9 +967,7 @@
       group.times.forEach(function (st) {
         var chip = document.createElement("a");
         chip.className = "time-chip";
-        chip.href = film.official_url;
-        chip.target = "_blank";
-        chip.rel = "noopener noreferrer";
+        bindTicketLink(chip, film, st);
 
         var dot = document.createElement("span");
         dot.className = "sede-dot";
@@ -1187,6 +1229,68 @@
     });
     document.addEventListener("keydown", function (ev) {
       if (ev.key === "Escape" && !modal.hidden) closeModal();
+    });
+  }
+
+  // ---------- redirect warning ----------
+
+  // Shown before every hand-off to Cineteca's checkout, every time — no
+  // "don't show again". It names no film, sede or hour on purpose: repeating
+  // our own reading of the screening would invite the visitor to check it
+  // against itself, when the point is to make them read Cineteca's page.
+  function openBuyModal(href, trigger) {
+    var modal = els.buyModal;
+    if (!modal) {
+      window.open(href, "_blank", "noopener");
+      return;
+    }
+    var proceed = modal.querySelector(".buy-continue");
+    if (proceed) proceed.href = href;
+    buyTriggerEl = trigger || null;
+
+    modal.hidden = false;
+    if (els.appRoot) els.appRoot.inert = true;
+    // The sheet is a sibling of #app, so it needs muting separately or a time
+    // chip behind this modal stays clickable.
+    if (els.filmSheet && !els.filmSheet.hidden) els.filmSheet.inert = true;
+    requestAnimationFrame(function () {
+      modal.classList.add("visible");
+      if (proceed) proceed.focus();
+    });
+  }
+
+  function closeBuyModal() {
+    var modal = els.buyModal;
+    if (!modal || modal.hidden) return;
+    modal.classList.remove("visible");
+    if (els.appRoot) els.appRoot.inert = false;
+    if (els.filmSheet) els.filmSheet.inert = false;
+    var trigger = buyTriggerEl;
+    buyTriggerEl = null;
+    setTimeout(function () {
+      modal.hidden = true;
+    }, 240);
+    if (trigger && document.contains(trigger)) trigger.focus();
+  }
+
+  function bindBuyModal() {
+    var modal = els.buyModal;
+    if (!modal) return;
+    var content = modal.querySelector(".buy-content");
+    var proceed = modal.querySelector(".buy-continue");
+    var cancel = modal.querySelector(".buy-cancel");
+
+    // `proceed` stays a real anchor with a real href, so the new tab opens as a
+    // plain user-activated navigation and no popup blocker gets involved.
+    if (proceed) proceed.addEventListener("click", function () { closeBuyModal(); });
+    if (cancel) cancel.addEventListener("click", closeBuyModal);
+    modal.addEventListener("click", function (ev) {
+      if (modal.hidden) return;
+      if (content && content.contains(ev.target)) return;
+      closeBuyModal();
+    });
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape" && !modal.hidden) closeBuyModal();
     });
   }
 

@@ -2,6 +2,7 @@
 import json
 import os
 import sys
+from urllib.parse import urlsplit
 
 import pytest
 
@@ -31,8 +32,6 @@ def date_lookup(days):
 def ciclo_map():
     html = json.loads(load_fixture("vista_events.json"))["html"]
     return parsing.extract_ciclo_map(html)
-
-
 # ---------- day window ----------
 
 def test_extract_day_window_returns_seven_ordered_days(days):
@@ -132,12 +131,77 @@ def test_showtime_datetime_has_mexico_city_offset(date_lookup):
         assert s["datetime"].endswith("-06:00") or s["datetime"].endswith("-05:00")
 
 
-def test_showtime_has_no_buy_url(date_lookup):
+def test_showtime_carries_the_buy_url_from_its_own_anchor(date_lookup):
+    """The link is part of the row, not a later addition: it is built from the
+    same `<a>` as the date, time and sede printed beside it."""
     html = load_fixture("detail_one_sede.html")
     showtimes = parsing.extract_showtimes(html, date_lookup)
     assert showtimes
     for s in showtimes:
-        assert set(s.keys()) == {"sede", "date", "time", "datetime", "session_id"}
+        assert set(s.keys()) == {
+            "sede", "date", "time", "datetime", "session_id", "buy_url",
+        }
+        assert s["buy_url"] == parsing.build_buy_url(s["sede"], s["session_id"])
+
+
+def test_buy_url_never_leaves_the_ticketing_origin(date_lookup):
+    """A hostile href on cinetecanacional.net must not be able to redirect a
+    visitor anywhere. The scraper never propagates the href it read — it rebuilds
+    the URL from a hardcoded base and two digit-only captures — so every one of
+    these collapses onto the real checkout origin or is dropped outright."""
+    label = '<div class="small">Jueves 27 de Agosto <br> 19:00 H</div>'
+    hostile = [
+        "https://evil.example/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13835",
+        "javascript:alert(document.domain)//visSelectTickets.aspx?cinemacode=001&txtSessionId=13835",
+        "data:text/html,<script></script>visSelectTickets.aspx?cinemacode=001&txtSessionId=13835",
+        "//evil.example/visSelectTickets.aspx?cinemacode=001&txtSessionId=13835",
+        "https://rbvfcn.cinetecanacional.net@evil.example/visSelectTickets.aspx"
+        "?cinemacode=001&txtSessionId=13835",
+        "visSelectTickets.aspx?cinemacode=001&txtSessionId=13835&returnUrl=https://evil.example",
+        "visSelectTickets.aspx?cinemacode=001&txtSessionId=13835#@evil.example",
+        'visSelectTickets.aspx?cinemacode=001&txtSessionId=13835"><script></script>',
+        "visSelectTickets.aspx?cinemacode=001%26returnUrl%3Dhttps://evil.example&txtSessionId=13835",
+    ]
+    for href in hostile:
+        showtimes = parsing.extract_showtimes(f"<a href='{href}'>{label}</a>", date_lookup)
+        for st in showtimes:
+            parts = urlsplit(st["buy_url"])
+            assert f"{parts.scheme}://{parts.netloc}{parts.path}" == parsing.TICKET_BASE, href
+            assert parts.scheme == "https", href
+
+
+def test_ticket_ids_are_ascii_digits_only(date_lookup):
+    """`\\d` in Python also matches Arabic-Indic and other Unicode decimal digits,
+    which would ride verbatim into a URL handed to a visitor and into the sede
+    code. The pattern is [0-9] so those rows are dropped instead."""
+    label = '<div class="small">Jueves 27 de Agosto <br> 19:00 H</div>'
+    href = (
+        "visSelectTickets.aspx?cinemacode=\u0660\u0660\u0661"
+        "&txtSessionId=\u0661\u0663\u0668\u0663\u0665"
+    )
+    assert parsing.extract_showtimes(f"<a href='{href}'>{label}</a>", date_lookup) == []
+
+
+def test_build_buy_url_addresses_its_own_session():
+    url = parsing.build_buy_url("001", "13829")
+    assert "cinemacode=001" in url and "txtSessionId=13829" in url
+    assert url.startswith(parsing.TICKET_BASE)
+
+
+def test_unreadable_showtime_takes_its_buy_url_down_with_it(date_lookup):
+    """The mispairing worth fearing is a checkout link sitting beside another
+    session's hour. A row that can't be read whole is dropped whole, link and
+    all — there is no path that publishes one anchor's href under another's
+    label."""
+    html = (
+        _ticket_anchor("001", "13835", "CINETECA NACIONAL CHAPULTEPEC",
+                       "Jueves 27 de Agosto AGOTADO")
+        + _ticket_anchor("002", "51008", "CINETECA NACIONAL DE LAS ARTES",
+                         "Jueves 27 de Agosto <br> 19:00 H")
+    )
+    (kept,) = parsing.extract_showtimes(html, date_lookup)
+    assert kept["buy_url"] == parsing.build_buy_url("002", "51008")
+    assert "13835" not in kept["buy_url"]
 
 
 # ---------- parenthetical field extraction (format varies — §3.5) ----------
@@ -424,6 +488,35 @@ def test_run_writes_a_canonically_ordered_file(monkeypatch, tmp_path, days):
     for film in data["films"]:
         stamps = [st["datetime"] for st in film["showtimes"]]
         assert stamps == sorted(stamps)
+
+
+def test_validate_schedule_rejects_a_buy_url_for_another_session():
+    """The last gate before overwriting live data: a link that doesn't address
+    its own row is the one bug that could sell a stranger the wrong ticket."""
+    data = {
+        "days": ["2026-08-26"],
+        "sedes": {"001": {}},
+        "films": [
+            {
+                "id": "A",
+                "title": "A",
+                "poster": "x",
+                "official_url": "x",
+                "showtimes": [
+                    {
+                        "session_id": "13829",
+                        "sede": "001",
+                        "buy_url": parsing.build_buy_url("002", "50968"),
+                    }
+                ],
+            }
+        ],
+    }
+    with pytest.raises(scrape.ScheduleInvalid):
+        scrape.validate_schedule(data)
+
+    data["films"][0]["showtimes"][0]["buy_url"] = parsing.build_buy_url("001", "13829")
+    scrape.validate_schedule(data)
 
 
 def test_validate_schedule_accepts_clean_data():

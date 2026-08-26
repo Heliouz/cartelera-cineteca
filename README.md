@@ -28,6 +28,9 @@ Writes `docs/data/schedule.json`. Aborts (exit 1, no write) if more than 20%
 of detail-page fetches fail, or if the parsed film count drops below 50% of
 the previous run — see `scrape.py` for the safeguards.
 
+Each showtime carries `buy_url`, a direct link to that screening's checkout
+page, read straight off the ticket anchor it was parsed from.
+
 ### Tests
 
 ```bash
