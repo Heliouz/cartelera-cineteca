@@ -2,8 +2,13 @@ name: scrape cartelera
 
 on:
   schedule:
-    - cron: '0 13 * * *'   # 07:00 America/Mexico_City
-    - cron: '0 21 * * *'   # 15:00 America/Mexico_City
+    - cron: '0 13 * * *'    # 07:00 America/Mexico_City
+    # Cineteca publica la semana siguiente los jueves ~13:00, el unico momento
+    # de la semana en que cambia toda la cartelera de golpe. Minutos impares
+    # a proposito: los cron de GitHub encolados en :00 salen 10-20 min tarde.
+    - cron: '20 19 * * 4'   # 13:20 jueves
+    - cron: '50 19 * * 4'   # 13:50 jueves
+    - cron: '0 21 * * *'    # 15:00 America/Mexico_City
   workflow_dispatch:
 
 permissions:
