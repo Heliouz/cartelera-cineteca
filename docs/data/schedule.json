@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-08-25T15:16:01.637018-06:00",
+  "generated_at": "2026-08-26T07:56:50.822980-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
-    "2026-08-25",
     "2026-08-26",
     "2026-08-27",
     "2026-08-28",
     "2026-08-29",
     "2026-08-30",
-    "2026-08-31"
+    "2026-08-31",
+    "2026-09-01"
   ],
   "sedes": {
     "003": {
@@ -48,13 +48,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00000468&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "18:30",
-          "datetime": "2026-08-25T18:30:00-06:00",
-          "session_id": "48824"
-        },
         {
           "sede": "003",
           "date": "2026-08-26",
@@ -241,13 +234,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-25",
-          "time": "18:00",
-          "datetime": "2026-08-25T18:00:00-06:00",
-          "session_id": "48823"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-26",
           "time": "18:00",
           "datetime": "2026-08-26T18:00:00-06:00",
@@ -281,13 +267,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-25",
-          "time": "19:00",
-          "datetime": "2026-08-25T19:00:00-06:00",
-          "session_id": "48847"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-26",
           "time": "14:00",
           "datetime": "2026-08-26T14:00:00-06:00",
@@ -319,13 +298,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009256&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "21:00",
-          "datetime": "2026-08-25T21:00:00-06:00",
-          "session_id": "48884"
-        },
         {
           "sede": "003",
           "date": "2026-08-27",
@@ -380,20 +352,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-25",
-          "time": "15:00",
-          "datetime": "2026-08-25T15:00:00-06:00",
-          "session_id": "48845"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "17:00",
-          "datetime": "2026-08-25T17:00:00-06:00",
-          "session_id": "48846"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-27",
           "time": "15:00",
           "datetime": "2026-08-27T15:00:00-06:00",
@@ -425,20 +383,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009477&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "17:30",
-          "datetime": "2026-08-25T17:30:00-06:00",
-          "session_id": "50920"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "18:00",
-          "datetime": "2026-08-25T18:00:00-06:00",
-          "session_id": "13893"
-        },
         {
           "sede": "002",
           "date": "2026-08-26",
@@ -486,20 +430,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009528&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "16:30",
-          "datetime": "2026-08-25T16:30:00-06:00",
-          "session_id": "47043"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "21:00",
-          "datetime": "2026-08-25T21:00:00-06:00",
-          "session_id": "47044"
-        },
         {
           "sede": "003",
           "date": "2026-08-26",
@@ -575,27 +505,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-08-25",
-          "time": "17:20",
-          "datetime": "2026-08-25T17:20:00-06:00",
-          "session_id": "50904"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "18:45",
-          "datetime": "2026-08-25T18:45:00-06:00",
-          "session_id": "48883"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "20:00",
-          "datetime": "2026-08-25T20:00:00-06:00",
-          "session_id": "50905"
-        },
-        {
-          "sede": "002",
           "date": "2026-08-26",
           "time": "14:40",
           "datetime": "2026-08-26T14:40:00-06:00",
@@ -662,20 +571,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009557&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "16:30",
-          "datetime": "2026-08-25T16:30:00-06:00",
-          "session_id": "13792"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "18:50",
-          "datetime": "2026-08-25T18:50:00-06:00",
-          "session_id": "13793"
-        },
         {
           "sede": "001",
           "date": "2026-08-26",
@@ -746,13 +641,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-08-25",
-          "time": "17:40",
-          "datetime": "2026-08-25T17:40:00-06:00",
-          "session_id": "50915"
-        },
-        {
-          "sede": "002",
           "date": "2026-08-26",
           "time": "13:00",
           "datetime": "2026-08-26T13:00:00-06:00",
@@ -807,13 +695,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-25",
-          "time": "19:00",
-          "datetime": "2026-08-25T19:00:00-06:00",
-          "session_id": "48817"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-26",
           "time": "19:00",
           "datetime": "2026-08-26T19:00:00-06:00",
@@ -845,34 +726,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009563&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "16:10",
-          "datetime": "2026-08-25T16:10:00-06:00",
-          "session_id": "50893"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "16:15",
-          "datetime": "2026-08-25T16:15:00-06:00",
-          "session_id": "48818"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "18:30",
-          "datetime": "2026-08-25T18:30:00-06:00",
-          "session_id": "50894"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "20:50",
-          "datetime": "2026-08-25T20:50:00-06:00",
-          "session_id": "50895"
-        },
         {
           "sede": "002",
           "date": "2026-08-26",
@@ -946,32 +799,6 @@
       ]
     },
     {
-      "id": "HO00009565",
-      "title": "Tardes de soledad",
-      "original_title": "Tardes de soledad",
-      "director": "Albert Serra",
-      "cast": null,
-      "country": "España-Francia",
-      "year": 2024,
-      "duration_min": 125,
-      "classification": "B",
-      "synopsis": "Este documental dirigido por Albert Serra sigue al reconocido torero peruano Andrés Roca Rey durante varias corridas de toros en distintas locaciones de España. Alejado del formato documental tradicional, este filme deja de lado las entrevistas y opta por un enfoque mucho más inmersivo del ritual taurino. Mediante escenas llenas de intensidad e intimidad, dentro y fuera del ruedo, se busca dar un acercamiento a la preparación, la tensión del enfrentamiento y los momentos posteriores de la lidia, entregando una mirada cruda y contemplativa. Serra explora las corridas de toros desde una perspectiva humana, con violencia y una estética disruptiva, condiciones que vuelven al torero una figura solitaria y con una controversia ética surgida del espectáculo.",
-      "raw_meta": "(Tardes de soledad, España-Francia, 2024, Dur.: 125 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009565?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": "MH3DHcAHy54",
-      "ciclo": "Estrenos",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009565&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "18:00",
-          "datetime": "2026-08-25T18:00:00-06:00",
-          "session_id": "48941"
-        }
-      ]
-    },
-    {
       "id": "HO00009698",
       "title": "Moscas",
       "original_title": "Moscas",
@@ -988,34 +815,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009698&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "15:45",
-          "datetime": "2026-08-25T15:45:00-06:00",
-          "session_id": "48816"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "16:40",
-          "datetime": "2026-08-25T16:40:00-06:00",
-          "session_id": "13882"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "18:50",
-          "datetime": "2026-08-25T18:50:00-06:00",
-          "session_id": "13881"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "21:00",
-          "datetime": "2026-08-25T21:00:00-06:00",
-          "session_id": "48822"
-        },
         {
           "sede": "001",
           "date": "2026-08-26",
@@ -1107,13 +906,6 @@
       "showtimes": [
         {
           "sede": "001",
-          "date": "2026-08-25",
-          "time": "19:30",
-          "datetime": "2026-08-25T19:30:00-06:00",
-          "session_id": "13797"
-        },
-        {
-          "sede": "001",
           "date": "2026-08-26",
           "time": "19:30",
           "datetime": "2026-08-26T19:30:00-06:00",
@@ -1145,41 +937,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009756&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "15:30",
-          "datetime": "2026-08-25T15:30:00-06:00",
-          "session_id": "13795"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "16:40",
-          "datetime": "2026-08-25T16:40:00-06:00",
-          "session_id": "50924"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "17:30",
-          "datetime": "2026-08-25T17:30:00-06:00",
-          "session_id": "13796"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "18:40",
-          "datetime": "2026-08-25T18:40:00-06:00",
-          "session_id": "50925"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "20:40",
-          "datetime": "2026-08-25T20:40:00-06:00",
-          "session_id": "50926"
-        },
         {
           "sede": "001",
           "date": "2026-08-26",
@@ -1299,34 +1056,6 @@
       "showtimes": [
         {
           "sede": "001",
-          "date": "2026-08-25",
-          "time": "16:20",
-          "datetime": "2026-08-25T16:20:00-06:00",
-          "session_id": "13858"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "16:20",
-          "datetime": "2026-08-25T16:20:00-06:00",
-          "session_id": "50911"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "19:40",
-          "datetime": "2026-08-25T19:40:00-06:00",
-          "session_id": "13859"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "19:40",
-          "datetime": "2026-08-25T19:40:00-06:00",
-          "session_id": "50912"
-        },
-        {
-          "sede": "001",
           "date": "2026-08-26",
           "time": "13:00",
           "datetime": "2026-08-26T13:00:00-06:00",
@@ -1430,27 +1159,6 @@
       "showtimes": [
         {
           "sede": "001",
-          "date": "2026-08-25",
-          "time": "15:15",
-          "datetime": "2026-08-25T15:15:00-06:00",
-          "session_id": "13799"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "16:50",
-          "datetime": "2026-08-25T16:50:00-06:00",
-          "session_id": "13800"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "18:30",
-          "datetime": "2026-08-25T18:30:00-06:00",
-          "session_id": "13801"
-        },
-        {
-          "sede": "001",
           "date": "2026-08-26",
           "time": "15:00",
           "datetime": "2026-08-26T15:00:00-06:00",
@@ -1505,20 +1213,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-25",
-          "time": "15:45",
-          "datetime": "2026-08-25T15:45:00-06:00",
-          "session_id": "48940"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "20:45",
-          "datetime": "2026-08-25T20:45:00-06:00",
-          "session_id": "48942"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-26",
           "time": "20:30",
           "datetime": "2026-08-26T20:30:00-06:00",
@@ -1550,27 +1244,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009787&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "15:00",
-          "datetime": "2026-08-25T15:00:00-06:00",
-          "session_id": "13785"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "19:10",
-          "datetime": "2026-08-25T19:10:00-06:00",
-          "session_id": "50918"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "19:50",
-          "datetime": "2026-08-25T19:50:00-06:00",
-          "session_id": "13787"
-        },
         {
           "sede": "002",
           "date": "2026-08-26",
@@ -1620,13 +1293,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-25",
-          "time": "19:00",
-          "datetime": "2026-08-25T19:00:00-06:00",
-          "session_id": "47042"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-26",
           "time": "16:45",
           "datetime": "2026-08-26T16:45:00-06:00",
@@ -1658,13 +1324,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009789&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "18:45",
-          "datetime": "2026-08-25T18:45:00-06:00",
-          "session_id": "47047"
-        },
         {
           "sede": "003",
           "date": "2026-08-26",
@@ -1728,20 +1387,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-25",
-          "time": "16:45",
-          "datetime": "2026-08-25T16:45:00-06:00",
-          "session_id": "47046"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "21:00",
-          "datetime": "2026-08-25T21:00:00-06:00",
-          "session_id": "47045"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-26",
           "time": "14:45",
           "datetime": "2026-08-26T14:45:00-06:00",
@@ -1801,13 +1446,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009791&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "18:00",
-          "datetime": "2026-08-25T18:00:00-06:00",
-          "session_id": "47109"
-        },
         {
           "sede": "003",
           "date": "2026-08-26",
@@ -1897,13 +1535,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009792&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "19:45",
-          "datetime": "2026-08-25T19:45:00-06:00",
-          "session_id": "47111"
-        },
         {
           "sede": "003",
           "date": "2026-08-26",
@@ -2041,27 +1672,6 @@
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009798&cinemas=001,002",
       "showtimes": [
         {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "15:40",
-          "datetime": "2026-08-25T15:40:00-06:00",
-          "session_id": "50896"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "18:00",
-          "datetime": "2026-08-25T18:00:00-06:00",
-          "session_id": "50886"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "20:20",
-          "datetime": "2026-08-25T20:20:00-06:00",
-          "session_id": "50887"
-        },
-        {
           "sede": "001",
           "date": "2026-08-26",
           "time": "13:15",
@@ -2188,32 +1798,6 @@
       ]
     },
     {
-      "id": "HO00009810",
-      "title": "Que la bestia muera",
-      "original_title": "Que la bête meure",
-      "director": "Claude Chabrol",
-      "cast": "Caroline Cellier, Jean Yanne, Michel Duchaussoy",
-      "country": "Francia / Italia",
-      "year": 1969,
-      "duration_min": 110,
-      "classification": "B",
-      "synopsis": "El hijo único de Charles Thenier muere atropellado por un conductor que se da a la fuga. Decidido a encontrar al criminal, empieza a investigar por su cuenta. Poco después, conoce a una mujer que podría ser la cuñada del culpable.",
-      "raw_meta": "(Que la bête meure, Francia / Italia, 1969, Dur.: 110 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009810?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": "Charlas Film noir: la ciudad en blanco y negro",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009810&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "18:00",
-          "datetime": "2026-08-25T18:00:00-06:00",
-          "session_id": "48246"
-        }
-      ]
-    },
-    {
       "id": "HO00009812",
       "title": "Iván el terrible, parte II",
       "original_title": "Ivan Groznyy II: Boyarsky zagovor",
@@ -2230,13 +1814,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009812&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "20:45",
-          "datetime": "2026-08-25T20:45:00-06:00",
-          "session_id": "48820"
-        },
         {
           "sede": "003",
           "date": "2026-08-26",
@@ -2270,20 +1847,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009813&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "16:50",
-          "datetime": "2026-08-25T16:50:00-06:00",
-          "session_id": "50908"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "19:20",
-          "datetime": "2026-08-25T19:20:00-06:00",
-          "session_id": "50909"
-        },
         {
           "sede": "002",
           "date": "2026-08-26",
@@ -2345,55 +1908,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009814&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "15:00",
-          "datetime": "2026-08-25T15:00:00-06:00",
-          "session_id": "13803"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "15:30",
-          "datetime": "2026-08-25T15:30:00-06:00",
-          "session_id": "50899"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "16:45",
-          "datetime": "2026-08-25T16:45:00-06:00",
-          "session_id": "48882"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "17:00",
-          "datetime": "2026-08-25T17:00:00-06:00",
-          "session_id": "13804"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "17:50",
-          "datetime": "2026-08-25T17:50:00-06:00",
-          "session_id": "50927"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-25",
-          "time": "19:00",
-          "datetime": "2026-08-25T19:00:00-06:00",
-          "session_id": "13805"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "19:50",
-          "datetime": "2026-08-25T19:50:00-06:00",
-          "session_id": "50928"
-        },
         {
           "sede": "001",
           "date": "2026-08-26",
@@ -2520,27 +2034,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-08-25",
-          "time": "15:10",
-          "datetime": "2026-08-25T15:10:00-06:00",
-          "session_id": "50900"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "17:00",
-          "datetime": "2026-08-25T17:00:00-06:00",
-          "session_id": "50901"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "19:10",
-          "datetime": "2026-08-25T19:10:00-06:00",
-          "session_id": "50902"
-        },
-        {
-          "sede": "002",
           "date": "2026-08-26",
           "time": "15:10",
           "datetime": "2026-08-26T15:10:00-06:00",
@@ -2602,13 +2095,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-25",
-          "time": "15:30",
-          "datetime": "2026-08-25T15:30:00-06:00",
-          "session_id": "48843"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-26",
           "time": "19:00",
           "datetime": "2026-08-26T19:00:00-06:00",
@@ -2640,20 +2126,6 @@
       "ciclo": "Estrenos de la semana",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009848&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "16:10",
-          "datetime": "2026-08-25T16:10:00-06:00",
-          "session_id": "50913"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "18:40",
-          "datetime": "2026-08-25T18:40:00-06:00",
-          "session_id": "50914"
-        },
         {
           "sede": "002",
           "date": "2026-08-26",
@@ -2701,27 +2173,6 @@
       "ciclo": "Estrenos de la semana",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009849&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "16:30",
-          "datetime": "2026-08-25T16:30:00-06:00",
-          "session_id": "50889"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "18:50",
-          "datetime": "2026-08-25T18:50:00-06:00",
-          "session_id": "50890"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "21:00",
-          "datetime": "2026-08-25T21:00:00-06:00",
-          "session_id": "50891"
-        },
         {
           "sede": "002",
           "date": "2026-08-26",
@@ -2797,27 +2248,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009872&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "15:20",
-          "datetime": "2026-08-25T15:20:00-06:00",
-          "session_id": "50916"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-25",
-          "time": "16:45",
-          "datetime": "2026-08-25T16:45:00-06:00",
-          "session_id": "48821"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-25",
-          "time": "20:10",
-          "datetime": "2026-08-25T20:10:00-06:00",
-          "session_id": "50897"
-        },
         {
           "sede": "003",
           "date": "2026-08-26",
