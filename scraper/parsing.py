@@ -23,8 +23,12 @@ MESES = {
 DAY_RE = re.compile(r"cartelera\.php\?dia=(\d{4}-\d{2}-\d{2})")
 FILM_REF_RE = re.compile(r"detallePelicula\.php\?FilmId=(\w+)&cinemas=([\d,]+)")
 CICLO_SPLIT_RE = re.compile(r'<p class="font-weight-bold text-uppercase h3 py-5">(.*?)</p>')
+# [0-9], not \d: Python's \d also matches non-ASCII decimal digits (Arabic-Indic
+# ٠١٢ and friends), which would then be interpolated verbatim into a URL handed
+# to a visitor and into the sede code. Bounded too — a real cinemacode is 3
+# digits and a session id 5, so nothing legitimate comes close to the ceiling.
 TICKET_HREF_RE = re.compile(
-    r"visSelectTickets\.aspx\?cinemacode=(\d+)&(?:amp;)?txtSessionId=(\d+)")
+    r"visSelectTickets\.aspx\?cinemacode=([0-9]{1,6})&(?:amp;)?txtSessionId=([0-9]{1,12})")
 TICKET_BASE = "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx"
 DATE_RE = re.compile(r"(\d{1,2})\s+de\s+(\w+)", re.I)
 TIME_RE = re.compile(r"(\d{1,2}:\d{2})\s*H", re.I)

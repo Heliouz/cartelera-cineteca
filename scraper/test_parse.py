@@ -2,6 +2,7 @@
 import json
 import os
 import sys
+from urllib.parse import urlsplit
 
 import pytest
 
@@ -141,6 +142,44 @@ def test_showtime_carries_the_buy_url_from_its_own_anchor(date_lookup):
             "sede", "date", "time", "datetime", "session_id", "buy_url",
         }
         assert s["buy_url"] == parsing.build_buy_url(s["sede"], s["session_id"])
+
+
+def test_buy_url_never_leaves_the_ticketing_origin(date_lookup):
+    """A hostile href on cinetecanacional.net must not be able to redirect a
+    visitor anywhere. The scraper never propagates the href it read — it rebuilds
+    the URL from a hardcoded base and two digit-only captures — so every one of
+    these collapses onto the real checkout origin or is dropped outright."""
+    label = '<div class="small">Jueves 27 de Agosto <br> 19:00 H</div>'
+    hostile = [
+        "https://evil.example/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13835",
+        "javascript:alert(document.domain)//visSelectTickets.aspx?cinemacode=001&txtSessionId=13835",
+        "data:text/html,<script></script>visSelectTickets.aspx?cinemacode=001&txtSessionId=13835",
+        "//evil.example/visSelectTickets.aspx?cinemacode=001&txtSessionId=13835",
+        "https://rbvfcn.cinetecanacional.net@evil.example/visSelectTickets.aspx"
+        "?cinemacode=001&txtSessionId=13835",
+        "visSelectTickets.aspx?cinemacode=001&txtSessionId=13835&returnUrl=https://evil.example",
+        "visSelectTickets.aspx?cinemacode=001&txtSessionId=13835#@evil.example",
+        'visSelectTickets.aspx?cinemacode=001&txtSessionId=13835"><script></script>',
+        "visSelectTickets.aspx?cinemacode=001%26returnUrl%3Dhttps://evil.example&txtSessionId=13835",
+    ]
+    for href in hostile:
+        showtimes = parsing.extract_showtimes(f"<a href='{href}'>{label}</a>", date_lookup)
+        for st in showtimes:
+            parts = urlsplit(st["buy_url"])
+            assert f"{parts.scheme}://{parts.netloc}{parts.path}" == parsing.TICKET_BASE, href
+            assert parts.scheme == "https", href
+
+
+def test_ticket_ids_are_ascii_digits_only(date_lookup):
+    """`\\d` in Python also matches Arabic-Indic and other Unicode decimal digits,
+    which would ride verbatim into a URL handed to a visitor and into the sede
+    code. The pattern is [0-9] so those rows are dropped instead."""
+    label = '<div class="small">Jueves 27 de Agosto <br> 19:00 H</div>'
+    href = (
+        "visSelectTickets.aspx?cinemacode=\u0660\u0660\u0661"
+        "&txtSessionId=\u0661\u0663\u0668\u0663\u0665"
+    )
+    assert parsing.extract_showtimes(f"<a href='{href}'>{label}</a>", date_lookup) == []
 
 
 def test_build_buy_url_addresses_its_own_session():

@@ -3,6 +3,11 @@
 
   var DATA_URL = "data/schedule.json";
   var SEDE_ORDER = ["003", "001", "002"];
+  // Only these two origins may ever reach an href we hand a visitor. See
+  // ticketHref().
+  var TICKET_URL_PREFIX =
+    "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?";
+  var CINETECA_PREFIX = "https://www.cinetecanacional.net/";
   var STALE_HOURS = 36;
   var TZ = "America/Mexico_City";
 
@@ -475,9 +480,22 @@
 
   // Where "boletos" goes for one screening: the checkout page for that exact
   // session, read straight off the ticket anchor the scraper parsed it from.
-  // The fallback covers an older cached schedule.json with no buy_url in it.
+  //
+  // The prefix checks are deliberate belt-and-braces on the one link that ends
+  // at a payment page. The scraper never propagates a scraped href — it rebuilds
+  // every checkout URL from a hardcoded base with digit-only parameters — so a
+  // hostile URL can't reach here through the normal path. This is the last point
+  // before a visitor is handed to a checkout, and refusing anything that isn't
+  // on a known Cineteca origin is cheaper than trusting the whole chain above
+  // it. It also covers an older cached schedule.json with no buy_url in it.
+  function isOn(value, prefix) {
+    return typeof value === "string" && value.lastIndexOf(prefix, 0) === 0;
+  }
+
   function ticketHref(film, st) {
-    return st.buy_url || film.official_url;
+    if (isOn(st.buy_url, TICKET_URL_PREFIX)) return st.buy_url;
+    if (isOn(film.official_url, CINETECA_PREFIX)) return film.official_url;
+    return CINETECA_PREFIX;
   }
 
   // Every checkout link goes through the redirect warning first. Wiring it here
