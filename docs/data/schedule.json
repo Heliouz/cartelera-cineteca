@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-08-28T20:56:12.429972-06:00",
+  "generated_at": "2026-08-29T11:01:47.594120-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
-    "2026-08-28",
     "2026-08-29",
     "2026-08-30",
     "2026-08-31",
     "2026-09-01",
     "2026-09-02",
-    "2026-09-03"
+    "2026-09-03",
+    "2026-09-04"
   ],
   "sedes": {
     "003": {
@@ -379,14 +379,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-28",
-          "time": "20:30",
-          "datetime": "2026-08-28T20:30:00-06:00",
-          "session_id": "48917",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48917&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-29",
           "time": "20:30",
           "datetime": "2026-08-29T20:30:00-06:00",
@@ -626,14 +618,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009256&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-28",
-          "time": "21:00",
-          "datetime": "2026-08-28T21:00:00-06:00",
-          "session_id": "48937",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48937&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-08-29",
@@ -1277,14 +1261,6 @@
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009557&cinemas=001,003",
       "showtimes": [
         {
-          "sede": "003",
-          "date": "2026-08-28",
-          "time": "21:00",
-          "datetime": "2026-08-28T21:00:00-06:00",
-          "session_id": "48931",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48931&visLang=1"
-        },
-        {
           "sede": "001",
           "date": "2026-08-29",
           "time": "15:00",
@@ -1613,14 +1589,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009563&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-28",
-          "time": "21:00",
-          "datetime": "2026-08-28T21:00:00-06:00",
-          "session_id": "51039",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51039&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-08-29",
@@ -2799,14 +2767,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-28",
-          "time": "20:45",
-          "datetime": "2026-08-28T20:45:00-06:00",
-          "session_id": "48932",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48932&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-29",
           "time": "18:30",
           "datetime": "2026-08-29T18:30:00-06:00",
@@ -3174,33 +3134,6 @@
       ]
     },
     {
-      "id": "HO00009789",
-      "title": "Punto de fuga",
-      "original_title": "Noghteh-e-Goriz",
-      "director": "Bani Khoshnoudi",
-      "cast": "Bani Khoshnoudi",
-      "country": null,
-      "year": 2025,
-      "duration_min": 104,
-      "classification": "B",
-      "synopsis": "La cinta sigue a la directora Bani Khoshnoudi, desterrada de Irán tras la prohibición de su película sobre el Movimiento Verde en 2009. En este documental, sumamente personal y político, la cineasta rompe el silencio familiar sobre la desaparición y ejecución de su prima, hecho que ocurrió durante las purgas de prisiones políticas en 1988. Khoshnoudi entrelaza, mediante fragmentos de su vida en Teherán, recuerdos privados con relatos públicos de resistencia y desapariciones forzadas. Punto de fuga desborda los límites de una narración convencional; combina imágenes de archivo y de su acervo familiar y diarios de filmación, explorando las huellas del exilio, la memoria y la violencia del régimen iraní.",
-      "raw_meta": "(Noghteh-e-Goriz, 2025, Dur.: 104 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009789?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": "-ppDSwWLGfs",
-      "ciclo": "45 Foro Internacional de Cine",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009789&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-28",
-          "time": "21:00",
-          "datetime": "2026-08-28T21:00:00-06:00",
-          "session_id": "47121",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=47121&visLang=1"
-        }
-      ]
-    },
-    {
       "id": "HO00009791",
       "title": "Siguiente vida",
       "original_title": "Next Life",
@@ -3217,14 +3150,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009791&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-28",
-          "time": "21:00",
-          "datetime": "2026-08-28T21:00:00-06:00",
-          "session_id": "47124",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=47124&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-08-29",
@@ -3850,14 +3775,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-28",
-          "time": "21:00",
-          "datetime": "2026-08-28T21:00:00-06:00",
-          "session_id": "48921",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48921&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-29",
           "time": "21:00",
           "datetime": "2026-08-29T21:00:00-06:00",
@@ -4038,14 +3955,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009814&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-28",
-          "time": "20:50",
-          "datetime": "2026-08-28T20:50:00-06:00",
-          "session_id": "51065",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51065&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-08-29",
@@ -5109,14 +5018,6 @@
       "ciclo": "Estrenos de la semana",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009850&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-28",
-          "time": "20:30",
-          "datetime": "2026-08-28T20:30:00-06:00",
-          "session_id": "51025",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51025&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-08-29",
