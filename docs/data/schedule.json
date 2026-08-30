@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T11:14:52.844123-06:00",
+  "generated_at": "2026-08-30T16:58:08.275169-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
     "2026-08-30",
@@ -208,14 +208,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-30",
-          "time": "14:00",
-          "datetime": "2026-08-30T14:00:00-06:00",
-          "session_id": "49079",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49079&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-31",
           "time": "18:00",
           "datetime": "2026-08-31T18:00:00-06:00",
@@ -420,22 +412,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009145&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "15:00",
-          "datetime": "2026-08-30T15:00:00-06:00",
-          "session_id": "51175",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51175&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "15:40",
-          "datetime": "2026-08-30T15:40:00-06:00",
-          "session_id": "13965",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13965&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-08-30",
@@ -664,14 +640,6 @@
         {
           "sede": "003",
           "date": "2026-08-30",
-          "time": "15:00",
-          "datetime": "2026-08-30T15:00:00-06:00",
-          "session_id": "49041",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49041&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-30",
           "time": "17:00",
           "datetime": "2026-08-30T17:00:00-06:00",
           "session_id": "49038",
@@ -846,22 +814,6 @@
         {
           "sede": "001",
           "date": "2026-08-30",
-          "time": "13:00",
-          "datetime": "2026-08-30T13:00:00-06:00",
-          "session_id": "13992",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13992&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "16:00",
-          "datetime": "2026-08-30T16:00:00-06:00",
-          "session_id": "13993",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13993&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
           "time": "18:00",
           "datetime": "2026-08-30T18:00:00-06:00",
           "session_id": "13994",
@@ -886,22 +838,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009555&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "12:00",
-          "datetime": "2026-08-30T12:00:00-06:00",
-          "session_id": "51152",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51152&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "14:50",
-          "datetime": "2026-08-30T14:50:00-06:00",
-          "session_id": "51155",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51155&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-08-30",
@@ -1081,22 +1017,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009557&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "15:00",
-          "datetime": "2026-08-30T15:00:00-06:00",
-          "session_id": "13979",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13979&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-30",
-          "time": "15:30",
-          "datetime": "2026-08-30T15:30:00-06:00",
-          "session_id": "49037",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49037&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-08-30",
@@ -1365,30 +1285,6 @@
         {
           "sede": "002",
           "date": "2026-08-30",
-          "time": "12:30",
-          "datetime": "2026-08-30T12:30:00-06:00",
-          "session_id": "51147",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51147&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "14:30",
-          "datetime": "2026-08-30T14:30:00-06:00",
-          "session_id": "51148",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51148&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-30",
-          "time": "16:15",
-          "datetime": "2026-08-30T16:15:00-06:00",
-          "session_id": "48984",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48984&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
           "time": "16:40",
           "datetime": "2026-08-30T16:40:00-06:00",
           "session_id": "51149",
@@ -1591,46 +1487,11 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-30",
-          "time": "15:45",
-          "datetime": "2026-08-30T15:45:00-06:00",
-          "session_id": "49039",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49039&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-31",
           "time": "15:45",
           "datetime": "2026-08-31T15:45:00-06:00",
           "session_id": "49048",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49048&visLang=1"
-        }
-      ]
-    },
-    {
-      "id": "HO00009686",
-      "title": "Toy Story 5 DOB",
-      "original_title": "Toy Story 5 DOB",
-      "director": "McKenna Harris, Andrew Stanton",
-      "cast": "Tom Hanks, Tim Allen, Joan Cusack, Keanu Reeves, Greta Lee",
-      "country": "Estados Unidos",
-      "year": 2026,
-      "duration_min": 90,
-      "classification": "AA",
-      "synopsis": "Buzz, Jessie y todos nuestros juguetes favoritos se enfrentan a un nuevo desafío que amenaza su forma de vida cuando la pequeña Bonnie se obsesiona con una tableta inteligente y deja de jugar con ellos. Ante el miedo de ser olvidados, este colorido grupo de amigos hará todo lo posible por demostrar el valor de la imaginación en la vida de los niños. Mientras tanto, Woody regresa para apoyar a sus amigos en esta difícil misión y demostrar que no existe nada que reemplace el cariño y la aventura que un juguete puede ofrecer.",
-      "raw_meta": "(Toy Story 5 DOB, Estados Unidos, 2026, Dur.: 90 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009686?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": "s_qpMMkvHYE",
-      "ciclo": "Estrenos",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009686&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-30",
-          "time": "13:30",
-          "datetime": "2026-08-30T13:30:00-06:00",
-          "session_id": "48977",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48977&visLang=1"
         }
       ]
     },
@@ -1651,14 +1512,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009698&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-30",
-          "time": "14:00",
-          "datetime": "2026-08-30T14:00:00-06:00",
-          "session_id": "49091",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49091&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-08-30",
@@ -1750,22 +1603,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009707&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "13:00",
-          "datetime": "2026-08-30T13:00:00-06:00",
-          "session_id": "51173",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51173&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "13:50",
-          "datetime": "2026-08-30T13:50:00-06:00",
-          "session_id": "13964",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13964&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-08-30",
@@ -1863,40 +1700,8 @@
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009756?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": "KG9wqUZYrMo",
       "ciclo": "Estrenos",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009756&cinemas=002,003",
+      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009756&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "11:00",
-          "datetime": "2026-08-30T11:00:00-06:00",
-          "session_id": "51171",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51171&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-30",
-          "time": "13:00",
-          "datetime": "2026-08-30T13:00:00-06:00",
-          "session_id": "48976",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48976&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "13:20",
-          "datetime": "2026-08-30T13:20:00-06:00",
-          "session_id": "51172",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51172&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "15:20",
-          "datetime": "2026-08-30T15:20:00-06:00",
-          "session_id": "51154",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51154&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-08-30",
@@ -2103,38 +1908,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009759&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "13:00",
-          "datetime": "2026-08-30T13:00:00-06:00",
-          "session_id": "13989",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13989&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "13:00",
-          "datetime": "2026-08-30T13:00:00-06:00",
-          "session_id": "51132",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51132&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "16:20",
-          "datetime": "2026-08-30T16:20:00-06:00",
-          "session_id": "13990",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13990&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "16:20",
-          "datetime": "2026-08-30T16:20:00-06:00",
-          "session_id": "51133",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51133&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-08-30",
@@ -2440,14 +2213,6 @@
         {
           "sede": "001",
           "date": "2026-08-30",
-          "time": "13:40",
-          "datetime": "2026-08-30T13:40:00-06:00",
-          "session_id": "13968",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13968&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
           "time": "16:40",
           "datetime": "2026-08-30T16:40:00-06:00",
           "session_id": "13969",
@@ -2702,14 +2467,6 @@
         {
           "sede": "003",
           "date": "2026-08-30",
-          "time": "15:30",
-          "datetime": "2026-08-30T15:30:00-06:00",
-          "session_id": "47134",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=47134&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-30",
           "time": "21:00",
           "datetime": "2026-08-30T21:00:00-06:00",
           "session_id": "47135",
@@ -2737,14 +2494,6 @@
         {
           "sede": "003",
           "date": "2026-08-30",
-          "time": "12:00",
-          "datetime": "2026-08-30T12:00:00-06:00",
-          "session_id": "47133",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=47133&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-30",
           "time": "17:15",
           "datetime": "2026-08-30T17:15:00-06:00",
           "session_id": "47132",
@@ -2769,38 +2518,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009798&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "12:50",
-          "datetime": "2026-08-30T12:50:00-06:00",
-          "session_id": "51146",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51146&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "14:00",
-          "datetime": "2026-08-30T14:00:00-06:00",
-          "session_id": "13986",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13986&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "15:30",
-          "datetime": "2026-08-30T15:30:00-06:00",
-          "session_id": "51134",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51134&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "16:15",
-          "datetime": "2026-08-30T16:15:00-06:00",
-          "session_id": "13987",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13987&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-08-30",
@@ -3070,22 +2787,6 @@
       "showtimes": [
         {
           "sede": "001",
-          "date": "2026-08-30",
-          "time": "13:30",
-          "datetime": "2026-08-30T13:30:00-06:00",
-          "session_id": "13975",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13975&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "15:30",
-          "datetime": "2026-08-30T15:30:00-06:00",
-          "session_id": "13976",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13976&visLang=1"
-        },
-        {
-          "sede": "001",
           "date": "2026-08-31",
           "time": "13:30",
           "datetime": "2026-08-31T13:30:00-06:00",
@@ -3229,14 +2930,6 @@
         {
           "sede": "002",
           "date": "2026-08-30",
-          "time": "14:40",
-          "datetime": "2026-08-30T14:40:00-06:00",
-          "session_id": "51130",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51130&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
           "time": "18:40",
           "datetime": "2026-08-30T18:40:00-06:00",
           "session_id": "51131",
@@ -3325,30 +3018,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009814&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "12:40",
-          "datetime": "2026-08-30T12:40:00-06:00",
-          "session_id": "51127",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51127&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "13:15",
-          "datetime": "2026-08-30T13:15:00-06:00",
-          "session_id": "13982",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13982&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "15:15",
-          "datetime": "2026-08-30T15:15:00-06:00",
-          "session_id": "13983",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=13983&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-08-30",
@@ -3651,30 +3320,6 @@
         {
           "sede": "002",
           "date": "2026-08-30",
-          "time": "11:40",
-          "datetime": "2026-08-30T11:40:00-06:00",
-          "session_id": "51166",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51166&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "13:40",
-          "datetime": "2026-08-30T13:40:00-06:00",
-          "session_id": "51167",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51167&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "15:40",
-          "datetime": "2026-08-30T15:40:00-06:00",
-          "session_id": "51168",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51168&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
           "time": "17:40",
           "datetime": "2026-08-30T17:40:00-06:00",
           "session_id": "51169",
@@ -3822,14 +3467,6 @@
         {
           "sede": "003",
           "date": "2026-08-30",
-          "time": "16:15",
-          "datetime": "2026-08-30T16:15:00-06:00",
-          "session_id": "49089",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49089&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-08-30",
           "time": "20:45",
           "datetime": "2026-08-30T20:45:00-06:00",
           "session_id": "49090",
@@ -3918,22 +3555,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009848&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "11:30",
-          "datetime": "2026-08-30T11:30:00-06:00",
-          "session_id": "51158",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51158&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "14:00",
-          "datetime": "2026-08-30T14:00:00-06:00",
-          "session_id": "51159",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51159&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-08-31",
@@ -4025,30 +3646,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009849&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "11:50",
-          "datetime": "2026-08-30T11:50:00-06:00",
-          "session_id": "51160",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51160&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "14:00",
-          "datetime": "2026-08-30T14:00:00-06:00",
-          "session_id": "51161",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51161&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "16:00",
-          "datetime": "2026-08-30T16:00:00-06:00",
-          "session_id": "51162",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51162&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-08-30",
@@ -4212,46 +3809,6 @@
       "ciclo": "Estrenos de la semana",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009850&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "12:20",
-          "datetime": "2026-08-30T12:20:00-06:00",
-          "session_id": "51153",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51153&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "13:10",
-          "datetime": "2026-08-30T13:10:00-06:00",
-          "session_id": "14116",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14116&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "14:20",
-          "datetime": "2026-08-30T14:20:00-06:00",
-          "session_id": "51137",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51137&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-08-30",
-          "time": "15:10",
-          "datetime": "2026-08-30T15:10:00-06:00",
-          "session_id": "14117",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14117&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "16:30",
-          "datetime": "2026-08-30T16:30:00-06:00",
-          "session_id": "51138",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51138&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-08-30",
@@ -4562,30 +4119,6 @@
         {
           "sede": "002",
           "date": "2026-08-30",
-          "time": "11:10",
-          "datetime": "2026-08-30T11:10:00-06:00",
-          "session_id": "51141",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51141&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "13:10",
-          "datetime": "2026-08-30T13:10:00-06:00",
-          "session_id": "51142",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51142&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
-          "time": "15:10",
-          "datetime": "2026-08-30T15:10:00-06:00",
-          "session_id": "51143",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51143&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-08-30",
           "time": "17:10",
           "datetime": "2026-08-30T17:10:00-06:00",
           "session_id": "51144",
@@ -4748,14 +4281,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-08-30",
-          "time": "14:30",
-          "datetime": "2026-08-30T14:30:00-06:00",
-          "session_id": "48980",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48980&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-08-31",
           "time": "15:30",
           "datetime": "2026-08-31T15:30:00-06:00",
@@ -4848,33 +4373,6 @@
       ]
     },
     {
-      "id": "HO00009951",
-      "title": "Amor trava",
-      "original_title": "Amor Trava",
-      "director": "Lucrecia Mastrangelo",
-      "cast": "-Aurora Sanchez\n-Estela Sanchez\n-Gala Curimba",
-      "country": "Argentina",
-      "year": 2025,
-      "duration_min": 0,
-      "classification": "B15",
-      "synopsis": "Aurora adolescente en transición de género y los miedos de su mamá. El Movimiento Ballroom, un sostén político y de amor entre la comunidad trans. Dos puntas de un mismo lazo.",
-      "raw_meta": "(Amor Trava, Argentina, 2025, Dur.: 0 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009951?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": "Muestra Internacional de Mujeres en el Cine y TV26",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009951&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-30",
-          "time": "14:00",
-          "datetime": "2026-08-30T14:00:00-06:00",
-          "session_id": "48953",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48953&visLang=1"
-        }
-      ]
-    },
-    {
       "id": "HO00009952",
       "title": "Adiós amor",
       "original_title": ": Adiós",
@@ -4945,14 +4443,6 @@
       "ciclo": "Estrenos de la semana",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009956&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-08-30",
-          "time": "15:30",
-          "datetime": "2026-08-30T15:30:00-06:00",
-          "session_id": "48986",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=48986&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-08-30",
