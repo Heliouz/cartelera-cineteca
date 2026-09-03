@@ -62,26 +62,38 @@ MAX_WORKERS = 5
 REQUEST_DELAY = 0.15
 FAIL_ABORT_RATIO = 0.2
 FILM_COUNT_MIN_RATIO = 0.5
-MAX_RETRIES = 4
+MAX_RETRIES = 5
 TIMEOUT = 30
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("scrape")
 
 
-def fetch_with_retry(method, url, **kwargs):
+def fetch_with_retry(method, url, parse=None, **kwargs):
+    """Fetch a URL, retrying the transient failures cinetecanacional.net serves.
+
+    `parse` runs *inside* the loop and its result is what comes back, so a
+    response that arrives whole but unreadable retries exactly like a 500 does.
+    That placement is the whole point: `resp.json()` used to sit out at the call
+    sites, and on 2026-09-03 one 200 whose body stopped 11 bytes in ended the
+    run with no retry at all — while the 500s a day earlier at least got four.
+
+    Backoff is 2/4/8/16s over 5 attempts, ~30s of cover. The old 1/2/4 over 4
+    attempts spent itself in 7s, short enough that a single ~11s outage
+    upstream took the whole run down.
+    """
     last_exc = None
     for attempt in range(MAX_RETRIES):
         try:
             resp = requests.request(method, url, headers=HEADERS, timeout=TIMEOUT, **kwargs)
             resp.raise_for_status()
-            return resp
+            return parse(resp) if parse else resp
         except requests.RequestException as exc:
             last_exc = exc
             if attempt == MAX_RETRIES - 1:
                 log.warning("request failed (%s): %s — giving up", url, exc)
                 break
-            wait = 2 ** attempt
+            wait = 2 ** (attempt + 1)
             log.warning("request failed (%s): %s — retrying in %ss", url, exc, wait)
             time.sleep(wait)
     raise last_exc
@@ -111,13 +123,29 @@ def get_day_window():
     return days
 
 
+def _json_html(resp):
+    """Pull the `html` payload out of a /data/cartelera.php response.
+
+    Both failure modes raise a `requests.RequestException` subclass on purpose
+    (`JSONDecodeError` already is one), so `fetch_with_retry` retries them
+    without having to widen what it catches.
+    """
+    payload = resp.json()
+    if "html" not in payload:
+        raise requests.exceptions.InvalidJSONError(
+            f"no 'html' key in the response from {resp.url}", response=resp
+        )
+    return payload["html"]
+
+
 def _post_full(fecha):
-    resp = fetch_with_retry(
+    html = fetch_with_retry(
         "POST",
         f"{BASE}/data/cartelera.php",
+        parse=_json_html,
         data={"vista": "full", "fecha": fecha, "cinema": "000", "eventId": "000"},
     )
-    return extract_film_refs(resp.json()["html"])
+    return extract_film_refs(html)
 
 
 def get_film_refs(days):
@@ -133,12 +161,13 @@ def get_film_refs(days):
 
 
 def get_ciclo_map():
-    resp = fetch_with_retry(
+    html = fetch_with_retry(
         "POST",
         f"{BASE}/data/cartelera.php",
+        parse=_json_html,
         data={"vista": "events", "fecha": "", "cinema": "000", "eventId": "000"},
     )
-    return extract_ciclo_map(resp.json()["html"])
+    return extract_ciclo_map(html)
 
 
 def fetch_film_detail_html(film_id, cinemas_csv):

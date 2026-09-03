@@ -5,6 +5,7 @@ import sys
 from urllib.parse import urlsplit
 
 import pytest
+import requests
 
 import parsing
 import scrape
@@ -534,3 +535,90 @@ def test_validate_schedule_accepts_clean_data():
         ],
     }
     scrape.validate_schedule(data)  # should not raise
+
+
+# ---------- transient upstream failures ----------
+
+class _FakeResponse:
+    """Just enough of a `requests.Response` for fetch_with_retry."""
+
+    url = "https://www.cinetecanacional.net/data/cartelera.php"
+
+    def __init__(self, body, status=200):
+        self.body = body
+        self.status = status
+
+    def raise_for_status(self):
+        if self.status >= 400:
+            raise requests.exceptions.HTTPError(
+                f"{self.status} Server Error", response=self
+            )
+
+    def json(self):
+        try:
+            return json.loads(self.body)
+        except ValueError as exc:
+            raise requests.exceptions.JSONDecodeError(exc.msg, exc.doc, exc.pos)
+
+
+def _script(monkeypatch, responses):
+    """Feed fetch_with_retry a fixed sequence of responses, and record the waits."""
+    calls = []
+    waits = []
+
+    def fake_request(method, url, **kwargs):
+        calls.append(url)
+        return responses[len(calls) - 1]
+
+    monkeypatch.setattr(scrape.requests, "request", fake_request)
+    monkeypatch.setattr(scrape.time, "sleep", lambda seconds: waits.append(seconds))
+    return calls, waits
+
+
+def test_a_body_that_is_not_json_is_retried_like_a_500(monkeypatch):
+    # 2026-09-03: cinetecanacional.net answered 200 with a body that stopped 11
+    # bytes in. The decode sat outside the retry loop, so the run died on the
+    # first try while the 500s a day earlier got four.
+    calls, waits = _script(monkeypatch, [
+        _FakeResponse('{"success":'),
+        _FakeResponse(json.dumps({"html": "<div>ok</div>"})),
+    ])
+
+    html = scrape.fetch_with_retry("POST", _FakeResponse.url, parse=scrape._json_html)
+
+    assert html == "<div>ok</div>"
+    assert len(calls) == 2
+    assert waits == [2]
+
+
+def test_json_without_an_html_key_is_retried_too(monkeypatch):
+    calls, _ = _script(monkeypatch, [
+        _FakeResponse(json.dumps({"error": "nope"})),
+        _FakeResponse(json.dumps({"html": "<div>ok</div>"})),
+    ])
+
+    html = scrape.fetch_with_retry("POST", _FakeResponse.url, parse=scrape._json_html)
+
+    assert html == "<div>ok</div>"
+    assert len(calls) == 2
+
+
+def test_retries_cover_thirty_seconds_before_giving_up(monkeypatch):
+    # 2026-09-02: an ~11s outage upstream outlived the old 1/2/4s backoff.
+    calls, waits = _script(
+        monkeypatch, [_FakeResponse("", status=500)] * scrape.MAX_RETRIES
+    )
+
+    with pytest.raises(requests.exceptions.HTTPError):
+        scrape.fetch_with_retry("POST", _FakeResponse.url, parse=scrape._json_html)
+
+    assert len(calls) == scrape.MAX_RETRIES
+    assert waits == [2, 4, 8, 16]
+    assert sum(waits) == 30
+
+
+def test_fetch_without_a_parser_still_hands_back_the_response(monkeypatch):
+    resp = _FakeResponse("<html>not json at all</html>")
+    _script(monkeypatch, [resp])
+
+    assert scrape.fetch_with_retry("GET", _FakeResponse.url) is resp
