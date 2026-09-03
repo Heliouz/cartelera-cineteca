@@ -894,6 +894,17 @@ html.sheet-open { overflow: hidden; }
   box-shadow: 0 0 0 3px var(--focus-ring-strong), var(--shadow-button);
 }
 
+/* iOS Safari zooms the whole page in when a form control it focuses computes
+   below 16px, and leaves the visitor to pinch back out afterwards — so the
+   header's two focusable controls get 16px on touch devices. Nothing else
+   changes: both keep min-height 34px, and 16px text plus 6px padding still
+   measures under that, so #filters-row's height is unaffected. Android Chrome
+   never had the behaviour (it honours width=device-width instead); the rule
+   covers it anyway, where a bigger field is no loss. */
+@media (pointer: coarse) {
+  #search-input, #ciclo-select { font-size: 16px; }
+}
+
 /* staleness banner */
 .stale-banner {
   padding: var(--sp-2) var(--sp-4);
