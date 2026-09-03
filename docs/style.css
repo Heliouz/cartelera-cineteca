@@ -712,9 +712,18 @@ html.sheet-open { overflow: hidden; }
 }
 .topbar-right .icon-btn { width: 30px; height: 30px; }
 
+/* All three control groups (#day-strip, #sede-filter, #view-toggle) ship empty
+   and are filled by app.js only after the schedule.json fetch resolves, so their
+   height is reserved here. Without it the header grows ~90px on load and pushes
+   the agenda down under the visitor's thumb — worst on a slow in-app WebView,
+   where the empty shell paints long before the data lands. Each min-height is
+   the chip's own min-height plus this container's padding: 44 + 2 here, 34 + 6
+   for the two segmented controls. */
+
 /* day strip: horizontal scroll + snap on mobile, wraps naturally on wide screens */
 #day-strip {
   display: flex;
+  min-height: 46px;
   gap: var(--sp-2);
   overflow-x: auto;
   scroll-snap-type: x proximity;
@@ -758,6 +767,7 @@ html.sheet-open { overflow: hidden; }
 }
 #sede-filter {
   display: flex;
+  min-height: 40px; /* reserved for the chips app.js adds — see #day-strip */
   gap: 3px;
   padding: 3px;
   border-radius: var(--rad-pill);
@@ -795,6 +805,7 @@ html.sheet-open { overflow: hidden; }
 /* view toggle: por día / por película, same segmented look as #sede-filter */
 #view-toggle {
   display: flex;
+  min-height: 40px; /* reserved for the chips app.js adds — see #day-strip */
   gap: 3px;
   padding: 3px;
   border-radius: var(--rad-pill);
