@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T10:47:39.629741-06:00",
+  "generated_at": "2026-09-04T16:36:16.899484-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
     "2026-09-04",
@@ -204,14 +204,6 @@
         {
           "sede": "003",
           "date": "2026-09-04",
-          "time": "15:15",
-          "datetime": "2026-09-04T15:15:00-06:00",
-          "session_id": "49147",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49147&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-09-04",
           "time": "20:30",
           "datetime": "2026-09-04T20:30:00-06:00",
           "session_id": "49175",
@@ -369,12 +361,12 @@
       "original_title": "Deshilando luz",
       "director": "Valentina Pelayo Atilano",
       "cast": "Elsa Atilano, Valentina Pelayo Atilano",
-      "country": null,
+      "country": "México",
       "year": 2025,
       "duration_min": 68,
       "classification": "B",
       "synopsis": "Deshilando Luz es un ensayo fílmico experimental que entrelaza la mirada de la directora Valentina Pelayo con la de Elsa Atilano, artista textil. Las viñetas que Valentina encuentra en el archivo de su madre manifiestan la oración de los misterios del Rosario, una meditación que, al igual que la obra textil, se estructura en la repetición. En este filme la directora fabrica un homenaje póstumo a la muerte de Elsa, su madre, deshilando los trazos de su existencia, el duelo y la ausencia.",
-      "raw_meta": "(Deshilando luz, 2025, Dur.: 68 mins.)",
+      "raw_meta": "(Deshilando luz, México, 2025, Dur.: 68 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00008666?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Estrenos de la semana",
@@ -529,16 +521,7 @@
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009182&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-04",
-          "time": "18:00",
-          "datetime": "2026-09-04T18:00:00-06:00",
-          "session_id": "49174",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49174&visLang=1"
-        }
-      ]
+      "showtimes": []
     },
     {
       "id": "HO00009184",
@@ -721,33 +704,6 @@
       ]
     },
     {
-      "id": "HO00009294",
-      "title": "Los invisibles",
-      "original_title": "Los invisibles",
-      "director": "Andrea Oliva Marcial",
-      "cast": "Sabina Marcial García, Ernesto Oliva Butrón, Genaro Marcial García, Silvia Oliva Butrón, Enrique Casillas Aceves, Silvia Oliva Marcial, Andrea Oliva Marcial",
-      "country": "México",
-      "year": 2025,
-      "duration_min": 91,
-      "classification": "B",
-      "synopsis": "Los Invisibles narra la historia de amor entre Sabina, originaria de la mixteca poblana, y Ernesto, quien vive con discapacidad motriz. Juntos enfrentan el rechazo y los estigmas sociales, luchando con valentía por construir su propio destino y demostrar que el amor puede derribar cualquier barrera.",
-      "raw_meta": "(Los invisibles, México, 2025, Dur.: 91 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009294?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": "Contra el Silencio Todas las Voces 2026",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009294&cinemas=002",
-      "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "12:00",
-          "datetime": "2026-09-04T12:00:00-06:00",
-          "session_id": "51397",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51397&visLang=1"
-        }
-      ]
-    },
-    {
       "id": "HO00009372",
       "title": "Niñxs",
       "original_title": null,
@@ -791,14 +747,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009420&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-04",
-          "time": "14:45",
-          "datetime": "2026-09-04T14:45:00-06:00",
-          "session_id": "49149",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49149&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-09-04",
@@ -906,14 +854,6 @@
       "ciclo": "Estrenos de la semana",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009426&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "14:20",
-          "datetime": "2026-09-04T14:20:00-06:00",
-          "session_id": "51378",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51378&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-04",
@@ -1264,22 +1204,6 @@
         {
           "sede": "002",
           "date": "2026-09-04",
-          "time": "15:00",
-          "datetime": "2026-09-04T15:00:00-06:00",
-          "session_id": "51372",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51372&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "16:00",
-          "datetime": "2026-09-04T16:00:00-06:00",
-          "session_id": "14156",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14156&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-04",
           "time": "19:30",
           "datetime": "2026-09-04T19:30:00-06:00",
           "session_id": "51373",
@@ -1312,14 +1236,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009555&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "13:10",
-          "datetime": "2026-09-04T13:10:00-06:00",
-          "session_id": "51367",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51367&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-04",
@@ -1600,14 +1516,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-09-04",
-          "time": "15:00",
-          "datetime": "2026-09-04T15:00:00-06:00",
-          "session_id": "49144",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49144&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-09-05",
           "time": "16:15",
           "datetime": "2026-09-05T16:15:00-06:00",
@@ -1732,14 +1640,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009563&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "15:40",
-          "datetime": "2026-09-04T15:40:00-06:00",
-          "session_id": "51391",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51391&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-04",
@@ -1921,14 +1821,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-09-04",
-          "time": "15:30",
-          "datetime": "2026-09-04T15:30:00-06:00",
-          "session_id": "49151",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49151&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-09-05",
           "time": "15:30",
           "datetime": "2026-09-05T15:30:00-06:00",
@@ -2037,22 +1929,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009759&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "13:00",
-          "datetime": "2026-09-04T13:00:00-06:00",
-          "session_id": "14375",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14375&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "13:00",
-          "datetime": "2026-09-04T13:00:00-06:00",
-          "session_id": "51401",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51401&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-04",
@@ -2446,14 +2322,6 @@
         {
           "sede": "001",
           "date": "2026-09-04",
-          "time": "13:40",
-          "datetime": "2026-09-04T13:40:00-06:00",
-          "session_id": "14159",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14159&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-04",
           "time": "16:40",
           "datetime": "2026-09-04T16:40:00-06:00",
           "session_id": "14160",
@@ -2742,22 +2610,6 @@
       "ciclo": "45 Foro Internacional de Cine",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009788&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "13:00",
-          "datetime": "2026-09-04T13:00:00-06:00",
-          "session_id": "51370",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51370&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "13:50",
-          "datetime": "2026-09-04T13:50:00-06:00",
-          "session_id": "14155",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14155&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-04",
@@ -3256,22 +3108,6 @@
         {
           "sede": "002",
           "date": "2026-09-04",
-          "time": "13:40",
-          "datetime": "2026-09-04T13:40:00-06:00",
-          "session_id": "51359",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51359&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "14:00",
-          "datetime": "2026-09-04T14:00:00-06:00",
-          "session_id": "14184",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14184&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-04",
           "time": "16:00",
           "datetime": "2026-09-04T16:00:00-06:00",
           "session_id": "51360",
@@ -3657,22 +3493,6 @@
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009806&cinemas=001,003",
       "showtimes": [
         {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "13:30",
-          "datetime": "2026-09-04T13:30:00-06:00",
-          "session_id": "14166",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14166&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "15:30",
-          "datetime": "2026-09-04T15:30:00-06:00",
-          "session_id": "14167",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14167&visLang=1"
-        },
-        {
           "sede": "003",
           "date": "2026-09-05",
           "time": "13:00",
@@ -3787,14 +3607,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009814&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-04",
-          "time": "15:00",
-          "datetime": "2026-09-04T15:00:00-06:00",
-          "session_id": "49407",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49407&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-09-04",
@@ -3921,14 +3733,6 @@
         {
           "sede": "002",
           "date": "2026-09-04",
-          "time": "13:50",
-          "datetime": "2026-09-04T13:50:00-06:00",
-          "session_id": "51389",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51389&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-04",
           "time": "17:50",
           "datetime": "2026-09-04T17:50:00-06:00",
           "session_id": "51390",
@@ -4033,14 +3837,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009847&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-04",
-          "time": "14:30",
-          "datetime": "2026-09-04T14:30:00-06:00",
-          "session_id": "49159",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49159&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-09-04",
@@ -4164,14 +3960,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009848&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "15:10",
-          "datetime": "2026-09-04T15:10:00-06:00",
-          "session_id": "51382",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51382&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-04",
@@ -4498,38 +4286,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009850&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "13:10",
-          "datetime": "2026-09-04T13:10:00-06:00",
-          "session_id": "14162",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14162&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "13:20",
-          "datetime": "2026-09-04T13:20:00-06:00",
-          "session_id": "51385",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51385&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "15:10",
-          "datetime": "2026-09-04T15:10:00-06:00",
-          "session_id": "14163",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14163&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "15:20",
-          "datetime": "2026-09-04T15:20:00-06:00",
-          "session_id": "51386",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51386&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-04",
@@ -4960,14 +4716,6 @@
         {
           "sede": "002",
           "date": "2026-09-04",
-          "time": "14:40",
-          "datetime": "2026-09-04T14:40:00-06:00",
-          "session_id": "51374",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51374&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-04",
           "time": "18:40",
           "datetime": "2026-09-04T18:40:00-06:00",
           "session_id": "51375",
@@ -5090,14 +4838,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-09-04",
-          "time": "14:30",
-          "datetime": "2026-09-04T14:30:00-06:00",
-          "session_id": "49145",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49145&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-09-05",
           "time": "14:30",
           "datetime": "2026-09-05T14:30:00-06:00",
@@ -5212,15 +4952,15 @@
     {
       "id": "HO00009929",
       "title": "La bachata del biónico",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "original_title": "La bachata del biónico",
+      "director": "Yoel Morales",
+      "cast": "Manuel Raposo, El Napo, Ana Minier, Yasser Michelén, Donis Taveras, Inés Fermín",
+      "country": "República Dominicana",
+      "year": 2024,
+      "duration_min": 80,
       "classification": "C",
       "synopsis": "Bionico es un romántico empedernido, y además adicto al crack, que debe tomar el control de su vida antes de que su prometida salga del centro de rehabilitación. Acompañado de su amigo Calvita, Bionico intentará dejar las drogas y conseguir dinero y casa, metiéndose en varios aprietos en el proceso. Ganadora del Premio del Público en el Festival South by Southwest, La bachata de Bionico es una irreverente comedia que, con la forma de un falso documental, presenta una visión cruda del amor en una ciudad caribeña.",
-      "raw_meta": null,
+      "raw_meta": "(La bachata del biónico, República Dominicana, 2024, Dur.: 80 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009929?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": "Kt-CneiN1og",
       "ciclo": "Estrenos de la semana",
@@ -5301,38 +5041,6 @@
       "ciclo": "Estrenos de la semana",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009931&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "13:15",
-          "datetime": "2026-09-04T13:15:00-06:00",
-          "session_id": "14619",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14619&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "13:30",
-          "datetime": "2026-09-04T13:30:00-06:00",
-          "session_id": "51393",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51393&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "15:20",
-          "datetime": "2026-09-04T15:20:00-06:00",
-          "session_id": "14618",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14618&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "15:30",
-          "datetime": "2026-09-04T15:30:00-06:00",
-          "session_id": "51394",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51394&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-09-04",
@@ -5612,34 +5320,10 @@
       "synopsis": "En un místico pueblo llamado Magdala, se desatará un vórtice de locura cuando tres maletines llenos de dinero lleguen en manos de un productor español. A partir de ese momento, Gloria Zamora, una madre devota al futuro musical de su hijo, se verá atravesada por el deseo de convertirse en la emperatriz de su localidad. Juntando elementos del realismo mágico con el cine costumbrista, Horacio Alcalá y Ángeles Cruz crean un universo lleno de misterio, avaricia y redención.",
       "raw_meta": "(Sobre las olas, México, 2025, Dur.: 97 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009932?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
+      "trailer_youtube_id": "RyKz8vGQVYo",
       "ciclo": "Estrenos de la semana",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009932&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "13:00",
-          "datetime": "2026-09-04T13:00:00-06:00",
-          "session_id": "14190",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14190&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "14:00",
-          "datetime": "2026-09-04T14:00:00-06:00",
-          "session_id": "51363",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51363&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "15:00",
-          "datetime": "2026-09-04T15:00:00-06:00",
-          "session_id": "14189",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14189&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-04",
@@ -6113,14 +5797,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009956&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-04",
-          "time": "15:00",
-          "datetime": "2026-09-04T15:00:00-06:00",
-          "session_id": "49146",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49146&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-04",
@@ -6695,33 +6371,6 @@
       ]
     },
     {
-      "id": "HO00009966",
-      "title": "Shorts 2026: Competencia Mexicana de Documental 3",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
-      "classification": "B",
-      "synopsis": "Toda la vida para siempre, de Sebastian Molina Ruiz\r\nLuz de Sombra, de Rubén J. Méndez\r\nLa ventana a la esperanza, de Guillermo Acevedo\r\nEspinosa\r\n“Mapas desde adentro” de Cuca Pistolas / Mi cuerpo\r\nes mi primer territorio, de Cristina Aguilera",
-      "raw_meta": null,
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009966?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": "Shorts México 2026",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009966&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-04",
-          "time": "14:00",
-          "datetime": "2026-09-04T14:00:00-06:00",
-          "session_id": "49369",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49369&visLang=1"
-        }
-      ]
-    },
-    {
       "id": "HO00009967",
       "title": "Shorts 2026: Competencia Mexicana de Documental 4",
       "original_title": "COMPETENCIA MEXICANA DOCUMENTAL - PROGRAMA 4",
@@ -6953,16 +6602,7 @@
       "trailer_youtube_id": null,
       "ciclo": "Shorts México 2026",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009979&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-04",
-          "time": "16:00",
-          "datetime": "2026-09-04T16:00:00-06:00",
-          "session_id": "49370",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49370&visLang=1"
-        }
-      ]
+      "showtimes": []
     },
     {
       "id": "HO00009980",
@@ -7496,44 +7136,17 @@
       ]
     },
     {
-      "id": "HO00010018",
-      "title": "Mäos á terra (Manos a la tierra)",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
-      "classification": "A",
-      "synopsis": "En el extremo sur de Brasil, familias agricultoras, hippies, ambientalistas y clérigos progresistas construyen durante más de cuatro décadas una alternativa al modelo agrícola convencional. A través de archivos inéditos y testimonios, el documental reconstruye la historia de una feria ecológica y de un movimiento ambientalista de base.",
-      "raw_meta": null,
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010018?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": "Contra el Silencio Todas las Voces 2026",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010018&cinemas=002",
-      "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-04",
-          "time": "14:30",
-          "datetime": "2026-09-04T14:30:00-06:00",
-          "session_id": "51398",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51398&visLang=1"
-        }
-      ]
-    },
-    {
       "id": "HO00010019",
       "title": "Retratos de Churcama",
-      "original_title": null,
-      "director": null,
+      "original_title": "Retratos de Churcampa",
+      "director": "Luis Cintora",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Perú",
+      "year": 2026,
+      "duration_min": 80,
       "classification": "B",
-      "synopsis": null,
-      "raw_meta": null,
+      "synopsis": "Jesús Cossío y el equipo de Retratos de Memoria viajan al corazón de Huancavelica para devolver el rostro a quienes la violencia arrebató la vida. Ante la ausencia de fotografías, el dibujo se convierte en un puente entre el recuerdo y la imagen, devolviendo a las familias un retrato que honrar y preservar en la memoria colectiva.",
+      "raw_meta": "(Retratos de Churcampa, Perú, 2026, Dur.: 80 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010019?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7552,15 +7165,15 @@
     {
       "id": "HO00010020",
       "title": "Raptus/La fuerza del silencio/Humana/Cautivas",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 2: Género",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "cuerpos e identidades, Varios",
+      "year": 2026,
+      "duration_min": 79,
       "classification": "B15",
       "synopsis": "Una mujer narra su experiencia de violencia dentro de una relación de pareja, donde el abuso se disfraza de amor y se convierte en una tortura cotidiana. A través de su testimonio, el documental expone las huellas emocionales de la violencia y la dificultad de romper con un ciclo silencioso y sistemático.",
-      "raw_meta": null,
+      "raw_meta": "(Programa 2: Género, cuerpos e identidades, Varios, 2026, Dur.: 79 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010020?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7579,15 +7192,15 @@
     {
       "id": "HO00010021",
       "title": "Que volá/Cuando el cielo vuela a ser luz/Restauro/",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 3: Vida cotidiana y cambio social",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Varios",
+      "year": 2026,
+      "duration_min": 92,
       "classification": "A",
       "synopsis": "En San Pablo Yao, Cuba, el béisbol desapareció tras la destrucción del estadio por un ciclón. Brayan, un joven de la comunidad, emprende un viaje para alcanzar su sueño deportivo. Su camino representa también la esperanza colectiva de un pueblo que enfrenta la escasez y la adversidad sin abandonar sus aspiraciones.",
-      "raw_meta": null,
+      "raw_meta": "(Programa 3: Vida cotidiana y cambio social, Varios, 2026, Dur.: 92 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010021?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7606,15 +7219,15 @@
     {
       "id": "HO00010022",
       "title": "Os filhos do underground contra o crânioda batata",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 2: Infancias y juventudes",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Varios",
+      "year": 2026,
+      "duration_min": 50,
       "classification": "B",
       "synopsis": "Hacer cine amateur es difícil, pero estos jóvenes combinan trabajo y diversión mientras filman junto a sus hijos y sobrinos. Desde una mirada familiar, el documental se adentra en una forma particular de hacer cine underground y muestra cómo la pasión por filmar se transmite entre generaciones.",
-      "raw_meta": null,
+      "raw_meta": "(Programa 2: Infancias y juventudes, Varios, 2026, Dur.: 50 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010022?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7633,15 +7246,15 @@
     {
       "id": "HO00010023",
       "title": "Contra corriente/Somos/El sueño de las luciérnagas",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 3: Fronteras",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "migraciones y exilios, Varios",
+      "year": 2026,
+      "duration_min": 80,
       "classification": "B",
-      "synopsis": null,
-      "raw_meta": null,
+      "synopsis": "Trabajadores dedicados al corte de aguacate en Uruapan, Michoacán, reflexionan sobre sus vidas mientras enfrentan largas jornadas laborales. A través de sus experiencias, el documental muestra las transformaciones sociales y ambientales que atraviesa su comunidad y las condiciones que marcan su vida cotidiana.",
+      "raw_meta": "(Programa 3: Fronteras, migraciones y exilios, Varios, 2026, Dur.: 80 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010023?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7660,15 +7273,15 @@
     {
       "id": "HO00010024",
       "title": "En busca de riquesas (casi) olvidadas/¿Quién puede",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 4: Identidades indígenas y afrodescendientes",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Varios",
+      "year": 2026,
+      "duration_min": 82,
       "classification": "A",
       "synopsis": "Doña Lina, matriarca quilombola y guardiana de la memoria familiar, invita a su nieta Naira a reconstruir juntas la historia de su comunidad. El documental explora la transmisión de la memoria, la identidad afrobrasileña y la necesidad de preservar los relatos que el paso del tiempo amenaza con borrar.",
-      "raw_meta": null,
+      "raw_meta": "(Programa 4: Identidades indígenas y afrodescendientes, Varios, 2026, Dur.: 82 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010024?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7687,15 +7300,15 @@
     {
       "id": "HO00010025",
       "title": "Entre surcos y memoria: Sembrando resistencia en",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 3: Derechos",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "resistencias y organización social, Varios",
+      "year": 2026,
+      "duration_min": 78,
       "classification": "B",
       "synopsis": "En el poniente de la Ciudad de México, el pueblo de Cuajimalpa resiste entre el asfalto y los últimos bosques. Personas mayores y jóvenes defienden la tradición de la siembra y los saberes heredados, mientras el cultivo se convierte en una forma de resistencia y memoria frente a la amenaza de perder el territorio.",
-      "raw_meta": null,
+      "raw_meta": "(Programa 3: Derechos, resistencias y organización social, Varios, 2026, Dur.: 78 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010025?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7714,15 +7327,15 @@
     {
       "id": "HO00010026",
       "title": "Ser, no ser, ser muchas/Rojo/La identidad que hemo",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 1: Género",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "cuerpos e identidades, Varios",
+      "year": 2026,
+      "duration_min": 76,
       "classification": "B",
       "synopsis": null,
-      "raw_meta": null,
+      "raw_meta": "(Programa 1: Género, cuerpos e identidades, Varios, 2026, Dur.: 76 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010026?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7741,15 +7354,15 @@
     {
       "id": "HO00010027",
       "title": "El eco de la mirada/No olvidemos/La casa de Ana/¿C",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 1: Derechos",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "resistencias y organización social, Varios",
+      "year": 2026,
+      "duration_min": 90,
       "classification": "B15",
       "synopsis": "En 2020, una familia recupera una casa que el franquismo les arrebató en 1936. Tras la muerte de Ana, descubren que siempre les perteneció. A través de testimonios y material de archivo, el documental reconstruye una historia de expolio, olvido y resistencia de las mujeres, donde la memoria despierta entre las grietas de la casa.",
-      "raw_meta": null,
+      "raw_meta": "(Programa 1: Derechos, resistencias y organización social, Varios, 2026, Dur.: 90 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010027?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7768,15 +7381,15 @@
     {
       "id": "HO00010028",
       "title": "Vientre de luna/Menino/Capitana partera/Unlearning",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 1: Identidades indígenas y afrodescendientes",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Varios",
+      "year": 2026,
+      "duration_min": 85,
       "classification": "B",
       "synopsis": "En una comunidad tsotsil de los Altos de Chiapas, una joven se prepara para vivir su primer parto mientras recuerda las experiencias de las mujeres que la precedieron. Entre el miedo y la incertidumbre, descubre la maternidad desde la cosmovisión de su pueblo y la fuerza heredada de generaciones.",
-      "raw_meta": null,
+      "raw_meta": "(Programa 1: Identidades indígenas y afrodescendientes, Varios, 2026, Dur.: 85 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010028?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7795,15 +7408,15 @@
     {
       "id": "HO00010029",
       "title": "Un lugar en la ciudad",
-      "original_title": null,
-      "director": null,
+      "original_title": "Un lugar en la ciudad",
+      "director": "Gabriel Silvestre",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Argentina, Brasil, Chile, Reino Unido",
+      "year": 2025,
+      "duration_min": 62,
       "classification": "B",
       "synopsis": "En Rosario, Santiago y Belo Horizonte, comunidades organizadas enfrentan la desigualdad urbana mediante la lucha y la acción colectiva. A través de historias personales, el documental muestra cómo estas experiencias de resistencia y esperanza permiten construir comunidad y cuestionar las formas tradicionales de habitar y pensar las ciudades.",
-      "raw_meta": null,
+      "raw_meta": "(Un lugar en la ciudad, Argentina, Brasil, Chile, Reino Unido, 2025, Dur.: 62 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010029?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7822,15 +7435,15 @@
     {
       "id": "HO00010033",
       "title": "Cuando el fuego se convierte en ceniza",
-      "original_title": null,
-      "director": null,
+      "original_title": "Cuando el fuego se convierte en ceniza",
+      "director": "Michaela Grill",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Argentina- Chile",
+      "year": 2025,
+      "duration_min": 96,
       "classification": "A",
       "synopsis": "Un ensayo documental que explora la historia de Tierra del Fuego y las huellas del colonialismo y el genocidio sobre sus pueblos indígenas. A través del paisaje, archivos históricos y testimonios, la película cuestiona la mirada turística de un territorio presentado como hermoso y vacío, recuperando las memorias de su ausencia.",
-      "raw_meta": null,
+      "raw_meta": "(Cuando el fuego se convierte en ceniza, Argentina- Chile, 2025, Dur.: 96 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010033?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7849,15 +7462,15 @@
     {
       "id": "HO00010034",
       "title": "Infancia arrebatada/Imposible: la realidad del pet",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 1: Medio ambiente y desarrollo sustentable",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Varios",
+      "year": 2026,
+      "duration_min": 88,
       "classification": "B",
       "synopsis": "Argentina enfrenta un grave problema por el uso intensivo de agrotoxinas, cuyos residuos se acumulan en el suelo, el agua y los alimentos. El documental aborda las consecuencias de esta contaminación y sus efectos sobre la infancia y las comunidades expuestas a estas sustancias.",
-      "raw_meta": null,
+      "raw_meta": "(Programa 1: Medio ambiente y desarrollo sustentable, Varios, 2026, Dur.: 88 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010034?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7876,15 +7489,15 @@
     {
       "id": "HO00010035",
       "title": "Zapocelta/La fundación/Solo es cuestión de tiempo/",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 2: Arte y cultura/ vida cotidiana y cambio social",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Varios",
+      "year": 2026,
+      "duration_min": 45,
       "classification": "A",
       "synopsis": "Maximino y Samuel, dos músicos callejeros de orígenes distintos, se encuentran en las calles de Oaxaca. A través de la música construyen una amistad que trasciende las diferencias culturales y lingüísticas, demostrando cómo el arte puede convertirse en un lenguaje común capaz de conectar a personas de mundos distintos.",
-      "raw_meta": null,
+      "raw_meta": "(Programa 2: Arte y cultura/ vida cotidiana y cambio social, Varios, 2026, Dur.: 45 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010035?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7903,15 +7516,15 @@
     {
       "id": "HO00010036",
       "title": "Cuidado, niños jugando/Ojo vigilante/La hora de la",
-      "original_title": null,
-      "director": null,
+      "original_title": "Programa 1: Fronteras",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "migraciones y exilios, Varios",
+      "year": 2026,
+      "duration_min": 77,
       "classification": "B15",
       "synopsis": "Una joven pierde un ojo durante las protestas de 2022 en Irán tras recibir disparos de las fuerzas gubernamentales. Tres años después, rechaza utilizar una prótesis y enfrenta el dilema entre recuperar su antiguo rostro o conservar la herida que se convirtió en símbolo de su resistencia política.",
-      "raw_meta": null,
+      "raw_meta": "(Programa 1: Fronteras, migraciones y exilios, Varios, 2026, Dur.: 77 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010036?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -7924,60 +7537,6 @@
           "datetime": "2026-09-09T19:30:00-06:00",
           "session_id": "51656",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51656&visLang=1"
-        }
-      ]
-    },
-    {
-      "id": "HO00010047",
-      "title": "Inchegen awka liwen/Non nete/Nuestra tierra/Bajo e",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
-      "classification": "A",
-      "synopsis": "Retrato documental de Awka Liwen, joven cantora mapuche y activista por los derechos de las mujeres indígenas y la defensa de los territorios ancestrales. A través de paisajes, música e imágenes poéticas, el documental explora su identidad, arte y militancia, así como su vínculo con el Wallmapu.",
-      "raw_meta": null,
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010047?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": "Contra el Silencio Todas las Voces 2026",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010047&cinemas=001",
-      "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "14:00",
-          "datetime": "2026-09-04T14:00:00-06:00",
-          "session_id": "14378",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14378&visLang=1"
-        }
-      ]
-    },
-    {
-      "id": "HO00010048",
-      "title": "Dama de las mil máscaras",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
-      "classification": "A",
-      "synopsis": "Damaris Gonzales es una pionera en Barva, Heredia, donde se convirtió en la primera mujer creadora de máscaras. Enfrentando una profesión dominada por hombres, transforma su taller en un espacio donde la arcilla y el espíritu se encuentran, preservando una tradición mientras desafía sus límites.",
-      "raw_meta": null,
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010048?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": "Contra el Silencio Todas las Voces 2026",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010048&cinemas=001",
-      "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-04",
-          "time": "16:00",
-          "datetime": "2026-09-04T16:00:00-06:00",
-          "session_id": "14379",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14379&visLang=1"
         }
       ]
     },
