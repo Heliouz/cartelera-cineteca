@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T15:56:11.401109-06:00",
+  "generated_at": "2026-09-10T16:50:12.787411-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
     "2026-09-10",
@@ -1146,14 +1146,6 @@
         {
           "sede": "002",
           "date": "2026-09-10",
-          "time": "16:10",
-          "datetime": "2026-09-10T16:10:00-06:00",
-          "session_id": "51664",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51664&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-10",
           "time": "18:50",
           "datetime": "2026-09-10T18:50:00-06:00",
           "session_id": "51665",
@@ -1622,14 +1614,6 @@
         {
           "sede": "002",
           "date": "2026-09-10",
-          "time": "15:40",
-          "datetime": "2026-09-10T15:40:00-06:00",
-          "session_id": "51657",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51657&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-10",
           "time": "19:50",
           "datetime": "2026-09-10T19:50:00-06:00",
           "session_id": "51695",
@@ -1856,14 +1840,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-09-10",
-          "time": "15:30",
-          "datetime": "2026-09-10T15:30:00-06:00",
-          "session_id": "49353",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49353&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-09-11",
           "time": "15:30",
           "datetime": "2026-09-11T15:30:00-06:00",
@@ -1921,14 +1897,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009758&cinemas=001",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-10",
-          "time": "16:00",
-          "datetime": "2026-09-10T16:00:00-06:00",
-          "session_id": "14384",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14384&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-10",
@@ -2012,14 +1980,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009759&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-10",
-          "time": "16:20",
-          "datetime": "2026-09-10T16:20:00-06:00",
-          "session_id": "14373",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14373&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-10",
@@ -2659,22 +2619,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009798&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-10",
-          "time": "16:00",
-          "datetime": "2026-09-10T16:00:00-06:00",
-          "session_id": "51667",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51667&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-10",
-          "time": "16:15",
-          "datetime": "2026-09-10T16:15:00-06:00",
-          "session_id": "14351",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14351&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-10",
@@ -3921,14 +3865,6 @@
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009850&cinemas=001,002",
       "showtimes": [
         {
-          "sede": "002",
-          "date": "2026-09-10",
-          "time": "15:20",
-          "datetime": "2026-09-10T15:20:00-06:00",
-          "session_id": "51683",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51683&visLang=1"
-        },
-        {
           "sede": "001",
           "date": "2026-09-10",
           "time": "17:10",
@@ -4622,24 +4558,8 @@
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009931?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": "4YpxyQit8fk",
       "ciclo": "Estrenos",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009931&cinemas=001,002",
+      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009931&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-10",
-          "time": "15:30",
-          "datetime": "2026-09-10T15:30:00-06:00",
-          "session_id": "51688",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51688&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-09-10",
-          "time": "16:00",
-          "datetime": "2026-09-10T16:00:00-06:00",
-          "session_id": "49352",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49352&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-11",
@@ -4859,14 +4779,6 @@
       "ciclo": "Estrenos",
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009932&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-10",
-          "time": "16:00",
-          "datetime": "2026-09-10T16:00:00-06:00",
-          "session_id": "51691",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51691&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-10",
@@ -6218,33 +6130,6 @@
       ]
     },
     {
-      "id": "HO00009972",
-      "title": "Shorts 2026: Fantascorto 2",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
-      "classification": "B",
-      "synopsis": "The feels - or he debilitated condition of the\r\nreproductive system, de Carolina Costa, AMC\r\nMetamorfosis, de Ricardo Garfias Mendez\r\nÑuuyii, de Itandehui Jansen\r\nSTYXIɅ, de Joshua Torresvalle Velazquez\r\nMargoth et kassandra, de León Landázuri\r\nCeleris, de Omar Cortés Macedo",
-      "raw_meta": null,
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009972?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": "Shorts México 2026",
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009972&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-10",
-          "time": "16:00",
-          "datetime": "2026-09-10T16:00:00-06:00",
-          "session_id": "49396",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49396&visLang=1"
-        }
-      ]
-    },
-    {
       "id": "HO00009975",
       "title": "Shorts 2026: Muestra Mexicana Experimental 2",
       "original_title": null,
@@ -6517,15 +6402,15 @@
     {
       "id": "HO00010043",
       "title": "Hilando fronteras/Inmigrante/Habitante/Historias e",
-      "original_title": null,
-      "director": null,
+      "original_title": "Fronteras",
+      "director": "Varios",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "migraciones y exilios, Varios",
+      "year": 2026,
+      "duration_min": 78,
       "classification": "A",
       "synopsis": "Cortometraje de animación que reconstruye las historias reales de mujeres migrantes colombianas en Antofagasta. Inspirado en las arpilleras creadas por ellas mismas, el documental entrelaza memoria, migración y expresión artística para retratar sus experiencias y las fronteras que atraviesan.",
-      "raw_meta": null,
+      "raw_meta": "(Fronteras, migraciones y exilios, Varios, 2026, Dur.: 78 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010043?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -6598,15 +6483,15 @@
     {
       "id": "HO00010046",
       "title": "La reina del Amazonas",
-      "original_title": null,
-      "director": null,
+      "original_title": "La reina del Amazonas",
+      "director": "Juan Agudelo",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Colombia",
+      "year": 2025,
+      "duration_min": 90,
       "classification": "A",
       "synopsis": "En la triple frontera amazónica entre Colombia, Perú y Brasil, tres mujeres trans de distintas etnias compiten por la corona de un certamen de belleza indígena. Entre ensayos y recuerdos, su participación se convierte en un acto de resistencia frente a los prejuicios y en una celebración de la diversidad amazónica.",
-      "raw_meta": null,
+      "raw_meta": "(La reina del Amazonas, Colombia, 2025, Dur.: 90 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010046?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -6625,15 +6510,15 @@
     {
       "id": "HO00010052",
       "title": "Cien libros juntas",
-      "original_title": null,
-      "director": null,
+      "original_title": "Cien libros juntas",
+      "director": "Marga Melià",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "España",
+      "year": 2025,
+      "duration_min": 78,
       "classification": "A",
       "synopsis": "Después de casi 100 libros leídos juntas, cinco mujeres jubiladas se reúnen en una hospedería de montaña para celebrar los diez años de su club de lectura. Durante el fin de semana, reflexionan sobre lo que estos encuentros les han aportado y conversan, como siempre, sobre lo divino y lo humano.",
-      "raw_meta": null,
+      "raw_meta": "(Cien libros juntas, España, 2025, Dur.: 78 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010052?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -6652,15 +6537,15 @@
     {
       "id": "HO00010053",
       "title": "Caranday",
-      "original_title": null,
-      "director": null,
+      "original_title": "Caranday",
+      "director": "Juan Manuel Repetto",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Argentina",
+      "year": 2025,
+      "duration_min": 66,
       "classification": "A",
-      "synopsis": null,
-      "raw_meta": null,
+      "synopsis": "En Copacabana, Córdoba, los artesanos luchan por preservar la tradición del tejido de palma caranday, amenazada por los incendios que devastaron los bosques nativos. La película retrata la resistencia de una comunidad que busca mantener vivo un oficio ligado a su territorio, identidad y memoria.",
+      "raw_meta": "(Caranday, Argentina, 2025, Dur.: 66 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010053?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -6733,15 +6618,15 @@
     {
       "id": "HO00010056",
       "title": "Los cangrejos",
-      "original_title": null,
-      "director": null,
+      "original_title": "Los cangrejos",
+      "director": "Rubén Seca",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "España",
+      "year": 2025,
+      "duration_min": 64,
       "classification": "A",
       "synopsis": "Tras la muerte de su abuelo, el cineasta descubre un cuaderno con las memorias de su bisabuelo Eloy, represaliado en Soria durante la Guerra Civil por su pertenencia a la CNT. Sin haber habido frente de batalla en la región, la represión falangista marcó a su familia. Eloy fue encarcelado y salvó la vida gracias a un inesperado gesto de humanidad. A través de la investigación y la filmación de los lugares donde su bisabuelo sufrió prisión y trabajos forzados, el realizador reconstruye una memoria silenciada de la guerra y la posguerra en Soria.",
-      "raw_meta": null,
+      "raw_meta": "(Los cangrejos, España, 2025, Dur.: 64 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010056?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
@@ -6760,15 +6645,15 @@
     {
       "id": "HO00010057",
       "title": "Hasta que Dios se acuerde de nosotros/Ensayo sobre",
-      "original_title": null,
-      "director": null,
+      "original_title": "Hasta que Dios se acuerde de nosotros",
+      "director": "Víctor Cartas Valdivia, Jesús André González Arias, Isabella Hernández Sánchez",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "México",
+      "year": 2025,
+      "duration_min": 15,
       "classification": "A",
       "synopsis": "Doña Leonarda y Chabelo, su esposo ciego, enfrentan la vejez y sus dificultades guiados por un amor construido durante toda una vida y por el ritmo sereno del campo.",
-      "raw_meta": null,
+      "raw_meta": "(Hasta que Dios se acuerde de nosotros, México, 2025, Dur.: 15 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010057?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": "Contra el Silencio Todas las Voces 2026",
