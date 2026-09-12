@@ -349,6 +349,12 @@
   }
 
   function renderCicloSelect(ciclos) {
+    // Hidden when nothing carries a ciclo. Cineteca stopped publishing ciclo
+    // names in September 2026 and no endpoint has exposed one since, so the
+    // select would otherwise sit in the header offering a single choice that
+    // filters nothing. The filter itself is left intact rather than removed:
+    // if ciclos ever come back in the data, this reappears on its own.
+    els.cicloSelect.hidden = ciclos.length === 0;
     els.cicloSelect.innerHTML = '<option value="">todos los ciclos</option>';
     ciclos.forEach(function (c) {
       var opt = document.createElement("option");

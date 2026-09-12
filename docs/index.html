@@ -67,7 +67,10 @@
           </svg>
         </button>
       </div>
-      <select id="ciclo-select" aria-label="filtrar por ciclo">
+      <!-- Starts hidden; renderCicloSelect() reveals it only if the data
+           carries any ciclo names. Nothing has published one since Cineteca
+           rewrote its cartelera in September 2026. -->
+      <select id="ciclo-select" aria-label="filtrar por ciclo" hidden>
         <option value="">todos los ciclos</option>
       </select>
     </div>

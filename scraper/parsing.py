@@ -6,8 +6,7 @@ against saved fixtures.
 """
 import re
 import unicodedata
-from datetime import datetime
-from html import unescape as html_unescape
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
@@ -20,9 +19,14 @@ MESES = {
     "diciembre": 12,
 }
 
-DAY_RE = re.compile(r"cartelera\.php\?dia=(\d{4}-\d{2}-\d{2})")
-FILM_REF_RE = re.compile(r"detallePelicula\.php\?FilmId=(\w+)&cinemas=([\d,]+)")
-CICLO_SPLIT_RE = re.compile(r'<p class="font-weight-bold text-uppercase h3 py-5">(.*?)</p>')
+DAY_WINDOW_DAYS = 7
+# film_id and the sede codes used to arrive via a regex over markup, which
+# constrained their shape as a side effect; obtener_cartelera.php hands them
+# over as free-form JSON instead. Both get interpolated into URLs a visitor
+# clicks (official_url, the poster CDN path), so the constraint is now explicit
+# rather than incidental. Same reasoning as TICKET_HREF_RE below.
+FILM_ID_RE = re.compile(r"^[A-Za-z0-9_]{1,32}$")
+SEDE_CODE_RE = re.compile(r"^[0-9]{1,6}$")
 # [0-9], not \d: Python's \d also matches non-ASCII decimal digits (Arabic-Indic
 # ٠١٢ and friends), which would then be interpolated verbatim into a URL handed
 # to a visitor and into the sede code. Bounded too — a real cinemacode is 3
@@ -42,17 +46,28 @@ DUR_RE = re.compile(r"Dur\.?:\s*(\d+)\s*mins?", re.I)
 YEAR_RANGE_RE = re.compile(r"\b((?:19|20)\d{2})\s*-\s*(?:19|20)?\d{2}\b")
 YEAR_RE = re.compile(r"\b(?:19|20)\d{2}\b")
 YEAR_ONLY_SEGMENT_RE = re.compile(r"^(?:19|20)\d{2}(\s*-\s*(?:19|20)?\d{2})?$")
-TAG_RE = re.compile(r"<[^>]+>")
 WS_RE = re.compile(r"\s+")
 
 
-def extract_day_window(html):
-    """Ordered, deduplicated list of ISO date strings from cartelera.php's day picker."""
-    days = []
-    for d in DAY_RE.findall(html):
-        if d not in days:
-            days.append(d)
-    return days
+def build_day_window(today):
+    """The seven consecutive days, starting today, that the cartelera covers.
+
+    Computed rather than scraped. cartelera.php used to render a picker of
+    `?dia=<ISO>` links and this read the window straight off it; the September
+    2026 rewrite made that page client-rendered, leaving no dates in the HTML
+    at all. Every window the old picker ever produced was exactly seven
+    consecutive days starting on the current CDMX date — verified against every
+    schedule.json committed since launch — so reproducing it arithmetically is
+    faithful to what it replaced, not a guess at it.
+
+    Deliberately independent of whether a day has any screenings. Cineteca
+    publishes a week at a time, so the tail of this window is routinely empty
+    until Thursday, and the frontend's computeUnpublishedDays() needs those
+    empty days *present* to tell "not published yet" from "the cinema is dark".
+    Trimming the window down to days that returned films would erase exactly
+    the distinction it exists to draw.
+    """
+    return [(today + timedelta(days=i)).isoformat() for i in range(DAY_WINDOW_DAYS)]
 
 
 def build_date_lookup(days):
@@ -64,35 +79,30 @@ def build_date_lookup(days):
     return lookup
 
 
-def extract_film_refs(html):
-    """List of (film_id, cinemas_csv) from a `vista=full` HTML fragment."""
-    return FILM_REF_RE.findall(html)
+def extract_film_refs(films):
+    """[(film_id, cinemas_csv)] from one obtener_cartelera.php `data` array.
 
-
-def clean_html_text(raw):
-    """Plain text out of a raw HTML fragment: tags dropped, entities decoded.
-
-    Ciclo names are captured straight out of the markup by CICLO_SPLIT_RE, so
-    anything Cineteca puts inside that heading — an `&amp;`, a stray `<br>` —
-    would otherwise reach the page verbatim: these strings go into `<option>`
-    labels and kickers via textContent, which renders them literally.
+    Anything whose id or sede codes don't look like ids or sede codes is
+    dropped rather than repaired: these strings end up in URLs handed to
+    visitors, and a listing entry we can't read cleanly is one we have no
+    business guessing about.
     """
-    if raw is None:
-        return None
-    text = html_unescape(TAG_RE.sub(" ", raw))
-    return WS_RE.sub(" ", text.replace("\xa0", " ")).strip()
-
-
-def extract_ciclo_map(html):
-    """film_id -> ciclo name, from a `vista=events` HTML fragment."""
-    parts = CICLO_SPLIT_RE.split(html)
-    mapping = {}
-    for i in range(1, len(parts), 2):
-        ciclo_name = clean_html_text(parts[i])
-        block = parts[i + 1] if i + 1 < len(parts) else ""
-        for film_id, _cinemas in FILM_REF_RE.findall(block):
-            mapping.setdefault(film_id, ciclo_name)
-    return mapping
+    refs = []
+    for film in films:
+        if not isinstance(film, dict):
+            continue
+        film_id = film.get("film_id")
+        if not isinstance(film_id, str) or not FILM_ID_RE.match(film_id):
+            continue
+        sedes = sorted(
+            {
+                s
+                for s in (film.get("claves_sedes") or [])
+                if isinstance(s, str) and SEDE_CODE_RE.match(s)
+            }
+        )
+        refs.append((film_id, ",".join(sedes)))
+    return refs
 
 
 def _strip_accents(text):

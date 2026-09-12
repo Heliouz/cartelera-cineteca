@@ -22,8 +22,7 @@ from parsing import (
     TZ,
     build_buy_url,
     build_date_lookup,
-    extract_ciclo_map,
-    extract_day_window,
+    build_day_window,
     extract_film_refs,
     parse_film_detail_html,
 )
@@ -115,59 +114,66 @@ def _decode_html(resp):
 
 
 def get_day_window():
-    resp = fetch_with_retry("GET", f"{BASE}/cartelera.php")
-    html = _decode_html(resp)
-    days = extract_day_window(html)
-    if not days:
-        raise RuntimeError("no day window found on cartelera.php — page shape may have changed")
-    return days
+    """The seven days this run covers, from today's date in CDMX.
+
+    No longer fetched. cartelera.php served the window as a picker of
+    `?dia=<ISO>` links until Cineteca rewrote it as a client-rendered page in
+    September 2026, after which the HTML carries no dates at all and this
+    raised "page shape may have changed" on every run. See build_day_window()
+    for why arithmetic is a faithful replacement rather than a guess.
+    """
+    return build_day_window(datetime.now(TZ).date())
 
 
-def _json_html(resp):
-    """Pull the `html` payload out of a /data/cartelera.php response.
+def _listing_films(resp):
+    """Pull the `data` array out of an obtener_cartelera.php response.
 
     Both failure modes raise a `requests.RequestException` subclass on purpose
     (`JSONDecodeError` already is one), so `fetch_with_retry` retries them
     without having to widen what it catches.
     """
     payload = resp.json()
-    if "html" not in payload:
+    status = payload.get("status")
+    if status != "success":
         raise requests.exceptions.InvalidJSONError(
-            f"no 'html' key in the response from {resp.url}", response=resp
+            f"status={status!r} in the response from {resp.url}", response=resp
         )
-    return payload["html"]
+    films = payload.get("data")
+    if not isinstance(films, list):
+        raise requests.exceptions.InvalidJSONError(
+            f"no 'data' array in the response from {resp.url}", response=resp
+        )
+    return films
 
 
-def _post_full(fecha):
-    html = fetch_with_retry(
-        "POST",
-        f"{BASE}/data/cartelera.php",
-        parse=_json_html,
-        data={"vista": "full", "fecha": fecha, "cinema": "000", "eventId": "000"},
+def _get_listing(fecha):
+    """Film refs for one date. An empty `fecha` means "everything on sale"."""
+    films = fetch_with_retry(
+        "GET",
+        f"{BASE}/obtener_cartelera.php",
+        parse=_listing_films,
+        params={"busqueda": "", "fecha": fecha, "sede": ""},
     )
-    return extract_film_refs(html)
+    return extract_film_refs(films)
 
 
 def get_film_refs(days):
-    """Union of (film_id -> cinemas_csv) across fecha='' and every day in the window."""
-    refs = {}
-    for film_id, cinemas in _post_full(""):
-        refs.setdefault(film_id, cinemas)
-    for day in days:
-        for film_id, cinemas in _post_full(day):
-            refs.setdefault(film_id, cinemas)
+    """Union of film_id -> cinemas_csv across fecha='' and every day in the window.
+
+    The sede codes are unioned across days rather than taken from whichever
+    listing mentioned a film first: a film can open at one sede midweek and
+    another at the weekend, and cinemas_csv is what official_url sends a
+    visitor to. (detallePelicula.php itself ignores the parameter and returns
+    every sede's showtimes regardless, so this cannot cost us a screening —
+    it only keeps the link we publish honest.)
+    """
+    sedes_by_film = {}
+    for fecha in [""] + list(days):
+        for film_id, cinemas_csv in _get_listing(fecha):
+            bucket = sedes_by_film.setdefault(film_id, set())
+            bucket.update(c for c in cinemas_csv.split(",") if c)
         time.sleep(REQUEST_DELAY)
-    return refs
-
-
-def get_ciclo_map():
-    html = fetch_with_retry(
-        "POST",
-        f"{BASE}/data/cartelera.php",
-        parse=_json_html,
-        data={"vista": "events", "fecha": "", "cinema": "000", "eventId": "000"},
-    )
-    return extract_ciclo_map(html)
+    return {fid: ",".join(sorted(sedes)) for fid, sedes in sedes_by_film.items()}
 
 
 def fetch_film_detail_html(film_id, cinemas_csv):
@@ -235,9 +241,18 @@ def validate_schedule(data):
             )
 
 
-def scrape_one_film(film_id, cinemas_csv, date_lookup, ciclo_map):
+def scrape_one_film(film_id, cinemas_csv, date_lookup):
+    """One film's record. `ciclo` stays None — nothing publishes it any more.
+
+    Ciclo names came from the grouping headings on /data/cartelera.php's
+    `vista=events` fragment, which went dark with the rest of that endpoint in
+    September 2026; obtener_cartelera.php has no equivalent field and no other
+    page on the site exposes one. The schedule.json key and the frontend's
+    filter are left in place, so if Cineteca ever publishes ciclos again this
+    is the one line that has to change.
+    """
     html = fetch_film_detail_html(film_id, cinemas_csv)
-    return parse_film_detail_html(html, film_id, cinemas_csv, date_lookup, ciclo_map.get(film_id))
+    return parse_film_detail_html(html, film_id, cinemas_csv, date_lookup)
 
 
 def run():
@@ -253,15 +268,12 @@ def run():
         log.error("abort: no films found in film list endpoint")
         sys.exit(1)
 
-    ciclo_map = get_ciclo_map()
-    log.info("ciclo map: %d films tagged across ciclos", len(ciclo_map))
-
     films = []
     failures = []
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         future_to_id = {
-            pool.submit(scrape_one_film, fid, cinemas, date_lookup, ciclo_map): fid
+            pool.submit(scrape_one_film, fid, cinemas, date_lookup): fid
             for fid, cinemas in film_refs.items()
         }
         for future in as_completed(future_to_id):

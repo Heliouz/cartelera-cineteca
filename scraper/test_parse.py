@@ -2,6 +2,7 @@
 import json
 import os
 import sys
+from datetime import date
 from urllib.parse import urlsplit
 
 import pytest
@@ -20,8 +21,10 @@ def load_fixture(name):
 
 @pytest.fixture(scope="module")
 def days():
-    html = load_fixture("cartelera_page.html")
-    return parsing.extract_day_window(html)
+    # The window the saved detail fixtures were captured against. cartelera.php
+    # used to publish it as `?dia=` links; it is arithmetic now, so the tests
+    # pin a start date instead of reading one off a page.
+    return parsing.build_day_window(date(2026, 8, 21))
 
 
 @pytest.fixture(scope="module")
@@ -29,17 +32,25 @@ def date_lookup(days):
     return parsing.build_date_lookup(days)
 
 
-@pytest.fixture(scope="module")
-def ciclo_map():
-    html = json.loads(load_fixture("vista_events.json"))["html"]
-    return parsing.extract_ciclo_map(html)
 # ---------- day window ----------
 
-def test_extract_day_window_returns_seven_ordered_days(days):
-    assert len(days) == 7
-    assert days == sorted(days)
-    for d in days:
-        assert len(d) == 10 and d[4] == "-" and d[7] == "-"
+def test_build_day_window_returns_seven_consecutive_days_from_today(days):
+    assert days == [
+        "2026-08-21", "2026-08-22", "2026-08-23", "2026-08-24",
+        "2026-08-25", "2026-08-26", "2026-08-27",
+    ]
+
+
+def test_build_day_window_crosses_a_year_boundary():
+    assert parsing.build_day_window(date(2026, 12, 30))[-1] == "2027-01-05"
+
+
+def test_build_day_window_does_not_depend_on_a_day_having_screenings():
+    """The window is the calendar, not the data. Cineteca publishes a week at a
+    time, so its tail is routinely empty until Thursday — and the frontend's
+    computeUnpublishedDays() can only tell "not published yet" from "the cinema
+    is dark" if those empty days stay in the window."""
+    assert len(parsing.build_day_window(date(2026, 12, 30))) == 7
 
 
 def test_build_date_lookup_maps_day_month_to_iso(days, date_lookup):
@@ -49,19 +60,38 @@ def test_build_date_lookup_maps_day_month_to_iso(days, date_lookup):
 
 # ---------- film list / ciclo map ----------
 
-def test_extract_film_refs_from_vista_full():
-    html = json.loads(load_fixture("vista_full.json"))["html"]
-    refs = parsing.extract_film_refs(html)
-    assert len(refs) == 68
-    ids = {fid for fid, _ in refs}
-    assert "HO00009798" in ids
+def test_extract_film_refs_from_listing():
+    films = json.loads(load_fixture("listing_day.json"))["data"]
+    refs = parsing.extract_film_refs(films)
+    assert len(refs) == 42
+    assert dict(refs)["HO00009798"] == "001,002"
 
 
-def test_extract_ciclo_map_covers_all_films(ciclo_map):
-    full_html = json.loads(load_fixture("vista_full.json"))["html"]
-    all_ids = {fid for fid, _ in parsing.extract_film_refs(full_html)}
-    assert set(ciclo_map.keys()) == all_ids
-    assert ciclo_map["HO00009798"]  # has a non-empty ciclo name
+def test_extract_film_refs_sorts_sede_codes():
+    """cinemas_csv lands in official_url, so it has to be stable run to run —
+    obtener_cartelera.php promises no order for claves_sedes."""
+    films = [{"film_id": "HO0001", "claves_sedes": ["003", "001", "002"]}]
+    assert parsing.extract_film_refs(films) == [("HO0001", "001,002,003")]
+
+
+def test_extract_film_refs_drops_entries_it_cannot_read_cleanly():
+    """film_id and the sede codes get interpolated into URLs handed to
+    visitors. Reading them off markup used to constrain their shape as a side
+    effect; reading them out of JSON means saying so outright."""
+    films = [
+        {"film_id": "HO0001", "claves_sedes": ["001"]},           # keeper
+        {"claves_sedes": ["001"]},                                 # no id
+        {"film_id": "", "claves_sedes": ["001"]},                  # empty id
+        {"film_id": "../../etc/passwd", "claves_sedes": ["001"]},  # not an id
+        {"film_id": "HO0000٣", "claves_sedes": ["001"]},       # Arabic-Indic digit
+        {"film_id": "HO0002", "claves_sedes": ["001", "0x1"]},     # one bad sede
+        "not a dict",
+    ]
+    assert parsing.extract_film_refs(films) == [("HO0001", "001"), ("HO0002", "001")]
+
+
+def test_extract_film_refs_tolerates_a_film_with_no_sedes():
+    assert parsing.extract_film_refs([{"film_id": "HO0001"}]) == [("HO0001", "")]
 
 
 # ---------- showtime parsing / dedup ----------
@@ -316,22 +346,6 @@ def test_parse_parenthetical_ignores_a_year_inside_the_title():
     assert year == 2017
 
 
-def test_clean_html_text_strips_tags_and_entities():
-    """Ciclo names are sliced out of raw markup and rendered via textContent,
-    so tags and entities have to be resolved here or they reach the page."""
-    assert parsing.clean_html_text("Cine &amp; Video<br>2026") == "Cine & Video 2026"
-    assert parsing.clean_html_text("  Foro\xa0 Internacional  ") == "Foro Internacional"
-    assert parsing.clean_html_text(None) is None
-
-
-def test_extract_ciclo_map_cleans_names():
-    html = (
-        '<p class="font-weight-bold text-uppercase h3 py-5">Ciclo &amp; Muestra<br></p>'
-        "<a href='detallePelicula.php?FilmId=HO0001&cinemas=003'>x</a>"
-    )
-    assert parsing.extract_ciclo_map(html) == {"HO0001": "Ciclo & Muestra"}
-
-
 # ---------- full film detail parsing ----------
 
 @pytest.mark.parametrize(
@@ -342,9 +356,9 @@ def test_extract_ciclo_map_cleans_names():
         ("detail_three_sede.html", "HO00009793", "001,002,003", {"001", "002", "003"}),
     ],
 )
-def test_parse_film_detail_html_shape(date_lookup, ciclo_map, fixture, film_id, cinemas, expected_sedes):
+def test_parse_film_detail_html_shape(date_lookup, fixture, film_id, cinemas, expected_sedes):
     html = load_fixture(fixture)
-    film = parsing.parse_film_detail_html(html, film_id, cinemas, date_lookup, ciclo_map.get(film_id))
+    film = parsing.parse_film_detail_html(html, film_id, cinemas, date_lookup)
 
     for key in ("id", "title", "poster", "official_url", "showtimes"):
         assert film[key], f"missing {key}"
@@ -358,7 +372,7 @@ def test_parse_film_detail_html_shape(date_lookup, ciclo_map, fixture, film_id, 
             assert "�" not in value
 
 
-def test_parse_film_detail_html_known_values(date_lookup, ciclo_map):
+def test_parse_film_detail_html_known_values(date_lookup):
     html = load_fixture("detail_two_sede.html")
     film = parsing.parse_film_detail_html(html, "HO00009798", "001,002", date_lookup, None)
     assert film["title"] == "Adolescencia, sexo y muerte en Campamento Miasma"
@@ -366,7 +380,7 @@ def test_parse_film_detail_html_known_values(date_lookup, ciclo_map):
     assert film["trailer_youtube_id"] == "dimCiC_hdoA"
 
 
-def test_parse_film_detail_html_accents_survive_roundtrip(date_lookup, ciclo_map):
+def test_parse_film_detail_html_accents_survive_roundtrip(date_lookup):
     """Regression: the raw bytes for some fields once got force-decoded as
     cp1252, splitting UTF-8 accented characters into mojibake pairs."""
     html = load_fixture("detail_three_sede.html")
@@ -450,7 +464,6 @@ def test_run_aborts_when_failure_ratio_exceeds_threshold(monkeypatch, tmp_path, 
     out_path = tmp_path / "schedule.json"
     monkeypatch.setattr(scrape, "get_day_window", lambda: days)
     monkeypatch.setattr(scrape, "get_film_refs", lambda d: film_refs)
-    monkeypatch.setattr(scrape, "get_ciclo_map", lambda: {})
     monkeypatch.setattr(scrape, "fetch_film_detail_html", fake_fetch_detail)
     monkeypatch.setattr(scrape, "load_previous", lambda: None)
     monkeypatch.setattr(scrape, "DATA_PATH", str(out_path))
@@ -471,7 +484,6 @@ def test_run_writes_a_canonically_ordered_file(monkeypatch, tmp_path, days):
 
     monkeypatch.setattr(scrape, "get_day_window", lambda: days)
     monkeypatch.setattr(scrape, "get_film_refs", lambda d: film_refs)
-    monkeypatch.setattr(scrape, "get_ciclo_map", lambda: {})
     monkeypatch.setattr(scrape, "fetch_film_detail_html", lambda fid, c: detail_html)
     monkeypatch.setattr(scrape, "load_previous", lambda: None)
     monkeypatch.setattr(scrape, "DATA_PATH", str(out_path))
@@ -575,31 +587,49 @@ def _script(monkeypatch, responses):
     return calls, waits
 
 
+_OK_LISTING = {"status": "success", "data": [{"film_id": "HO0001", "claves_sedes": ["003"]}]}
+
+
 def test_a_body_that_is_not_json_is_retried_like_a_500(monkeypatch):
     # 2026-09-03: cinetecanacional.net answered 200 with a body that stopped 11
     # bytes in. The decode sat outside the retry loop, so the run died on the
     # first try while the 500s a day earlier got four.
     calls, waits = _script(monkeypatch, [
         _FakeResponse('{"success":'),
-        _FakeResponse(json.dumps({"html": "<div>ok</div>"})),
+        _FakeResponse(json.dumps(_OK_LISTING)),
     ])
 
-    html = scrape.fetch_with_retry("POST", _FakeResponse.url, parse=scrape._json_html)
+    films = scrape.fetch_with_retry("GET", _FakeResponse.url, parse=scrape._listing_films)
 
-    assert html == "<div>ok</div>"
+    assert films == _OK_LISTING["data"]
     assert len(calls) == 2
     assert waits == [2]
 
 
-def test_json_without_an_html_key_is_retried_too(monkeypatch):
+def test_json_without_a_data_array_is_retried_too(monkeypatch):
     calls, _ = _script(monkeypatch, [
-        _FakeResponse(json.dumps({"error": "nope"})),
-        _FakeResponse(json.dumps({"html": "<div>ok</div>"})),
+        _FakeResponse(json.dumps({"status": "success"})),
+        _FakeResponse(json.dumps(_OK_LISTING)),
     ])
 
-    html = scrape.fetch_with_retry("POST", _FakeResponse.url, parse=scrape._json_html)
+    films = scrape.fetch_with_retry("GET", _FakeResponse.url, parse=scrape._listing_films)
 
-    assert html == "<div>ok</div>"
+    assert films == _OK_LISTING["data"]
+    assert len(calls) == 2
+
+
+def test_a_listing_that_reports_failure_is_retried_too(monkeypatch):
+    """obtener_cartelera.php answers 200 with status="error" when its own query
+    fails, so the HTTP status alone doesn't say whether there's a cartelera in
+    there. Taking that body at face value would hand run() an empty film list."""
+    calls, _ = _script(monkeypatch, [
+        _FakeResponse(json.dumps({"status": "error", "message": "db down"})),
+        _FakeResponse(json.dumps(_OK_LISTING)),
+    ])
+
+    films = scrape.fetch_with_retry("GET", _FakeResponse.url, parse=scrape._listing_films)
+
+    assert films == _OK_LISTING["data"]
     assert len(calls) == 2
 
 
@@ -610,7 +640,7 @@ def test_retries_cover_thirty_seconds_before_giving_up(monkeypatch):
     )
 
     with pytest.raises(requests.exceptions.HTTPError):
-        scrape.fetch_with_retry("POST", _FakeResponse.url, parse=scrape._json_html)
+        scrape.fetch_with_retry("GET", _FakeResponse.url, parse=scrape._listing_films)
 
     assert len(calls) == scrape.MAX_RETRIES
     assert waits == [2, 4, 8, 16]
