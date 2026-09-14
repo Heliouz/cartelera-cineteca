@@ -645,9 +645,18 @@ html.sheet-open { overflow: hidden; }
 
 .film-index-head { padding: 0 0 var(--sp-2); }
 
+/* Geometrically the same object as .show-row — same poster, same gap, same
+   padding, same rule — because the two views are the same list seen two ways.
+   The one thing this card cannot carry is .show-time: a film spans many
+   showtimes, so there is no single hour to print. That leaves its info stack
+   ~19.5px shorter than a row's inside the identical poster-height box, which
+   `flex-start` pooled as dead air under the Letterboxd badge. Centring spends
+   it as symmetric breathing room instead, so the card reads as composed rather
+   than as a row with its time cut out. Don't "fix" the gap by adding a line of
+   data back; the trim was deliberate (see buildFilmCard). */
 .film-card {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--sp-3);
   width: 100%;
   padding: var(--sp-3) 0;
@@ -665,7 +674,6 @@ html.sheet-open { overflow: hidden; }
   outline: none;
   box-shadow: 0 0 0 3px var(--focus-ring-strong);
 }
-.film-card .poster-wrap { width: 72px; flex: none; }
 .film-card-info { min-width: 0; flex: 1; }
 /* ---------- letterboxd badge ---------- */
 
@@ -1241,7 +1249,8 @@ a.lb-badge:focus-visible {
 /* ---------- responsive ---------- */
 
 @media (min-width: 640px) {
-  .show-row { gap: var(--sp-4); }
+  .show-row,
+  .film-card { gap: var(--sp-4); }
   .poster-wrap { width: 84px; }
   .show-time { font-size: 16px; }
 
