@@ -264,6 +264,54 @@ noscript {
 .kofi-btn-compact .kofi-icon path { stroke: #ff5e5b; }
 .kofi-btn-label { line-height: 1; }
 
+/* The loud variant, ported from croquis. It only ever appears inside the about
+   modal, which a visitor has to open deliberately — it is never on the page
+   itself, where the compact footer button stays the quiet permanent one.
+
+   Two departures from croquis, both to bring the heat down on a page that is
+   otherwise near-monochrome. croquis's button sits on a results card at the end
+   of a game, where a bright fill is a reward; here it sits under three lines of
+   explanatory text, and Ko-fi's own #ff5e5b read as the brightest thing on the
+   site. So the fill is darkened and desaturated to #cf5b59, and the shadow is
+   the neutral one every other button uses rather than a red-tinted halo — that
+   glow was doing most of the shouting. The hue is still Ko-fi's, just calmer:
+   the mark stays recognizable, which is the whole reason for keeping the brand
+   color at all. The footer button's icon keeps the exact brand red — a 1.8px
+   stroke can afford it where a filled pill cannot. */
+.kofi-btn-full {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 24px;
+  font-size: 13.5px;
+  font-weight: var(--fw-medium);
+  border: 1px solid transparent;
+  border-radius: var(--rad-pill);
+  background: #cf5b59;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 6px 16px rgba(0, 0, 0, 0.10);
+  transition:
+    background var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+.kofi-btn-full:hover {
+  background: #bf4f4d;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 10px 22px rgba(0, 0, 0, 0.14);
+}
+.kofi-btn-full:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.10);
+}
+.kofi-btn-full:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-strong), 0 6px 16px rgba(0, 0, 0, 0.10);
+}
+
 /* ---------- about modal (ported unchanged) ---------- */
 
 #about-modal {
@@ -324,6 +372,10 @@ noscript {
 .about-body a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
 .about-body a:hover { color: var(--ink-1); }
 .about-body + .about-body { padding-top: var(--sp-2); }
+/* Two stacked full-width actions. Only the ko-fi one is filled: "cerrar" was
+   the modal's primary button until it had company, and leaving both solid put
+   two shouts in a panel that says three sentences. */
+.about-kofi-btn { width: 100%; margin-top: var(--sp-4); }
 .about-start-btn { width: 100%; margin-top: var(--sp-2); }
 .about-author { margin-top: var(--sp-6); }
 .about-author-name {
