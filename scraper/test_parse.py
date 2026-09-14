@@ -549,6 +549,115 @@ def test_validate_schedule_accepts_clean_data():
     scrape.validate_schedule(data)  # should not raise
 
 
+def _schedule_with_letterboxd(lb):
+    return {
+        "days": ["2026-08-21"],
+        "sedes": {"001": {}},
+        "films": [
+            {
+                "id": "A",
+                "title": "A",
+                "poster": "x",
+                "official_url": "x",
+                "letterboxd": lb,
+                "showtimes": [],
+            }
+        ],
+    }
+
+
+@pytest.mark.parametrize(
+    "lb",
+    [
+        None,
+        {"url": "https://letterboxd.com/film/leaf-blower/", "rating": 3.5},
+        {"url": "https://letterboxd.com/film/x/", "rating": 0},
+        {"url": "https://letterboxd.com/film/x/", "rating": 5},
+    ],
+)
+def test_validate_schedule_accepts_letterboxd(lb):
+    scrape.validate_schedule(_schedule_with_letterboxd(lb))
+
+
+def test_validate_schedule_accepts_a_film_with_no_letterboxd_key():
+    """An older cached schedule.json predates the key entirely."""
+    data = _schedule_with_letterboxd(None)
+    del data["films"][0]["letterboxd"]
+    scrape.validate_schedule(data)
+
+
+@pytest.mark.parametrize(
+    "lb",
+    [
+        {"url": "https://example.com/film/x/", "rating": 3.5},
+        {"url": "https://letterboxd.com/list/x/", "rating": 3.5},
+        {"rating": 3.5},
+        {"url": "https://letterboxd.com/film/x/", "rating": 7},
+        {"url": "https://letterboxd.com/film/x/", "rating": -1},
+        {"url": "https://letterboxd.com/film/x/", "rating": "3.5"},
+        {"url": "https://letterboxd.com/film/x/", "rating": None},
+        {"url": "https://letterboxd.com/film/x/", "rating": True},
+    ],
+)
+def test_validate_schedule_rejects_bad_letterboxd(lb):
+    with pytest.raises(scrape.ScheduleInvalid):
+        scrape.validate_schedule(_schedule_with_letterboxd(lb))
+
+
+# ---------- letterboxd attachment ----------
+
+def test_attach_letterboxd_keeps_previous_value_when_the_lookup_fails(monkeypatch):
+    """A Letterboxd outage must not blank every badge on the site at once."""
+    def boom(film, *_):
+        raise RuntimeError("down")
+
+    monkeypatch.setattr(scrape.letterboxd, "resolve_film", boom)
+    films = [{"id": "A"}, {"id": "B"}]
+    previous = {
+        "films": [
+            {"id": "A", "letterboxd": {"url": "https://letterboxd.com/film/a/", "rating": 4.0}}
+        ]
+    }
+    scrape.attach_letterboxd(films, previous)
+    assert films[0]["letterboxd"] == {"url": "https://letterboxd.com/film/a/", "rating": 4.0}
+    assert films[1]["letterboxd"] is None
+
+
+def test_attach_letterboxd_clears_a_stale_value_on_a_clean_no_match(monkeypatch):
+    """The opposite case: a film that genuinely resolves to nothing has to be
+    able to drop a badge it should never have had."""
+    monkeypatch.setattr(scrape.letterboxd, "resolve_film", lambda film, *_: None)
+    films = [{"id": "A"}]
+    previous = {
+        "films": [
+            {"id": "A", "letterboxd": {"url": "https://letterboxd.com/film/wrong/", "rating": 2.0}}
+        ]
+    }
+    scrape.attach_letterboxd(films, previous)
+    assert films[0]["letterboxd"] is None
+
+
+def test_attach_letterboxd_never_raises(monkeypatch):
+    def boom(*_args, **_kwargs):
+        raise RuntimeError("pool exploded")
+
+    monkeypatch.setattr(scrape, "ThreadPoolExecutor", boom)
+    films = [{"id": "A"}]
+    scrape.attach_letterboxd(films, None)
+    assert films[0]["letterboxd"] is None
+
+
+def test_attach_letterboxd_handles_no_previous_file(monkeypatch):
+    monkeypatch.setattr(
+        scrape.letterboxd,
+        "resolve_film",
+        lambda film, *_: {"url": "https://letterboxd.com/film/a/", "rating": 3.5},
+    )
+    films = [{"id": "A"}]
+    scrape.attach_letterboxd(films, None)
+    assert films[0]["letterboxd"]["rating"] == 3.5
+
+
 # ---------- transient upstream failures ----------
 
 class _FakeResponse:

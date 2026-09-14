@@ -18,6 +18,7 @@ from datetime import datetime
 
 import requests
 
+import letterboxd
 from parsing import (
     TZ,
     build_buy_url,
@@ -227,6 +228,21 @@ def validate_schedule(data):
     for film in films:
         for key in ("id", "title", "poster", "official_url", "showtimes"):
             _check(key in film, f"film {film.get('id')} missing required key {key}")
+        # Optional, so an older cached schedule.json still validates. When it is
+        # there it has to address a Letterboxd film page and carry a score the
+        # badge can actually draw.
+        lb = film.get("letterboxd")
+        if lb is not None:
+            _check(
+                str(lb.get("url", "")).startswith("https://letterboxd.com/film/"),
+                f"film {film.get('id')}: letterboxd url is not a letterboxd film page",
+            )
+            _check(
+                isinstance(lb.get("rating"), (int, float))
+                and not isinstance(lb.get("rating"), bool)
+                and 0 <= lb["rating"] <= 5,
+                f"film {film.get('id')}: letterboxd rating out of range",
+            )
         for st in film["showtimes"]:
             sid = st["session_id"]
             _check(sid not in session_ids, f"duplicate session_id {sid} across dataset")
@@ -253,6 +269,58 @@ def scrape_one_film(film_id, cinemas_csv, date_lookup):
     """
     html = fetch_film_detail_html(film_id, cinemas_csv)
     return parse_film_detail_html(html, film_id, cinemas_csv, date_lookup)
+
+
+def attach_letterboxd(films, previous):
+    """Set film["letterboxd"] on every film. Never raises.
+
+    Letterboxd is a nice-to-have bolted onto a cartelera that has to keep
+    working without it, so nothing in here may abort the run or count toward
+    `should_abort_for_failures` — that ratio guards Cineteca detail fetches,
+    which are the data the site is actually for.
+
+    A film that resolves to nothing gets None even if it had a value before:
+    a mismatch corrected upstream has to be able to clear itself. A film whose
+    *lookup failed* keeps its previous value instead, so a Letterboxd outage
+    doesn't blank every badge on the site at once.
+    """
+    previous_by_id = {
+        f["id"]: f.get("letterboxd") for f in (previous or {}).get("films", [])
+    }
+    matched = carried = 0
+
+    def resolve(film):
+        return film["id"], letterboxd.resolve_film(film)
+
+    try:
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+            results = {}
+            futures = {pool.submit(resolve, f): f["id"] for f in films}
+            for future in as_completed(futures):
+                film_id = futures[future]
+                try:
+                    _, resolved = future.result()
+                    results[film_id] = resolved
+                except Exception as exc:  # noqa: BLE001 — optional data, never fatal
+                    log.warning("letterboxd lookup failed for %s: %s", film_id, exc)
+                    results[film_id] = previous_by_id.get(film_id)
+                    carried += 1
+        for film in films:
+            film["letterboxd"] = results.get(film["id"])
+            if film["letterboxd"]:
+                matched += 1
+    except Exception as exc:  # noqa: BLE001 — a broken pass must still ship a cartelera
+        log.warning("letterboxd pass failed wholesale: %s", exc)
+        for film in films:
+            film.setdefault("letterboxd", previous_by_id.get(film["id"]))
+        return
+
+    log.info(
+        "letterboxd: %d rated, %d without a badge, %d carried over from last run",
+        matched,
+        len(films) - matched,
+        carried,
+    )
 
 
 def run():
@@ -307,6 +375,8 @@ def run():
                 prev_count,
             )
             sys.exit(1)
+
+    attach_letterboxd(films, previous)
 
     # Deterministic order. Films arrive in thread-completion order, so without
     # this an unchanged cartelera still rewrites all ~200KB in a different
