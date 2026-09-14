@@ -738,6 +738,9 @@
       info.appendChild(sub);
     }
 
+    var badge = buildLetterboxdBadge(film, false);
+    if (badge) info.appendChild(badge);
+
     link.appendChild(info);
     row.appendChild(link);
 
@@ -794,30 +797,140 @@
       });
   }
 
-  function shortDate(iso) {
-    var d = new Date(iso + "T12:00:00-06:00");
-    var s = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "short", timeZone: TZ }).format(d);
-    return s.replace(".", "");
+  // Stars are drawn, not typed. "★" resolves to whatever symbol font the OS
+  // falls back to: its ink sits about a pixel above the baseline while digits
+  // sit on it, so the score always looked like it was sagging next to them and
+  // no amount of flex alignment could fix it — the offset is inside the glyph.
+  // Some platforms also render it as a color emoji. A path has none of that:
+  // the box is the ink, so centering it is exact everywhere.
+  var STAR_R = 10;
+  var STAR_STEP = 23; // 2R + gap
+  var SVG_NS = "http://www.w3.org/2000/svg";
+
+  function starPoints(cx, cy, outer) {
+    var inner = outer * 0.382; // golden ratio — the classic five-point star
+    var pts = [];
+    for (var i = 0; i < 10; i++) {
+      var rad = i % 2 ? inner : outer;
+      var a = -Math.PI / 2 + (i * Math.PI) / 5;
+      pts.push([cx + rad * Math.cos(a), cy + rad * Math.sin(a)]);
+    }
+    return pts;
   }
 
-  function dateRangeLabel(sts) {
-    if (!sts.length) return "";
-    var min = sts[0].date,
-      max = sts[0].date;
-    sts.forEach(function (st) {
-      if (st.date < min) min = st.date;
-      if (st.date > max) max = st.date;
-    });
-    if (min === max) return shortDate(min);
-    var monMin = min.slice(5, 7),
-      monMax = max.slice(5, 7);
-    var dMin = parseInt(min.slice(8, 10), 10);
-    var dMax = parseInt(max.slice(8, 10), 10);
-    if (monMin === monMax) {
-      var monLabel = shortDate(max).split(" ")[1];
-      return dMin + "–" + dMax + " " + monLabel;
+  // The viewBox is the path's own bounding box, not the circle it was drawn
+  // from. A five-point star only reaches 0.809R below centre and 0.951R to the
+  // side, so a square box leaves dead space along the bottom — and dead space
+  // in the box is exactly what made the text stars impossible to align. Hug
+  // the ink and `align-self: center` becomes exact.
+  var STAR_ROW = (function () {
+    var d = "";
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (var i = 0; i < 5; i++) {
+      var pts = starPoints(STAR_R + i * STAR_STEP, STAR_R, STAR_R);
+      d += "M" + pts.map(function (p) {
+        minX = Math.min(minX, p[0]); maxX = Math.max(maxX, p[0]);
+        minY = Math.min(minY, p[1]); maxY = Math.max(maxY, p[1]);
+        return p[0].toFixed(2) + "," + p[1].toFixed(2);
+      }).join("L") + "Z";
     }
-    return shortDate(min) + "–" + shortDate(max);
+    return { d: d, x: minX, y: minY, w: maxX - minX, h: maxY - minY };
+  })();
+
+  function buildStars(rating) {
+    var svg = document.createElementNS(SVG_NS, "svg");
+    svg.setAttribute("class", "lb-stars");
+    svg.setAttribute(
+      "viewBox",
+      STAR_ROW.x.toFixed(2) + " " + STAR_ROW.y.toFixed(2) + " " +
+        STAR_ROW.w.toFixed(2) + " " + STAR_ROW.h.toFixed(2)
+    );
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+
+    var empty = document.createElementNS(SVG_NS, "path");
+    empty.setAttribute("d", STAR_ROW.d);
+    empty.setAttribute("class", "lb-star-empty");
+    svg.appendChild(empty);
+
+    // One clipped copy over the top: exact fractional fill, no half-star glyph.
+    var clipId = "lbclip" + (buildStars.n = (buildStars.n || 0) + 1);
+    var clip = document.createElementNS(SVG_NS, "clipPath");
+    clip.setAttribute("id", clipId);
+    var rect = document.createElementNS(SVG_NS, "rect");
+    rect.setAttribute("x", STAR_ROW.x.toFixed(2));
+    rect.setAttribute("y", STAR_ROW.y.toFixed(2));
+    rect.setAttribute("height", STAR_ROW.h.toFixed(2));
+    rect.setAttribute(
+      "width",
+      (Math.max(0, Math.min(1, rating / 5)) * STAR_ROW.w).toFixed(2)
+    );
+    clip.appendChild(rect);
+    svg.appendChild(clip);
+
+    var full = document.createElementNS(SVG_NS, "path");
+    full.setAttribute("d", STAR_ROW.d);
+    full.setAttribute("class", "lb-star-full");
+    full.setAttribute("clip-path", "url(#" + clipId + ")");
+    svg.appendChild(full);
+
+    return svg;
+  }
+
+  // The single gate for the whole feature: no match, or a match Letterboxd
+  // hasn't scored yet, means no badge anywhere. The scraper only ever writes
+  // `letterboxd` when it is confident, so there is nothing to second-guess here.
+  //
+  // `asLink` must stay false in the day rows and the film cards: the row wraps
+  // its info in an <a> and the card root is a <button>, and an anchor nested in
+  // either is invalid and swallows the parent's click target. Only the sheet,
+  // where the badge stands free, links out.
+  function buildLetterboxdBadge(film, asLink) {
+    var lb = film.letterboxd;
+    if (!lb || typeof lb.rating !== "number") return null;
+
+    var linked = !!(asLink && lb.url);
+    var badge = document.createElement(linked ? "a" : "span");
+    badge.className = "lb-badge";
+    if (linked) {
+      badge.href = lb.url;
+      badge.target = "_blank";
+      badge.rel = "noopener noreferrer";
+    }
+
+    var score = lb.rating.toLocaleString("es-MX", {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
+    badge.setAttribute("aria-label", "calificación en letterboxd: " + score + " de 5");
+
+    var mark = document.createElement("img");
+    mark.className = "lb-mark";
+    mark.src = "letterboxd.png";
+    mark.alt = "";
+    mark.loading = "lazy";
+    mark.decoding = "async";
+    badge.appendChild(mark);
+
+    badge.appendChild(buildStars(lb.rating));
+
+    var value = document.createElement("span");
+    value.className = "lb-score";
+    value.textContent = score;
+    badge.appendChild(value);
+
+    // The sheet's badge is the only one that navigates, so it borrows the
+    // outbound arrow "ver tráiler ↗" already uses — without it the link looks
+    // exactly like the inert badge in the rows and nobody would try it.
+    if (linked) {
+      var arrow = document.createElement("span");
+      arrow.className = "lb-out";
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = "↗";
+      badge.appendChild(arrow);
+    }
+
+    return badge;
   }
 
   function buildFilmSheetBody(film) {
@@ -877,6 +990,9 @@
       sub.textContent = subParts.join(" · ");
       info.appendChild(sub);
     }
+
+    var sheetBadge = buildLetterboxdBadge(film, true);
+    if (sheetBadge) info.appendChild(sheetBadge);
 
     if (film.ciclo) {
       var ciclo = document.createElement("span");
@@ -1070,7 +1186,7 @@
     });
   }
 
-  function buildFilmCard(film, futures) {
+  function buildFilmCard(film) {
     var card = document.createElement("button");
     card.type = "button";
     card.className = "film-card";
@@ -1109,32 +1225,23 @@
       info.appendChild(meta);
     }
 
-    var runs = document.createElement("div");
-    runs.className = "film-card-runs";
-    runs.textContent =
-      futures.length + (futures.length === 1 ? " función · " : " funciones · ") + dateRangeLabel(futures);
-    info.appendChild(runs);
-
-    var distinctSedes = [];
-    futures.forEach(function (st) {
-      if (distinctSedes.indexOf(st.sede) === -1) distinctSedes.push(st.sede);
-    });
-    if (distinctSedes.length) {
-      var sedesRow = document.createElement("div");
-      sedesRow.className = "film-card-sedes";
-      distinctSedes.forEach(function (code) {
-        var sedeInfo = DATA.sedes[code];
-        if (!sedeInfo) return;
-        var dot = document.createElement("span");
-        dot.className = "sede-dot";
-        dot.style.setProperty("--dot-color", "var(--sede-" + code + ")");
-        sedesRow.appendChild(dot);
-        var label = document.createElement("span");
-        label.textContent = sedeInfo.name;
-        sedesRow.appendChild(label);
-      });
-      info.appendChild(sedesRow);
+    // Duration and clasificación, the same line the day rows and the sheet
+    // carry, so the badge below it reads the same way everywhere. This card
+    // used to list the run count, date range and sede dots instead; all of
+    // that is a tap away in the sheet, and the sede chips above already filter
+    // the view, so it was costing four lines to say what the sheet says better.
+    var subParts = [];
+    if (film.duration_min) subParts.push(film.duration_min + "'");
+    if (film.classification) subParts.push(film.classification);
+    if (subParts.length) {
+      var sub = document.createElement("div");
+      sub.className = "show-sub";
+      sub.textContent = subParts.join(" · ");
+      info.appendChild(sub);
     }
+
+    var badge = buildLetterboxdBadge(film, false);
+    if (badge) info.appendChild(badge);
 
     card.appendChild(info);
     card.addEventListener("click", function () {
@@ -1159,11 +1266,11 @@
         });
       }
       if (!futures.length) return;
-      filtered.push({ film: film, futures: futures });
+      filtered.push(film);
     });
 
     filtered.sort(function (a, b) {
-      return a.film.title.localeCompare(b.film.title, "es");
+      return a.title.localeCompare(b.title, "es");
     });
 
     var filtersActive = Boolean(state.q.trim() || state.ciclo || state.sede !== "000");
@@ -1191,8 +1298,8 @@
     head.appendChild(kicker);
     els.agenda.appendChild(head);
 
-    filtered.forEach(function (entry) {
-      els.agenda.appendChild(buildFilmCard(entry.film, entry.futures));
+    filtered.forEach(function (film) {
+      els.agenda.appendChild(buildFilmCard(film));
     });
   }
 

@@ -615,23 +615,80 @@ html.sheet-open { overflow: hidden; }
 }
 .film-card .poster-wrap { width: 72px; flex: none; }
 .film-card-info { min-width: 0; flex: 1; }
-.film-card-runs {
-  font-size: 11.5px;
+/* ---------- letterboxd badge ---------- */
+
+/* Sized to sit under .show-sub as part of the same metadata stack rather than
+   as a new element. Rendered as a <span> in rows and cards (both of which are
+   already a link or a button, and an anchor cannot nest inside either) and as
+   an <a> only in the film sheet, where it stands free. */
+/* 12px, not the 11px of .show-sub above it: the stars and score have to hold
+   their own against the lockup without either outweighing the 13.5px title. */
+.lb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 12px;
   color: var(--ink-4);
   font-feature-settings: "tnum" 1;
-  margin-top: 3px;
+  line-height: 1;
 }
-.film-card-sedes {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 10px;
-  margin-top: 4px;
-  font-size: 11px;
+a.lb-badge {
+  text-decoration: none;
+  color: var(--ink-3);
+}
+a.lb-badge:hover .lb-score,
+a.lb-badge:focus-visible .lb-score { text-decoration: underline; }
+.lb-out {
+  font-size: 9.5px;
   color: var(--ink-4);
+  margin-left: -1px;
 }
-.film-card-sedes .sede-dot { width: 7px; height: 7px; }
-.film-card-sedes span + .sede-dot { margin-left: 6px; }
+a.lb-badge:focus-visible {
+  outline: none;
+  border-radius: var(--rad-sm);
+  box-shadow: 0 0 0 3px var(--focus-ring-strong);
+}
+
+/* Letterboxd's lockup, stored at 3x and cropped to its own alpha bounds so the
+   image's box IS its ink — that is what makes `align-self: center` exact here
+   rather than approximately right. Leave transparent padding in the asset and
+   the box silently lies about where the logo is. Set `height`, never `width`;
+   the aspect ratio does the rest. */
+.lb-mark {
+  height: 9.7px;
+  width: auto;
+  flex: none;
+  display: block;
+  align-self: center;
+}
+
+/* Drawn as one SVG path row, so the box is exactly the ink and centering is
+   exact — see the note in app.js on why "★" as text could not be aligned. */
+.lb-stars {
+  height: 8.5px;
+  width: auto;
+  flex: none;
+  display: block;
+  align-self: center;
+  /* No nudge, and none is wanted: the viewBox is the path's exact bounding box
+     (see buildStars), so this element's box is its ink and centring is exact.
+     An earlier +0.8px here was chasing noise in a screenshot measurement, not
+     a real offset, and it showed up as the stars sitting low in the film
+     sheet while looking fine in the cards. */
+}
+.lb-star-empty { fill: var(--ink-border); }
+.lb-star-full { fill: var(--ink-2); }
+/* Optical correction, not a fudge. Centering aligns boxes, but a digit's ink
+   sits low in its line box by (ascent - descent)/2 - capHeight/2 — about
+   0.06em in Segoe UI, 0.02em in SF — because the box reserves descender space
+   the digits never use. The logo and the SVG stars have no such dead space, so
+   left alone the number reads as sagging beside them. -0.04em splits the two
+   font families and lands both inside half a pixel at 12px. In em so it holds
+   if the badge is ever resized. */
+.lb-score,
+.lb-out { transform: translateY(-0.04em); }
+.lb-score { font-weight: var(--fw-medium); }
 
 /* ---------- app shell ---------- */
 
