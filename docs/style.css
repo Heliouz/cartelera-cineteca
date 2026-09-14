@@ -1047,7 +1047,14 @@ a.lb-badge:focus-visible {
   margin: 0 auto;
 }
 #agenda.mode-single { max-width: 720px; }
-#agenda.mode-films { max-width: 720px; }
+/* #agenda's --sp-7 column gap separates .sede-column sections, which is what
+   its flex children are in mode-all/mode-single. In mode-films the children
+   are individual .film-card elements, so that 28px fell between every film on
+   top of the cards' own padding. Above 640px the grid below re-declares
+   `gap: 0 var(--sp-6)` and cancels it by accident, which is why this only ever
+   showed on a phone. Zero it here so the row rhythm comes from the card's
+   padding and hairline alone, at every width. */
+#agenda.mode-films { max-width: 720px; gap: 0; }
 
 .sede-column { display: flex; flex-direction: column; min-width: 0; }
 
