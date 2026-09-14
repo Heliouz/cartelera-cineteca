@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T12:25:25.593756-06:00",
+  "generated_at": "2026-09-14T12:27:34.179415-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
     "2026-09-14",
@@ -47,7 +47,11 @@
       "trailer_youtube_id": null,
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00001156&cinemas=003",
-      "showtimes": []
+      "showtimes": [],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-man-who-saw-too-much/",
+        "rating": 3.7
+      }
     },
     {
       "id": "HO00001991",
@@ -74,7 +78,11 @@
           "session_id": "51013",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=51013&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/leaf-blower/",
+        "rating": 3.5
+      }
     },
     {
       "id": "HO00003885",
@@ -101,7 +109,11 @@
           "session_id": "49400",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49400&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-sower-2018/",
+        "rating": 3.7
+      }
     },
     {
       "id": "HO00005416",
@@ -119,7 +131,11 @@
       "trailer_youtube_id": null,
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00005416&cinemas=003",
-      "showtimes": []
+      "showtimes": [],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/prayers-for-the-stolen/",
+        "rating": 3.9
+      }
     },
     {
       "id": "HO00006138",
@@ -137,7 +153,11 @@
       "trailer_youtube_id": null,
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00006138&cinemas=003",
-      "showtimes": []
+      "showtimes": [],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-realm-of-god/",
+        "rating": 3.5
+      }
     },
     {
       "id": "HO00007318",
@@ -155,7 +175,11 @@
       "trailer_youtube_id": null,
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00007318&cinemas=002",
-      "showtimes": []
+      "showtimes": [],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/where-birds-dream/",
+        "rating": 3.3
+      }
     },
     {
       "id": "HO00007608",
@@ -198,7 +222,11 @@
           "session_id": "49605",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49605&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/demons-at-dawn-2024/",
+        "rating": 2.9
+      }
     },
     {
       "id": "HO00008250",
@@ -216,7 +244,11 @@
       "trailer_youtube_id": "lCFaQKaOXNU",
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00008250&cinemas=001",
-      "showtimes": []
+      "showtimes": [],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/la-cocina-2024/",
+        "rating": 3.8
+      }
     },
     {
       "id": "HO00008486",
@@ -291,7 +323,8 @@
           "session_id": "49622",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49622&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": null
     },
     {
       "id": "HO00008666",
@@ -342,7 +375,8 @@
           "session_id": "49631",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49631&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": null
     },
     {
       "id": "HO00009139",
@@ -393,7 +427,11 @@
           "session_id": "49606",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49606&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-prince-of-nanawa/",
+        "rating": 3.9
+      }
     },
     {
       "id": "HO00009256",
@@ -436,7 +474,11 @@
           "session_id": "49625",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49625&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/a-bright-future-2025/",
+        "rating": 3.5
+      }
     },
     {
       "id": "HO00009280",
@@ -471,7 +513,11 @@
           "session_id": "49600",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49600&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/dreams-2024-5/",
+        "rating": 3.8
+      }
     },
     {
       "id": "HO00009424",
@@ -546,7 +592,11 @@
           "session_id": "49632",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49632&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/kix/",
+        "rating": 4.0
+      }
     },
     {
       "id": "HO00009426",
@@ -741,7 +791,11 @@
           "session_id": "52056",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52056&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/memories-of-a-burning-body/",
+        "rating": 3.9
+      }
     },
     {
       "id": "HO00009555",
@@ -888,7 +942,11 @@
           "session_id": "52064",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52064&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/debt-to-the-dead/",
+        "rating": 3.4
+      }
     },
     {
       "id": "HO00009557",
@@ -931,7 +989,11 @@
           "session_id": "49639",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49639&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-love-that-remains/",
+        "rating": 3.7
+      }
     },
     {
       "id": "HO00009559",
@@ -974,7 +1036,11 @@
           "session_id": "49624",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49624&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/koln-75/",
+        "rating": 3.6
+      }
     },
     {
       "id": "HO00009561",
@@ -1017,7 +1083,11 @@
           "session_id": "49619",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49619&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/resurrection-2025/",
+        "rating": 4.1
+      }
     },
     {
       "id": "HO00009563",
@@ -1156,7 +1226,11 @@
           "session_id": "52087",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52087&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/amrum/",
+        "rating": 3.5
+      }
     },
     {
       "id": "HO00009698",
@@ -1199,7 +1273,11 @@
           "session_id": "49623",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49623&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/flies-2026/",
+        "rating": 3.9
+      }
     },
     {
       "id": "HO00009758",
@@ -1258,7 +1336,8 @@
           "session_id": "14402",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14402&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": null
     },
     {
       "id": "HO00009759",
@@ -1349,7 +1428,11 @@
           "session_id": "52079",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52079&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-odyssey-2026/",
+        "rating": 4.4
+      }
     },
     {
       "id": "HO00009763",
@@ -1480,7 +1563,11 @@
           "session_id": "49609",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49609&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/all-thats-left-of-you/",
+        "rating": 4.2
+      }
     },
     {
       "id": "HO00009787",
@@ -1643,7 +1730,11 @@
           "session_id": "49620",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49620&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-condor-daughter/",
+        "rating": 3.6
+      }
     },
     {
       "id": "HO00009798",
@@ -1862,7 +1953,11 @@
           "session_id": "52054",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52054&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/teenage-sex-and-death-at-camp-miasma/",
+        "rating": 3.8
+      }
     },
     {
       "id": "HO00009806",
@@ -1945,7 +2040,11 @@
           "session_id": "14580",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14580&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/coyote-vs-acme/",
+        "rating": 3.9
+      }
     },
     {
       "id": "HO00009814",
@@ -1996,7 +2095,11 @@
           "session_id": "49627",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49627&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/senhoritas/",
+        "rating": 3.5
+      }
     },
     {
       "id": "HO00009846",
@@ -2119,7 +2222,11 @@
           "session_id": "52093",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52093&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/matrioshka-2024/",
+        "rating": 3.4
+      }
     },
     {
       "id": "HO00009847",
@@ -2194,7 +2301,8 @@
           "session_id": "49634",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49634&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": null
     },
     {
       "id": "HO00009848",
@@ -2309,7 +2417,11 @@
           "session_id": "52085",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52085&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-tasters/",
+        "rating": 3.2
+      }
     },
     {
       "id": "HO00009849",
@@ -2416,7 +2528,8 @@
           "session_id": "52071",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52071&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": null
     },
     {
       "id": "HO00009850",
@@ -2667,7 +2780,11 @@
           "session_id": "52088",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52088&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/john-lilly-and-the-earth-coincidence-control/",
+        "rating": 3.4
+      }
     },
     {
       "id": "HO00009851",
@@ -2742,7 +2859,11 @@
           "session_id": "52076",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52076&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/sugar-island/",
+        "rating": 3.4
+      }
     },
     {
       "id": "HO00009872",
@@ -2785,7 +2906,11 @@
           "session_id": "49633",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49633&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/dead-mans-wire/",
+        "rating": 3.4
+      }
     },
     {
       "id": "HO00009892",
@@ -2803,7 +2928,8 @@
       "trailer_youtube_id": null,
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009892&cinemas=003",
-      "showtimes": []
+      "showtimes": [],
+      "letterboxd": null
     },
     {
       "id": "HO00009893",
@@ -2821,7 +2947,11 @@
       "trailer_youtube_id": null,
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009893&cinemas=003",
-      "showtimes": []
+      "showtimes": [],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-alligator-people/",
+        "rating": 2.9
+      }
     },
     {
       "id": "HO00009929",
@@ -2872,7 +3002,11 @@
           "session_id": "49618",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49618&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/bionicos-bachata/",
+        "rating": 3.9
+      }
     },
     {
       "id": "HO00009931",
@@ -2979,7 +3113,11 @@
           "session_id": "52053",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52053&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/ponyo/",
+        "rating": 4.1
+      }
     },
     {
       "id": "HO00009932",
@@ -3230,7 +3368,8 @@
           "session_id": "52068",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52068&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": null
     },
     {
       "id": "HO00009933",
@@ -3433,7 +3572,11 @@
           "session_id": "52099",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52099&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/cars/",
+        "rating": 3.9
+      }
     },
     {
       "id": "HO00009956",
@@ -3596,7 +3739,11 @@
           "session_id": "49615",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49615&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/coyote-vs-acme/",
+        "rating": 3.9
+      }
     },
     {
       "id": "HO00009958",
@@ -3743,7 +3890,11 @@
           "session_id": "52082",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52082&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/ponyo/",
+        "rating": 4.1
+      }
     },
     {
       "id": "HO00009960",
@@ -3778,7 +3929,11 @@
           "session_id": "49666",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49666&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-money-maker-2025/",
+        "rating": 3.5
+      }
     },
     {
       "id": "HO00010062",
@@ -3821,7 +3976,11 @@
           "session_id": "49570",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49570&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/compostelle/",
+        "rating": 3.4
+      }
     },
     {
       "id": "HO00010063",
@@ -3864,7 +4023,11 @@
           "session_id": "49670",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49670&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/you-found-me/",
+        "rating": 3.5
+      }
     },
     {
       "id": "HO00010064",
@@ -3907,7 +4070,11 @@
           "session_id": "49673",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49673&visLang=1"
         }
-      ]
+      ],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/bazaar-murder-in-the-building/",
+        "rating": 3.1
+      }
     }
   ]
 }
