@@ -127,6 +127,16 @@
       oficial de la Cineteca Nacional; este sitio solo ayuda a encontrarlo.
     </p>
 
+    <!-- The site's only visitor setting, and it lives here rather than in the
+         filters row on purpose: that row filters the cartelera, this changes
+         how a film is described. Turned off, the stars and the score are gone
+         everywhere and the film sheet keeps a link to Letterboxd, so the
+         rating stays one tap away - read over there, not here. -->
+    <div class="pref-row">
+      <span class="pref-label" id="ratings-toggle-label">mostrar calificaciones</span>
+      <button id="ratings-toggle" class="switch" type="button" role="switch" aria-checked="true" aria-labelledby="ratings-toggle-label"></button>
+    </div>
+
     <!-- The footer ko-fi button is easy to never reach; this is the same link
          where a visitor who opened the info panel is already looking. Copy is
          croquis-metro's, so the two sites ask in the same words. -->

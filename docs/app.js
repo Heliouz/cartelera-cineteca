@@ -17,6 +17,37 @@
   var searchDebounceTimer = null;
 
   var state = { view: "dia", day: null, sede: "000", ciclo: "", q: "", film: "" };
+
+  // The one visitor preference on the site, and deliberately the only piece of
+  // state that does NOT round-trip through the URL. Everything in `state`
+  // above describes what a shared link should reopen - a day, a sede, a film.
+  // Whether the reader wants to see scores is about the reader, not the
+  // screening, so sending someone a link must not turn their ratings off.
+  //
+  // localStorage instead, which is per-browser and never reaches us. It can
+  // also throw outright rather than return null (private windows, blocked site
+  // data), so both accessors are wrapped and every failure falls back to
+  // showing - the preference not persisting is a smaller harm than the site
+  // quietly deciding to withhold data nobody asked it to withhold.
+  var RATINGS_PREF_KEY = "cartelera:ratings";
+  var ratingsVisible = true;
+
+  function loadRatingsPref() {
+    try {
+      return localStorage.getItem(RATINGS_PREF_KEY) !== "0";
+    } catch (e) {
+      return true;
+    }
+  }
+
+  function saveRatingsPref(on) {
+    try {
+      localStorage.setItem(RATINGS_PREF_KEY, on ? "1" : "0");
+    } catch (e) {
+      // Nothing to do: the choice still holds for this session, it just will
+      // not survive a reload.
+    }
+  }
   var els = {};
   var sheetPushedState = false;
   var sheetTriggerEl = null;
@@ -110,7 +141,9 @@
     els.topBar = qs("top-bar");
     els.topbarRow = els.topBar ? els.topBar.querySelector(".topbar-row") : null;
 
+    ratingsVisible = loadRatingsPref();
     bindAboutModalTrigger();
+    bindRatingsToggle();
     bindBuyModal();
     bindAutoHideTopBar();
 
@@ -890,6 +923,17 @@
     if (!lb || typeof lb.rating !== "number") return null;
 
     var linked = !!(asLink && lb.url);
+
+    // Ratings hidden. The gate above still stands, which makes the toggle a
+    // pure subtraction: exactly the same films carry a Letterboxd presence,
+    // they just stop carrying the number. Where there is somewhere to send
+    // the reader - the sheet, the only surface that can hold an anchor - the
+    // lockup becomes an invitation to go and read the score at the source,
+    // which is the point of turning it off in the first place. In the rows
+    // and the cards there is no link to keep and a bare lockup would be a
+    // logo saying nothing, so nothing is drawn at all.
+    if (!ratingsVisible) return linked ? buildLetterboxdLink(lb.url) : null;
+
     var badge = document.createElement(linked ? "a" : "span");
     badge.className = "lb-badge";
     if (linked) {
@@ -929,6 +973,38 @@
       arrow.textContent = "↗";
       badge.appendChild(arrow);
     }
+
+    return badge;
+  }
+
+  // The ratings-off form of the badge: the lockup and the outbound arrow, and
+  // nothing else. It says a rating exists and that reading it means leaving
+  // this site, which is exactly what the toggle is for. There is no visible
+  // label - "ver calificación" beside a logo that already says letterboxd was
+  // the same sentence twice, and it made the quiet form of the badge wider
+  // than the loud one. The aria-label carries the words for screen readers,
+  // which is the one place the lockup genuinely says nothing.
+  function buildLetterboxdLink(url) {
+    var badge = document.createElement("a");
+    badge.className = "lb-badge";
+    badge.href = url;
+    badge.target = "_blank";
+    badge.rel = "noopener noreferrer";
+    badge.setAttribute("aria-label", "ver la calificación en letterboxd");
+
+    var mark = document.createElement("img");
+    mark.className = "lb-mark";
+    mark.src = "letterboxd.png";
+    mark.alt = "";
+    mark.loading = "lazy";
+    mark.decoding = "async";
+    badge.appendChild(mark);
+
+    var arrow = document.createElement("span");
+    arrow.className = "lb-out";
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = "↗";
+    badge.appendChild(arrow);
 
     return badge;
   }
@@ -1342,6 +1418,25 @@
     });
     document.addEventListener("keydown", function (ev) {
       if (ev.key === "Escape" && !modal.hidden) closeModal();
+    });
+  }
+
+  // role=switch + aria-checked, and not the aria-pressed the day/sede/view
+  // chips use. That note stands for those: they are toggle buttons filtering
+  // one list in place. This is a genuine on/off setting drawn as a switch, so
+  // the role has to match the thing on screen.
+  function bindRatingsToggle() {
+    var btn = qs("ratings-toggle");
+    if (!btn) return;
+    btn.setAttribute("aria-checked", ratingsVisible ? "true" : "false");
+    btn.addEventListener("click", function () {
+      ratingsVisible = !ratingsVisible;
+      btn.setAttribute("aria-checked", ratingsVisible ? "true" : "false");
+      saveRatingsPref(ratingsVisible);
+      // Redraws whichever view is up. An open film sheet needs no handling:
+      // the info button that opens this modal lives inside #app, which an
+      // open sheet marks inert, so the two can never be on screen together.
+      if (DATA) setState({});
     });
   }
 
