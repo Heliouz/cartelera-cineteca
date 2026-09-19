@@ -1,5 +1,6 @@
 /* cartelera: design system ported from croquis / El Organillero's editorial
-   visual language. Light only: no dark theme, no theme toggle. */
+   visual language. croquis is light-only; the dark palette below comes from
+   the origin project, which has one. theme.js sets data-theme on <html>. */
 
 :root {
   --bg: #f8f8f8;
@@ -18,6 +19,23 @@
 
   --live: #e63946;
   --ready: #4f9e5b;
+
+  /* The solid-ink button: .pill-btn and the selected .day-chip. Literal
+     #1a1a1a / #ffffff until there was a second palette to answer to. */
+  --btn-fill: #1a1a1a;
+  --btn-fill-hover: #000000;
+  --btn-ink: #ffffff;
+
+  /* Ko-fi, held at the same value in both themes — see .kofi-btn-full. */
+  --kofi-fill: #cf5b59;
+  --kofi-fill-hover: #bf4f4d;
+  --kofi-ink: #ffffff;
+  --kofi-stroke: #ff5e5b;
+
+  /* #ciclo-select's chevron is a data URI, which currentColor cannot reach,
+     so its one grey is a token. Hidden while nothing publishes a ciclo, but
+     the filter is kept alive on purpose — see CLAUDE.md. */
+  --select-chevron: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="%23707070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 
   --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
   --fw-regular: 400;
@@ -53,6 +71,70 @@
   --sede-002: #653090;  /* Las Artes   */
 
   color-scheme: light;
+}
+
+/* ---------- dark theme ----------
+   Surfaces and ink ramps from the origin project, unchanged: the same cool
+   near-blacks and the same white-with-alpha ramp, whose alphas all run a
+   little higher than their light counterparts because a dark surface eats
+   some perceived contrast. color-scheme lets the UA paint scrollbars, the
+   <select> and the search field's clear affordance to match; without it
+   those stay light on a dark page. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* --bg-card is lifted off --bg so the modals, the film sheet and the
+     selected sede chip read as raised planes rather than holes, and
+     --bg-edge sinks below it so the segmented-control troughs still read
+     as troughs. The light palette's ordering, inverted. */
+  --bg: #111315;
+  --bg-edge: #0b0c0e;
+  --bg-card: #1c1f23;
+  --line-stroke: #6a7079;
+
+  --ink-1: rgba(255, 255, 255, 0.94);
+  --ink-2: rgba(255, 255, 255, 0.80);
+  --ink-3: rgba(255, 255, 255, 0.60);
+  --ink-4: rgba(255, 255, 255, 0.46);
+  --ink-5: rgba(255, 255, 255, 0.34);
+  --ink-border: rgba(255, 255, 255, 0.20);
+  --ink-border-soft: rgba(255, 255, 255, 0.10);
+  --ink-rule: rgba(255, 255, 255, 0.07);
+
+  --focus-ring: rgba(255, 255, 255, 0.12);
+  --focus-ring-strong: rgba(255, 255, 255, 0.18);
+
+  /* The solid button inverts. Rest is #eaeaea rather than pure white so
+     hover still has somewhere brighter to go — the light theme's #1a1a1a ->
+     #000000 read the same way round. (The origin project put both at
+     #ffffff and lost the hover step; this restores it.) */
+  --btn-fill: #eaeaea;
+  --btn-fill-hover: #ffffff;
+  --btn-ink: #111315;
+
+  /* Sede colors, lifted — the one departure from "these are Cineteca's own
+     values, not ours". #653090 on #111315 is 2.1:1 and #28724F is 2.8:1;
+     both are below the 3:1 non-text floor as an 8px dot, and as the film
+     sheet's sede kicker they'd read *worse* than the plain --ink-4 they
+     replace (4.4:1), which defeats the point of tinting it.
+
+     Each is scaled in linear light until it reaches 4.45:1 on --bg-card —
+     not a number invented here, but the weakest contrast any sede already
+     has in the light theme (#EB1C23 on white). Scaling in linear light
+     preserves chromaticity exactly, so hue moves by under 0.6 degrees and
+     each stays unmistakably the same color: México is still that red,
+     Chapultepec still that green, Las Artes still that purple. Same
+     precedent as the origin project lifting L5's navy for its dark views.
+
+     A side effect worth keeping: all three now sit at equal luminance, so
+     no sede's dot outweighs another's. */
+  --sede-003: #FF2C35;  /* México      — from #EB1C23 */
+  --sede-001: #379568;  /* Chapultepec — from #28724F */
+  --sede-002: #B159F8;  /* Las Artes   — from #653090 */
+
+  /* Matches --ink-3 composited on --bg-card, the ink the select's own label
+     carries. */
+  --select-chevron: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="%23A0A3A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 }
 
 * { box-sizing: border-box; }
@@ -174,8 +256,8 @@ noscript {
   font-size: 13.5px;
   font-weight: var(--fw-medium);
   border: 1px solid transparent;
-  background: #1a1a1a;
-  color: #ffffff;
+  background: var(--btn-fill);
+  color: var(--btn-ink);
   border-radius: var(--rad-pill);
   cursor: pointer;
   text-decoration: none;
@@ -188,7 +270,7 @@ noscript {
     box-shadow var(--dur-base) var(--ease-out);
 }
 .pill-btn:hover {
-  background: #000000;
+  background: var(--btn-fill-hover);
   transform: translateY(-1px);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 10px 22px rgba(0, 0, 0, 0.14);
 }
@@ -261,7 +343,7 @@ noscript {
   border-color: var(--ink-border);
   box-shadow: 0 0 0 2px var(--focus-ring), var(--shadow-button);
 }
-.kofi-btn-compact .kofi-icon path { stroke: #ff5e5b; }
+.kofi-btn-compact .kofi-icon path { stroke: var(--kofi-stroke); }
 .kofi-btn-label { line-height: 1; }
 
 /* The loud variant, ported from croquis. It only ever appears inside the about
@@ -288,8 +370,8 @@ noscript {
   font-weight: var(--fw-medium);
   border: 1px solid transparent;
   border-radius: var(--rad-pill);
-  background: #cf5b59;
-  color: #ffffff;
+  background: var(--kofi-fill);
+  color: var(--kofi-ink);
   text-decoration: none;
   cursor: pointer;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 6px 16px rgba(0, 0, 0, 0.10);
@@ -299,7 +381,7 @@ noscript {
     box-shadow var(--dur-base) var(--ease-out);
 }
 .kofi-btn-full:hover {
-  background: #bf4f4d;
+  background: var(--kofi-fill-hover);
   transform: translateY(-1px);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 10px 22px rgba(0, 0, 0, 0.14);
 }
@@ -894,6 +976,17 @@ a.lb-badge:focus-visible {
 }
 .topbar-right .icon-btn { width: 30px; height: 30px; }
 
+/* Both icons ship in the DOM and CSS picks one, so the swap costs no JS and
+   cannot lag the repaint. The icon shown is the DESTINATION state — moon
+   means "switch to dark" — matching the convention on macOS, GitHub and most
+   editorial sites, and matching the button's own label, which names the
+   action rather than the state. */
+#theme-toggle .icon-moon,
+#theme-toggle .icon-sun { display: none; }
+#theme-toggle .icon-moon { display: inline-flex; }
+:root[data-theme="dark"] #theme-toggle .icon-moon { display: none; }
+:root[data-theme="dark"] #theme-toggle .icon-sun { display: inline-flex; }
+
 /* All three control groups (#day-strip, #sede-filter, #view-toggle) ship empty
    and are filled by app.js only after the schedule.json fetch resolves, so their
    height is reserved here. Without it the header grows ~90px on load and pushes
@@ -935,9 +1028,9 @@ a.lb-badge:focus-visible {
 }
 .day-chip:hover { color: var(--ink-1); border-color: var(--ink-border); }
 .day-chip[aria-pressed="true"] {
-  background: #1a1a1a;
-  color: #ffffff;
-  border-color: #1a1a1a;
+  background: var(--btn-fill);
+  color: var(--btn-ink);
+  border-color: var(--btn-fill);
 }
 
 /* sede segmented control */
@@ -1061,7 +1154,7 @@ a.lb-badge:focus-visible {
   padding: 6px 30px 6px 14px;
   border-radius: var(--rad-pill);
   border: 1px solid var(--ink-border-soft);
-  background: var(--bg-card) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="%23707070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat right 8px center;
+  background: var(--bg-card) var(--select-chevron) no-repeat right 8px center;
   background-size: 16px;
   color: var(--ink-2);
   font-size: 12.5px;

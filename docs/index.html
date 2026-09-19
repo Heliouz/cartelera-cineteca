@@ -6,7 +6,7 @@
 <title>cartelera: cineteca nacional</title>
 <meta name="description" content="la programación de la Cineteca Nacional México, Chapultepec y Las Artes en un solo lugar, agrupada por día y sede, con boletos a un clic." />
 <meta name="theme-color" content="#f8f8f8" />
-<meta name="color-scheme" content="light" />
+<meta name="color-scheme" content="light dark" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="cartelera" />
 <meta property="og:description" content="la programación de la Cineteca Nacional, las tres sedes en un solo lugar." />
@@ -23,6 +23,10 @@
 <link rel="canonical" href="https://cartelera.heliouz.com/" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="apple-touch-icon" href="favicon.svg" />
+<!-- Synchronous and ahead of the stylesheet on purpose: it puts data-theme on
+     <html> before anything paints. Loading it with app.js at the end of <body>
+     would flash the light palette first. -->
+<script src="theme.js"></script>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -36,6 +40,40 @@
       <h1 class="brand">cartelera</h1>
       <div class="topbar-right">
         <span id="date-kicker" class="date-kicker"></span>
+        <!-- Here rather than in the about modal, where `mostrar calificaciones`
+             lives. That setting changes how a film is described and is a taste
+             position a few readers hold; this is page chrome, next to the only
+             other page-chrome control there is, and it gets flipped by time of
+             day rather than once. Two taps through a modal is the wrong price
+             for something you reach for at night. Not in #filters-row either:
+             that row filters the cartelera, and a fourth control beside the
+             sede chips would read as a filter.
+             The label and title are written by theme.js, which knows which
+             direction the click goes. -->
+        <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false">
+          <svg class="icon-moon" width="13" height="13" viewBox="0 0 14 14" aria-hidden="true">
+            <!-- Crescent: one circle clipped by an offset second one, drawn as
+                 a single path so currentColor fills it cleanly. -->
+            <path d="M11.2 8.7A5 5 0 0 1 5.3 2.8a0.5 0.5 0 0 0-0.7-0.55
+                     A5.5 5.5 0 1 0 11.75 9.4a0.5 0.5 0 0 0-0.55-0.7z"
+                  fill="currentColor"/>
+          </svg>
+          <svg class="icon-sun" width="13" height="13" viewBox="0 0 14 14" aria-hidden="true">
+            <!-- 2.6px core plus 8 rays at 1.4px, the same stroke weight as the
+                 info and search glyphs. -->
+            <circle cx="7" cy="7" r="2.6" fill="currentColor"/>
+            <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none">
+              <line x1="7"    y1="0.8"  x2="7"    y2="2.2"/>
+              <line x1="7"    y1="11.8" x2="7"    y2="13.2"/>
+              <line x1="0.8"  y1="7"    x2="2.2"  y2="7"/>
+              <line x1="11.8" y1="7"    x2="13.2" y2="7"/>
+              <line x1="2.6"  y1="2.6"  x2="3.6"  y2="3.6"/>
+              <line x1="10.4" y1="10.4" x2="11.4" y2="11.4"/>
+              <line x1="2.6"  y1="11.4" x2="3.6"  y2="10.4"/>
+              <line x1="10.4" y1="3.6"  x2="11.4" y2="2.6"/>
+            </g>
+          </svg>
+        </button>
         <button id="info-btn" class="icon-btn" type="button" aria-label="acerca de cartelera">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>

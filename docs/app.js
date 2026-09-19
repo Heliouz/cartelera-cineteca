@@ -144,6 +144,7 @@
     ratingsVisible = loadRatingsPref();
     bindAboutModalTrigger();
     bindRatingsToggle();
+    bindThemeRedraw();
     bindBuyModal();
     bindAutoHideTopBar();
 
@@ -948,13 +949,7 @@
     });
     badge.setAttribute("aria-label", "calificación en letterboxd: " + score + " de 5");
 
-    var mark = document.createElement("img");
-    mark.className = "lb-mark";
-    mark.src = "letterboxd.png";
-    mark.alt = "";
-    mark.loading = "lazy";
-    mark.decoding = "async";
-    badge.appendChild(mark);
+    badge.appendChild(buildLetterboxdMark());
 
     badge.appendChild(buildStars(lb.rating));
 
@@ -977,6 +972,30 @@
     return badge;
   }
 
+  // The lockup is a raster asset with its wordmark baked in one ink, so unlike
+  // every other mark on the page it cannot follow --ink-* into the dark
+  // palette: the wordmark is black, and on #111315 it would simply be gone.
+  // letterboxd-dark.png is the same file with that wordmark recoloured white
+  // at the dark ramp's matching alpha and the three brand dots left exactly
+  // as they are — inverting the whole image would have flipped the dots too,
+  // and their color is the entire reason this is an image rather than text.
+  //
+  // Read at build time rather than switched in CSS because `content: url()`
+  // on a real <img> is not supported in Firefox. theme.js fires
+  // cartelera:themechange and bindThemeRedraw() below redraws, which is the
+  // same redraw the ratings toggle already does.
+  function buildLetterboxdMark() {
+    var mark = document.createElement("img");
+    mark.className = "lb-mark";
+    mark.src = document.documentElement.getAttribute("data-theme") === "dark"
+      ? "letterboxd-dark.png"
+      : "letterboxd.png";
+    mark.alt = "";
+    mark.loading = "lazy";
+    mark.decoding = "async";
+    return mark;
+  }
+
   // The ratings-off form of the badge: the lockup and the outbound arrow, and
   // nothing else. It says a rating exists and that reading it means leaving
   // this site, which is exactly what the toggle is for. There is no visible
@@ -992,13 +1011,7 @@
     badge.rel = "noopener noreferrer";
     badge.setAttribute("aria-label", "ver la calificación en letterboxd");
 
-    var mark = document.createElement("img");
-    mark.className = "lb-mark";
-    mark.src = "letterboxd.png";
-    mark.alt = "";
-    mark.loading = "lazy";
-    mark.decoding = "async";
-    badge.appendChild(mark);
+    badge.appendChild(buildLetterboxdMark());
 
     var arrow = document.createElement("span");
     arrow.className = "lb-out";
@@ -1436,6 +1449,22 @@
       // Redraws whichever view is up. An open film sheet needs no handling:
       // the info button that opens this modal lives inside #app, which an
       // open sheet marks inert, so the two can never be on screen together.
+      if (DATA) setState({});
+    });
+  }
+
+  // theme.js owns the palette: it sets data-theme, persists the choice and
+  // writes the button's label, all of which CSS picks up on its own. The one
+  // thing it cannot repaint is the Letterboxd lockup — see
+  // buildLetterboxdMark(). So the same redraw the ratings toggle uses hangs
+  // off its event. Redrawing the whole view for one <img> is cheap: it is
+  // what every keystroke in the search field already does.
+  //
+  // An open film sheet needs no handling here for the same reason the ratings
+  // toggle needs none — #theme-toggle lives in #app, which an open sheet marks
+  // inert, so the two can never be reachable at once.
+  function bindThemeRedraw() {
+    document.addEventListener("cartelera:themechange", function () {
       if (DATA) setState({});
     });
   }
