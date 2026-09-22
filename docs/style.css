@@ -37,6 +37,18 @@
   --chip-fill: rgba(0, 0, 0, 0.065);
   --chip-fill-press: rgba(0, 0, 0, 0.13);
 
+  /* The film sheet's poster band: how strongly the blurred poster glows, and
+     how its color is pushed. Light needs more of both than dark. On a dark
+     card, color added reads as light because it brightens; on white it can
+     only darken, so at dark's settings it mixes toward white into pastel, and
+     the poster's dark areas blur into a grey smudge (Resurrection's was the
+     worst). More saturation keeps the color from washing out, and a little
+     brightness lifts the darks out of grey. Tuned against three posters side
+     by side; past ~0.6 the band starts to match the poster and swallow its
+     edge. */
+  --ambient-alpha: 0.6;
+  --ambient-tone: saturate(1.8) brightness(1.15);
+
   /* Ko-fi, held at the same value in both themes — see .kofi-btn-full. */
   --kofi-fill: #cf5b59;
   --kofi-fill-hover: #bf4f4d;
@@ -125,6 +137,11 @@
 
   --chip-fill: rgba(255, 255, 255, 0.10);
   --chip-fill-press: rgba(255, 255, 255, 0.18);
+
+  /* A near-black card already turns added color into light, so the poster
+     needs only a light push here. */
+  --ambient-alpha: 0.55;
+  --ambient-tone: saturate(1.2);
 
   /* Sede colors, lifted — the one departure from "these are Cineteca's own
      values, not ours". #653090 on #111315 is 2.1:1 and #28724F is 2.8:1;
@@ -650,6 +667,7 @@ noscript {
   transition: opacity var(--dur-base) var(--ease-out);
 }
 #film-sheet.visible .sheet-backdrop { opacity: 1; }
+
 .sheet-content {
   position: relative;
   width: 100%;
@@ -703,6 +721,23 @@ html.sheet-open { overflow: hidden; }
   padding-right: var(--sp-8);
 }
 .sheet-head .poster-wrap { width: 96px; flex: none; }
+/* Focus pull: the poster opens soft and sharpens once it has loaded, like a
+   projectionist finding focus. Also covers the moment the image is still
+   arriving. .poster-wrap's overflow clips the scale. */
+.sheet-head .sheet-poster {
+  filter: blur(6px);
+  transform: scale(1.08);
+  opacity: 0.7;
+  transition:
+    filter 560ms var(--ease-out),
+    transform 560ms var(--ease-out),
+    opacity var(--dur-base) var(--ease-out);
+}
+.sheet-head .sheet-poster.in-focus {
+  filter: blur(0);
+  transform: none;
+  opacity: 1;
+}
 .sheet-head-info { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .sheet-title {
   margin: 0;
@@ -719,6 +754,120 @@ html.sheet-open { overflow: hidden; }
   color: var(--ink-4);
 }
 .sheet-head-info .kicker { margin-top: var(--sp-1); }
+
+/* One sheet size for every film, with the poster band on top (see
+   buildFilmSheetBody()). The sheet used to be as tall as its content, so a
+   film with one screening got a stub of a card and one with seventeen
+   filled the screen - the frame said more about the length of a synopsis
+   than about the film. Now the frame is fixed, and the band takes up
+   whatever the text leaves over: a short sheet gets a big lit screen, a long
+   one gets the 260px minimum and scrolls it away as you read.
+
+   The band is also where the poster's color lives - blurred past
+   recognition, as light from the film - and the only place: the backdrop
+   around the sheet stays untouched. A tinted backdrop was tried first and
+   read as the page being repainted rather than as the film giving off
+   light, and on phones it blurred the sheet's top edge into the page. The
+   glow fades into the card before the title, so no text ever sits on it:
+   the --ink-4 metadata lines are already at the 4.5:1 floor on the plain
+   card. */
+.sheet-content {
+  display: flex;
+  flex-direction: column;
+  height: 92dvh;
+  padding-top: 0;
+}
+@media (min-width: 640px) {
+  .sheet-content { height: min(860px, calc(100vh - 2 * var(--sp-4))); }
+}
+@media (max-width: 639.98px) {
+  .sheet-grab {
+    position: absolute;
+    top: var(--sp-2);
+    left: 50%;
+    margin: 0 0 0 -18px;
+    z-index: 2;
+  }
+}
+.sheet-close { z-index: 2; }
+.sheet-body { flex: 1 0 auto; display: flex; flex-direction: column; }
+.sheet-head {
+  flex: 1 0 auto;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--sp-4);
+  padding-right: 0;
+}
+.sheet-hero {
+  position: relative;
+  flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  margin: 0 calc(-1 * var(--sp-5));
+  padding: var(--sp-8) 0 var(--sp-5);
+  overflow: hidden;
+  /* A size container, so the poster can be sized off the band's height
+     (cqh below). Safe here because the band's height never comes from its
+     content - it's min-height plus whatever flex-grow hands it. */
+  container-type: size;
+}
+/* Scaled so the blur's soft edge falls outside the band instead of fading
+   to a pale rim along the sheet's top. That also pushes the bottom of the
+   image past the band, so the fade into the card is a separate layer
+   (::after) rather than a mask on the scaled image, whose end would be
+   clipped off into a hard edge. */
+.sheet-hero-glow {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(40px) var(--ambient-tone);
+  transform: scale(1.3);
+  opacity: var(--ambient-alpha);
+  pointer-events: none;
+}
+/* Eased, not linear: a straight ramp that stops dead against the flat card
+   reads as a faint edge where the slope changes, strongest in light, where
+   the glow is pushed hardest. Smoothstep at quarter points starts and ends
+   the fade at zero slope, so the glow dissolves instead of ending. */
+.sheet-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 65%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--bg-card) 16%, transparent) 25%,
+    color-mix(in srgb, var(--bg-card) 50%, transparent) 50%,
+    color-mix(in srgb, var(--bg-card) 84%, transparent) 75%,
+    var(--bg-card)
+  );
+  pointer-events: none;
+}
+/* The poster grows with the band, so a short film's spare height goes to
+   the poster rather than to empty glow: it fills the band's height, up to
+   260px wide or 62% of the sheet, whichever is less. 100cqh is the band's
+   content box, so its padding is already out of it. Width, not height, so
+   .poster-wrap's aspect-ratio keeps it 2:3. The plain 132px is the
+   fallback where cq units don't parse. */
+.sheet-hero .poster-wrap {
+  position: relative;
+  z-index: 1;
+  width: 132px;
+  width: min(calc(100cqh * 2 / 3), 62cqw, 260px);
+  /* --shadow-button, not --shadow-panel: the band clips at its edge, and the
+     panel shadow reaches ~44px below the poster against 20px of padding, so
+     it was cut off into a hard line across the bottom of the band - on a
+     white card, where a shadow shows. This one stays inside the padding. */
+  box-shadow: var(--shadow-button);
+}
 
 .sheet-synopsis {
   margin: var(--sp-5) 0 0;
@@ -745,6 +894,32 @@ html.sheet-open { overflow: hidden; }
   border-bottom: 1px solid currentColor;
 }
 .sheet-link:hover { color: var(--ink-1); }
+
+/* "leer más": drawn as the same underlined text link as "ver tráiler", so it
+   reads as tappable at rest. Only shown when the clamp below actually cut
+   something - see fitSynopsisToggle(). */
+.sheet-more {
+  display: block;
+  width: fit-content;
+  text-align: left;
+  margin: var(--sp-1) 0 0;
+  padding: 0;
+  font-size: 12.5px;
+  color: var(--ink-2);
+  background: none;
+  border: none;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  cursor: pointer;
+}
+.sheet-more:hover { color: var(--ink-1); }
+.sheet-synopsis:not(.expanded) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+}
 
 .sheet-times-head {
   display: flex;
@@ -854,8 +1029,21 @@ html.sheet-open { overflow: hidden; }
   line-height: 1;
 }
 a.lb-badge {
+  position: relative;
   text-decoration: none;
   color: var(--ink-3);
+}
+/* An invisible margin of tap area around the sheet's badge, which is only
+   ~14px tall on screen. 8px above and below brings the target to ~30px,
+   clear of WCAG's 24px, without growing the badge itself (see the size note
+   further down) or moving anything - it's an absolutely positioned layer,
+   so it takes no space and the focus ring stays on the visible badge.
+   Kept modest on purpose: the synopsis starts close below, and a bigger
+   area would start catching taps meant for the text. */
+a.lb-badge::after {
+  content: "";
+  position: absolute;
+  inset: -8px -6px;
 }
 a.lb-badge:hover .lb-score,
 a.lb-badge:focus-visible .lb-score { text-decoration: underline; }
@@ -918,6 +1106,19 @@ a.lb-badge:focus-visible {
 /* With ratings turned off the sheet's badge is the lockup and this arrow
    alone, so .lb-badge's 6px gap is the whole space between them. Nothing else
    is needed: both boxes are already their ink, so they centre exactly. */
+
+/* In the film sheet on a phone the badge is the one link in the metadata
+   stack and gets tapped with a thumb, so it steps up 12.5% - every part by
+   the same factor, since they are sized in px and the alignment above only
+   holds while their proportions do. 13.5px keeps it under the 17px title,
+   which has to stay the biggest text in the sheet. The rows and cards keep
+   12px: there the whole row or card is the tap target. */
+@media (max-width: 639.98px) {
+  .sheet-head-info .lb-badge { font-size: 13.5px; gap: 7px; }
+  .sheet-head-info .lb-mark { height: 10.9px; }
+  .sheet-head-info .lb-stars { height: 9.6px; }
+  .sheet-head-info .lb-out { font-size: 10.7px; }
+}
 
 /* ---------- app shell ---------- */
 

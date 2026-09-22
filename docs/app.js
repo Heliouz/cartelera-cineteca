@@ -1108,10 +1108,14 @@
     var posterWrap = document.createElement("div");
     posterWrap.className = "poster-wrap";
     var img = document.createElement("img");
-    img.loading = "lazy";
     img.decoding = "async";
     img.alt = "";
-    img.src = film.poster;
+    img.className = "sheet-poster";
+    img.addEventListener("load", function () {
+      requestAnimationFrame(function () {
+        img.classList.add("in-focus");
+      });
+    });
     img.addEventListener(
       "error",
       function () {
@@ -1119,8 +1123,28 @@
       },
       { once: true }
     );
+    img.src = film.poster;
     posterWrap.appendChild(img);
-    head.appendChild(posterWrap);
+
+    // The poster sits in a band across the top of the sheet, lit by a
+    // blurred copy of itself - the screen the film is shown on. The band
+    // takes whatever height the text below leaves over, which is what keeps
+    // every sheet the same size. It's the only place the poster's color
+    // goes: nothing but the poster sits on the glow, and the backdrop around
+    // the sheet stays untouched (see .sheet-hero in style.css).
+    var hero = document.createElement("div");
+    hero.className = "sheet-hero";
+    var glow = document.createElement("img");
+    glow.className = "sheet-hero-glow";
+    glow.alt = "";
+    glow.decoding = "async";
+    glow.addEventListener("error", function () {
+      glow.remove();
+    });
+    glow.src = film.poster;
+    hero.appendChild(glow);
+    hero.appendChild(posterWrap);
+    head.appendChild(hero);
 
     var info = document.createElement("div");
     info.className = "sheet-head-info";
@@ -1172,8 +1196,28 @@
     if (film.synopsis) {
       var syn = document.createElement("p");
       syn.className = "sheet-synopsis";
+      syn.id = "sheet-synopsis";
       syn.textContent = film.synopsis;
       frag.appendChild(syn);
+
+      // On a phone the synopsis is clamped to four lines, so the showtimes -
+      // what most visitors opened the sheet for - land above the fold even
+      // for the longest synopses. The toggle starts hidden and
+      // fitSynopsisToggle() reveals it only when the clamp actually cut
+      // something, which never happens on desktop, where there is no clamp.
+      var more = document.createElement("button");
+      more.type = "button";
+      more.className = "sheet-more";
+      more.hidden = true;
+      more.textContent = "leer más";
+      more.setAttribute("aria-expanded", "false");
+      more.setAttribute("aria-controls", "sheet-synopsis");
+      more.addEventListener("click", function () {
+        var open = syn.classList.toggle("expanded");
+        more.textContent = open ? "leer menos" : "leer más";
+        more.setAttribute("aria-expanded", String(open));
+      });
+      frag.appendChild(more);
     }
 
     if (film.cast) {
@@ -1284,6 +1328,17 @@
     return frag;
   }
 
+  // Measured rather than guessed from character counts: whether four lines
+  // cut the text depends on the phone's width and font. Needs the sheet
+  // visible to have a layout to measure.
+  function fitSynopsisToggle() {
+    var syn = els.sheetBody.querySelector(".sheet-synopsis");
+    var more = els.sheetBody.querySelector(".sheet-more");
+    // Expanded text is never cut, so measuring it would hide "leer menos".
+    if (!syn || !more || syn.classList.contains("expanded")) return;
+    more.hidden = syn.scrollHeight <= syn.clientHeight + 1;
+  }
+
   function openFilmSheet(film, push) {
     var sheet = els.filmSheet;
     if (!sheet) return;
@@ -1292,6 +1347,7 @@
     els.sheetBody.innerHTML = "";
     els.sheetBody.appendChild(buildFilmSheetBody(film));
     sheet.hidden = false;
+    fitSynopsisToggle();
     document.documentElement.classList.add("sheet-open");
     if (els.appRoot) els.appRoot.inert = true;
     requestAnimationFrame(function () {
@@ -1353,6 +1409,10 @@
     });
     window.addEventListener("popstate", function () {
       if (!sheet.hidden) closeFilmSheet(true);
+    });
+    // A rotated phone can cross the breakpoint the clamp lives behind.
+    window.addEventListener("resize", function () {
+      if (!sheet.hidden) fitSynopsisToggle();
     });
   }
 
