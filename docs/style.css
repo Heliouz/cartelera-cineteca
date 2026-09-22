@@ -11,7 +11,13 @@
   --ink-1: rgba(0, 0, 0, 0.92);
   --ink-2: rgba(0, 0, 0, 0.78);
   --ink-3: rgba(0, 0, 0, 0.55);
-  --ink-4: rgba(0, 0, 0, 0.42);
+  /* 0.54, not the origin projects' 0.42: this is the ink of every small
+     metadata line (director, duration, cast, counts, placeholder), all 10.5 to
+     12.5px, and 0.42 on --bg measured 3.0:1 - under AA's 4.5:1 for text that
+     size. 0.54 is the lightest value clearing 4.5:1 on both --bg (4.52) and
+     --bg-card (4.6). It now sits close to --ink-3; the hierarchy between the
+     two lines is carried by size and weight, not by a failing grey. */
+  --ink-4: rgba(0, 0, 0, 0.54);
   --ink-5: rgba(0, 0, 0, 0.45);
   --ink-border: rgba(0, 0, 0, 0.18);
   --ink-border-soft: rgba(0, 0, 0, 0.08);
@@ -437,6 +443,14 @@ noscript {
 #about-modal.visible .about-content {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+/* The panel takes focus on open (see bindAboutModalTrigger) only to put the
+   visitor inside the dialog; it isn't a control, so no ring. */
+.about-content:focus,
+.about-content:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-panel);
+  border-radius: var(--rad-md);
 }
 .about-title {
   font-size: 26px;
@@ -1047,9 +1061,19 @@ a.lb-badge:focus-visible {
   padding: 3px;
   border-radius: var(--rad-pill);
   background: var(--bg-edge);
-  flex: none;
+  /* Allowed to shrink below its content and scroll, as a last resort: at 320px
+     the four chips are wider than the screen, and `flex: none` pushed the whole
+     page into horizontal scroll. The narrow-screen block below tightens the
+     chips so that normally never happens. */
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+#sede-filter::-webkit-scrollbar { display: none; }
 .sede-chip {
+  flex: none;
   min-height: 34px;
   padding: 6px 13px;
   border-radius: var(--rad-pill);
@@ -1070,7 +1094,12 @@ a.lb-badge:focus-visible {
   color: var(--ink-1);
   box-shadow: var(--shadow-button);
 }
-.sede-chip .sede-dot {
+/* Base dot, shared by the sede chips and the film sheet's time chips. It used
+   to be scoped to .sede-chip alone, which left the time chips' dots an inline
+   span with no size and no fill - invisible, on the one surface where a film
+   playing at several sedes needs the color to tell them apart. */
+.sede-dot {
+  display: inline-block;
   width: 8px; height: 8px;
   border-radius: var(--rad-pill);
   background: var(--dot-color, var(--ink-4));
@@ -1276,7 +1305,7 @@ a.lb-badge:focus-visible {
   border-bottom: 1px solid var(--ink-rule);
 }
 .show-row:last-child { border-bottom: none; }
-/* Past rows are dimmed, but 0.42 on top of --ink-4 (itself 42% alpha) left the
+/* Past rows are dimmed, but 0.42 on top of --ink-4 (then itself 42% alpha) left the
    meta line around 18% — unreadable, not merely de-emphasised. These sit behind
    a collapsed <details>, so nobody opens them by accident; they just have to be
    legible once opened. */
@@ -1463,6 +1492,12 @@ a.lb-badge:focus-visible {
 @media (max-width: 420px) {
   .show-row-actions { align-items: center; }
   .buy-btn { padding: 9px 13px; font-size: 11.5px; }
+}
+
+/* Small phones (iPhone SE 1st gen, compact Androids): the sede control is
+   ~336px wide at its normal padding and only ~328px / 288px fit at 360 / 320. */
+@media (max-width: 380px) {
+  .sede-chip { padding: 6px 9px; gap: 5px; font-size: 11.5px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

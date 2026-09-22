@@ -22,7 +22,9 @@
 <meta name="twitter:image" content="https://cartelera.heliouz.com/og.png" />
 <link rel="canonical" href="https://cartelera.heliouz.com/" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<link rel="apple-touch-icon" href="favicon.svg" />
+<!-- iOS ignores SVG here and falls back to a page screenshot, so the home
+     screen icon is favicon.svg rendered onto an opaque 180px square. -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <!-- Synchronous and ahead of the stylesheet on purpose: it puts data-theme on
      <html> before anything paints. Loading it with app.js at the end of <body>
      would flash the light palette first. -->
@@ -153,7 +155,7 @@
 
 <div id="about-modal" hidden role="dialog" aria-modal="true" aria-labelledby="about-title">
   <div class="about-backdrop" aria-hidden="true"></div>
-  <div class="about-content">
+  <div class="about-content" tabindex="-1">
     <div class="about-title" id="about-title">cartelera</div>
     <p class="about-body">
       la programación de las tres sedes de la Cineteca Nacional

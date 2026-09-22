@@ -290,8 +290,78 @@
     syncUrl();
     bindFilterEvents();
     bindFilmSheetEvents();
+    bindClock();
 
     if (initialFilm) openFilmSheet(initialFilm, false);
+  }
+
+  // ---------- keeping "now" current ----------
+
+  // Everything time-relative - the upcoming/past split, "HOY", the date
+  // kicker, the stale banner - is computed at render time, and a tab left open
+  // from lunch to evening would otherwise go on listing the 14:00 screenings
+  // as upcoming. So re-check once a minute and whenever the tab comes back
+  // into view, and redraw only when something the page shows has actually
+  // moved: the date, or the number of today's screenings that have started.
+  function clockKey() {
+    var today = todayISO();
+    var nowMin = nowMinutesCDMX();
+    var started = 0;
+    DATA.films.forEach(function (film) {
+      film.showtimes.forEach(function (st) {
+        if (st.date === today && timeToMinutes(st.time) < nowMin) started++;
+      });
+    });
+    return today + "|" + started;
+  }
+
+  function bindClock() {
+    var lastKey = clockKey();
+
+    function tick() {
+      if (document.hidden) return;
+      var key = clockKey();
+      if (key === lastKey) return;
+
+      // Never redraw out from under someone: an open sheet or warning would
+      // lose its trigger to return focus to, and a focused row or chip would
+      // be replaced by a fresh copy, dropping focus to <body>. Leaving
+      // lastKey alone means the next tick simply tries again.
+      var active = document.activeElement;
+      if (!els.filmSheet.hidden || !els.buyModal.hidden) return;
+      if (active && (els.agenda.contains(active) || els.dayStrip.contains(active))) return;
+
+      var dayChanged = key.split("|")[0] !== lastKey.split("|")[0];
+      lastKey = key;
+
+      if (dayChanged) {
+        // A visitor still on the old default day hadn't chosen it; they were
+        // looking at "today", so they follow it. An explicit pick stays put.
+        var today = todayISO();
+        var wasDefault = state.day === defaultDay;
+        defaultDay = DATA.days.indexOf(today) !== -1 ? today : DATA.days[0];
+        if (wasDefault) state.day = defaultDay;
+        renderDayStrip();
+        renderDateKicker();
+      }
+      renderStaleBanner();
+
+      // A redraw rebuilds every sede column, which would snap shut any "ya
+      // pasaron" list the visitor had opened.
+      var openPast = [];
+      els.agenda.querySelectorAll(".sede-column").forEach(function (col) {
+        var d = col.querySelector(".past-details");
+        if (d && d.open) openPast.push(col.dataset.sede);
+      });
+      setState({});
+      openPast.forEach(function (code) {
+        var d = els.agenda.querySelector('.sede-column[data-sede="' + code + '"] .past-details');
+        if (d) d.open = true;
+      });
+    }
+
+    setInterval(tick, 60000);
+    document.addEventListener("visibilitychange", tick);
   }
 
   // ---------- header controls ----------
@@ -644,6 +714,7 @@
 
       var column = document.createElement("section");
       column.className = "sede-column";
+      column.dataset.sede = code;
       column.setAttribute("aria-label", sedeInfo.name);
 
       var header = document.createElement("div");
@@ -1268,7 +1339,12 @@
       closeFilmSheet(false);
     });
     document.addEventListener("keydown", function (ev) {
-      if (ev.key === "Escape" && !sheet.hidden) closeFilmSheet(false);
+      if (ev.key !== "Escape" || sheet.hidden) return;
+      // The buy warning can sit on top of the sheet. Its Escape handler is
+      // bound in init(), before this one, and marks the event handled when it
+      // closes - so one Escape peels off one layer instead of both.
+      if (ev.defaultPrevented) return;
+      closeFilmSheet(false);
     });
     window.addEventListener("popstate", function () {
       if (!sheet.hidden) closeFilmSheet(true);
@@ -1404,9 +1480,15 @@
     var startBtn = modal.querySelector(".about-start-btn");
     var appRoot = qs("app");
 
+    // Focus has to be moved in by hand: the info button that opened this sits
+    // inside #app, which goes inert, so without it focus drops to <body> and a
+    // keyboard or screen-reader visitor is left outside the dialog. The panel
+    // itself takes it (tabindex=-1 in index.html) rather than the first
+    // control, so a screen reader starts from the top and nothing gets a ring.
     function openModal() {
       modal.hidden = false;
       if (appRoot) appRoot.inert = true;
+      if (content) content.focus();
       requestAnimationFrame(function () {
         modal.classList.add("visible");
       });
@@ -1418,6 +1500,7 @@
       setTimeout(function () {
         modal.hidden = true;
       }, 240);
+      els.infoBtn.focus();
     }
 
     els.infoBtn.addEventListener("click", function () {
@@ -1500,7 +1583,10 @@
     var modal = els.buyModal;
     if (!modal || modal.hidden) return;
     modal.classList.remove("visible");
-    if (els.appRoot) els.appRoot.inert = false;
+    // Raised from a time chip, the warning closes back onto the sheet, which
+    // still owns the page: #app has to stay muted underneath it.
+    var sheetOpen = els.filmSheet && !els.filmSheet.hidden;
+    if (els.appRoot && !sheetOpen) els.appRoot.inert = false;
     if (els.filmSheet) els.filmSheet.inert = false;
     var trigger = buyTriggerEl;
     buyTriggerEl = null;
@@ -1527,7 +1613,9 @@
       closeBuyModal();
     });
     document.addEventListener("keydown", function (ev) {
-      if (ev.key === "Escape" && !modal.hidden) closeBuyModal();
+      if (ev.key !== "Escape" || modal.hidden) return;
+      ev.preventDefault(); // the film sheet's handler checks this
+      closeBuyModal();
     });
   }
 
