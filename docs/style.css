@@ -672,10 +672,18 @@ noscript {
   position: relative;
   width: 100%;
   max-width: 520px;
+  /* Fixed, not content-sized - see the poster band below. vh first as the
+     fallback for browsers without dvh, which would otherwise drop the
+     declaration and fall back to a content-height sheet. */
+  height: 92vh;
+  height: 92dvh;
+  max-height: 92vh;
   max-height: 92dvh;
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
   overflow-wrap: break-word;
-  padding: var(--sp-6) var(--sp-5) max(var(--sp-6), env(safe-area-inset-bottom));
+  padding: 0 var(--sp-5) max(var(--sp-6), env(safe-area-inset-bottom));
   background: var(--bg-card);
   border: 1px solid var(--ink-border-soft);
   border-radius: var(--rad-lg) var(--rad-lg) 0 0;
@@ -689,23 +697,31 @@ noscript {
   transform: translateY(0);
 }
 .sheet-grab {
+  position: absolute;
+  top: var(--sp-2);
+  left: 50%;
+  z-index: 2;
   width: 36px;
   height: 4px;
+  margin-left: -18px;
   border-radius: var(--rad-pill);
   background: var(--ink-border);
-  margin: 0 auto var(--sp-4);
 }
 .sheet-close {
   position: absolute;
   top: var(--sp-4);
   right: var(--sp-4);
+  z-index: 2;
 }
 
 @media (min-width: 640px) {
   #film-sheet { align-items: center; padding: var(--sp-4); }
   .sheet-content {
     border-radius: var(--rad-md);
+    height: min(860px, calc(100vh - 2 * var(--sp-4)));
+    height: min(860px, calc(100dvh - 2 * var(--sp-4)));
     max-height: calc(100vh - 2 * var(--sp-4));
+    max-height: calc(100dvh - 2 * var(--sp-4));
     transform: translateY(8px) scale(0.985);
   }
   #film-sheet.visible .sheet-content { transform: translateY(0) scale(1); }
@@ -715,12 +731,11 @@ noscript {
 html.sheet-open { overflow: hidden; }
 
 .sheet-head {
+  flex: 1 0 auto;
   display: flex;
+  flex-direction: column;
   gap: var(--sp-4);
-  align-items: flex-start;
-  padding-right: var(--sp-8);
 }
-.sheet-head .poster-wrap { width: 96px; flex: none; }
 /* Focus pull: the poster opens soft and sharpens once it has loaded, like a
    projectionist finding focus. Also covers the moment the image is still
    arriving. .poster-wrap's overflow clips the scale. */
@@ -761,7 +776,7 @@ html.sheet-open { overflow: hidden; }
    filled the screen - the frame said more about the length of a synopsis
    than about the film. Now the frame is fixed, and the band takes up
    whatever the text leaves over: a short sheet gets a big lit screen, a long
-   one gets the 260px minimum and scrolls it away as you read.
+   one gets the band's minimum and scrolls it away as you read.
 
    The band is also where the poster's color lives - blurred past
    recognition, as light from the film - and the only place: the backdrop
@@ -771,40 +786,21 @@ html.sheet-open { overflow: hidden; }
    glow fades into the card before the title, so no text ever sits on it:
    the --ink-4 metadata lines are already at the 4.5:1 floor on the plain
    card. */
-.sheet-content {
-  display: flex;
-  flex-direction: column;
-  height: 92dvh;
-  padding-top: 0;
-}
-@media (min-width: 640px) {
-  .sheet-content { height: min(860px, calc(100vh - 2 * var(--sp-4))); }
-}
-@media (max-width: 639.98px) {
-  .sheet-grab {
-    position: absolute;
-    top: var(--sp-2);
-    left: 50%;
-    margin: 0 0 0 -18px;
-    z-index: 2;
-  }
-}
-.sheet-close { z-index: 2; }
+/* A flex column so .sheet-head can grow into the frame's spare height. Flex
+   children don't collapse margins, so every child here sets its own - see
+   .sheet-empty. */
 .sheet-body { flex: 1 0 auto; display: flex; flex-direction: column; }
-.sheet-head {
-  flex: 1 0 auto;
-  flex-direction: column;
-  align-items: stretch;
-  gap: var(--sp-4);
-  padding-right: 0;
-}
 .sheet-hero {
   position: relative;
   flex: 1 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* 260px on a normal phone, down to 180px on a short one (32dvh of a 568px
+     screen), where a fixed 260 pushed the showtimes below the fold even with
+     the synopsis clamped. */
   min-height: 260px;
+  min-height: clamp(180px, 32dvh, 260px);
   margin: 0 calc(-1 * var(--sp-5));
   padding: var(--sp-8) 0 var(--sp-5);
   overflow: hidden;
@@ -862,6 +858,7 @@ html.sheet-open { overflow: hidden; }
   z-index: 1;
   width: 132px;
   width: min(calc(100cqh * 2 / 3), 62cqw, 260px);
+  flex: none;
   /* --shadow-button, not --shadow-panel: the band clips at its edge, and the
      panel shadow reaches ~44px below the poster against 20px of padding, so
      it was cut off into a hard line across the bottom of the band - on a
@@ -895,24 +892,21 @@ html.sheet-open { overflow: hidden; }
 }
 .sheet-link:hover { color: var(--ink-1); }
 
-/* "leer más": drawn as the same underlined text link as "ver tráiler", so it
-   reads as tappable at rest. Only shown when the clamp below actually cut
-   something - see fitSynopsisToggle(). */
+/* "leer más" is a .sheet-link too, so it reads as tappable at rest exactly
+   like "ver tráiler" and follows it if that ever changes; this is only the
+   button reset. Shown only when the clamp below actually cut something -
+   see fitSynopsisToggle(). */
 .sheet-more {
   display: block;
   width: fit-content;
-  text-align: left;
   margin: var(--sp-1) 0 0;
   padding: 0;
-  font-size: 12.5px;
-  color: var(--ink-2);
+  text-align: left;
   background: none;
-  border: none;
-  border-bottom: 1px solid currentColor;
+  border-width: 0 0 1px;
   border-radius: 0;
   cursor: pointer;
 }
-.sheet-more:hover { color: var(--ink-1); }
 .sheet-synopsis:not(.expanded) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -935,6 +929,7 @@ html.sheet-open { overflow: hidden; }
   font-feature-settings: "tnum" 1;
 }
 .sheet-empty {
+  margin: 0;
   font-size: 13px;
   color: var(--ink-4);
 }

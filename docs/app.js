@@ -1200,22 +1200,36 @@
       syn.textContent = film.synopsis;
       frag.appendChild(syn);
 
-      // On a phone the synopsis is clamped to four lines, so the showtimes -
-      // what most visitors opened the sheet for - land above the fold even
-      // for the longest synopses. The toggle starts hidden and
-      // fitSynopsisToggle() reveals it only when the clamp actually cut
-      // something, which never happens on desktop, where there is no clamp.
+      // The synopsis is clamped to four lines, so the showtimes - what most
+      // visitors opened the sheet for - land above the fold even for the
+      // longest synopses. The toggle starts hidden and fitSynopsisToggle()
+      // reveals it only when the clamp actually cut something.
       var more = document.createElement("button");
       more.type = "button";
-      more.className = "sheet-more";
+      more.className = "sheet-link sheet-more";
       more.hidden = true;
       more.textContent = "leer más";
       more.setAttribute("aria-expanded", "false");
       more.setAttribute("aria-controls", "sheet-synopsis");
       more.addEventListener("click", function () {
+        // The band is flex-grown into whatever the text leaves over, so
+        // without this the poster would shrink as the synopsis opens and
+        // grow back as it closes, sliding the text under the reader's eyes.
+        // Pinned at its current height on the first tap, the sheet simply
+        // scrolls further instead.
+        // Measure before touching flex: once it stops growing, the band
+        // collapses to its minimum (size containment gives it no content
+        // height), and that is what a later read would see.
+        if (!hero.style.height) {
+          var bandHeight = hero.getBoundingClientRect().height;
+          hero.style.flex = "none";
+          hero.style.height = bandHeight + "px";
+        }
         var open = syn.classList.toggle("expanded");
         more.textContent = open ? "leer menos" : "leer más";
         more.setAttribute("aria-expanded", String(open));
+        // The width may have changed while it was open (a rotated phone).
+        if (!open) fitSynopsisToggle();
       });
       frag.appendChild(more);
     }
@@ -1329,7 +1343,7 @@
   }
 
   // Measured rather than guessed from character counts: whether four lines
-  // cut the text depends on the phone's width and font. Needs the sheet
+  // cut the text depends on the sheet's width and the font. Needs the sheet
   // visible to have a layout to measure.
   function fitSynopsisToggle() {
     var syn = els.sheetBody.querySelector(".sheet-synopsis");
@@ -1410,9 +1424,17 @@
     window.addEventListener("popstate", function () {
       if (!sheet.hidden) closeFilmSheet(true);
     });
-    // A rotated phone can cross the breakpoint the clamp lives behind.
+    // A new width re-wraps the synopsis, which can change whether four lines
+    // cut it. Once per frame: fitSynopsisToggle() forces a layout, and mobile
+    // toolbars fire resize in bursts.
+    var fitQueued = false;
     window.addEventListener("resize", function () {
-      if (!sheet.hidden) fitSynopsisToggle();
+      if (sheet.hidden || fitQueued) return;
+      fitQueued = true;
+      requestAnimationFrame(function () {
+        fitQueued = false;
+        if (!sheet.hidden) fitSynopsisToggle();
+      });
     });
   }
 
