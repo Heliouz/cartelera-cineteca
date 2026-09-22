@@ -32,6 +32,11 @@
   --btn-fill-hover: #000000;
   --btn-ink: #ffffff;
 
+  /* The soft chip: .buy-btn. A tint of ink rather than a solid, so it reads
+     as a button at rest on a phone without outweighing the row it sits in. */
+  --chip-fill: rgba(0, 0, 0, 0.065);
+  --chip-fill-press: rgba(0, 0, 0, 0.13);
+
   /* Ko-fi, held at the same value in both themes — see .kofi-btn-full. */
   --kofi-fill: #cf5b59;
   --kofi-fill-hover: #bf4f4d;
@@ -117,6 +122,9 @@
   --btn-fill: #eaeaea;
   --btn-fill-hover: #ffffff;
   --btn-ink: #111315;
+
+  --chip-fill: rgba(255, 255, 255, 0.10);
+  --chip-fill-press: rgba(255, 255, 255, 0.18);
 
   /* Sede colors, lifted — the one departure from "these are Cineteca's own
      values, not ours". #653090 on #111315 is 2.1:1 and #28724F is 2.8:1;
@@ -1404,11 +1412,47 @@ a.lb-badge:focus-visible {
   align-items: flex-end;
   gap: var(--sp-2);
 }
+/* A soft-filled chip, not a .pill-btn. Repeated on every row, the solid ink
+   pill outweighed the time, title and poster the visitor is actually
+   scanning. The fill alone has to say "button" — this is a phone-first page,
+   so nothing here may depend on :hover. :active is the tap feedback. */
 .buy-btn {
-  padding: 9px 16px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  padding: 0 12px 0 14px;
+  border-radius: var(--rad-pill);
+  background: var(--chip-fill);
+  color: var(--ink-1);
   font-size: 12px;
-  min-height: 44px;
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
 }
+/* Keeps the 44px touch target the old pill had, around a 32px chip. */
+.buy-btn::before {
+  content: "";
+  position: absolute;
+  inset: -6px -4px;
+}
+.buy-btn:active {
+  background: var(--chip-fill-press);
+  transform: scale(0.97);
+}
+.buy-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-strong);
+}
+@media (hover: hover) {
+  .buy-btn:hover { background: var(--chip-fill-press); }
+}
+.buy-arrow { font-size: 11px; color: var(--ink-3); }
 .sede-empty {
   padding: var(--sp-4) 0;
   font-size: 12.5px;
@@ -1491,7 +1535,6 @@ a.lb-badge:focus-visible {
 
 @media (max-width: 420px) {
   .show-row-actions { align-items: center; }
-  .buy-btn { padding: 9px 13px; font-size: 11.5px; }
 }
 
 /* Small phones (iPhone SE 1st gen, compact Androids): the sede control is

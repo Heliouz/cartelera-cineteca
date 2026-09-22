@@ -853,9 +853,14 @@
     actions.className = "show-row-actions";
 
     var buyBtn = document.createElement("a");
-    buyBtn.className = "pill-btn buy-btn";
+    buyBtn.className = "buy-btn";
     bindTicketLink(buyBtn, film, st);
     buyBtn.textContent = "boletos";
+    var arrow = document.createElement("span");
+    arrow.className = "buy-arrow";
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = "↗";
+    buyBtn.appendChild(arrow);
     if (isPast) buyBtn.tabIndex = -1;
     actions.appendChild(buyBtn);
     row.appendChild(actions);
