@@ -37,7 +37,10 @@ jobs:
           TZ: America/Mexico_City
         run: python scraper/scrape.py
 
-      - name: commit schedule.json if changed
+      # docs/p/ holds one link-preview page per film (scraper/previews.py).
+      # schedule.json's generated_at moves every run, so checking it alone is
+      # enough to know there is something to commit; the pages ride along.
+      - name: commit schedule.json and previews if changed
         run: |
           if git diff --quiet -- docs/data/schedule.json; then
             echo "no changes"
@@ -45,7 +48,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/schedule.json
+          git add docs/data/schedule.json docs/p
           git commit -m "actualizar cartelera $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
           # A commit landing between checkout and push would otherwise fail the
           # run outright; schedule.json is generated, so rebasing onto whatever

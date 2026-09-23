@@ -19,6 +19,7 @@ from datetime import datetime
 import requests
 
 import letterboxd
+import previews
 from parsing import (
     TZ,
     build_buy_url,
@@ -228,6 +229,13 @@ def validate_schedule(data):
     for film in films:
         for key in ("id", "title", "poster", "official_url", "showtimes"):
             _check(key in film, f"film {film.get('id')} missing required key {key}")
+        # Optional: set only when a page was written for the film, and the
+        # frontend links to it verbatim, so it must be that film's own page.
+        preview = film.get("preview")
+        _check(
+            preview is None or preview == previews.preview_path(film.get("id")),
+            f"film {film.get('id')}: preview does not address its own page",
+        )
         # Optional, so an older cached schedule.json still validates. When it is
         # there it has to address a Letterboxd film page and carry a score the
         # badge can actually draw.
@@ -255,6 +263,25 @@ def validate_schedule(data):
                 buy_url is None or buy_url == build_buy_url(st["sede"], sid),
                 f"session {sid}: buy_url does not address its own sede and session",
             )
+
+
+def write_schedule(data, path):
+    """Atomically replace schedule.json: a temp file, a round-trip check, then
+    a rename, so a crash mid-write can never leave live data half-written.
+
+    LF on purpose: a hand run on Windows must produce the same bytes the Linux
+    scraper does, or the next data commit is a whole-file diff.
+    """
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    tmp_path = path + ".tmp"
+    with open(tmp_path, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+    with open(tmp_path, "r", encoding="utf-8") as f:
+        json.load(f)  # round-trip check before it goes live
+
+    os.replace(tmp_path, path)
 
 
 def scrape_one_film(film_id, cinemas_csv, date_lookup):
@@ -402,16 +429,24 @@ def run():
         log.error("abort: validation failed: %s", exc)
         sys.exit(1)
 
-    os.makedirs(os.path.dirname(DATA_PATH), exist_ok=True)
-    tmp_path = DATA_PATH + ".tmp"
-    with open(tmp_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-        f.write("\n")
+    # Link-preview pages, one per film: after the data has passed its gate, so
+    # a run that aborts on the data leaves none behind, and before
+    # schedule.json is written, so each film can say whether it has one. The
+    # share button links to p/<id>/ only when `preview` is set and to ?film=
+    # otherwise, so it never hands out a page that doesn't exist.
+    # write_previews() sets `preview` itself and never raises.
+    previews.write_previews(films)
 
-    with open(tmp_path, "r", encoding="utf-8") as f:
-        json.load(f)  # round-trip check before it goes live
+    # Validated again, because `preview` didn't exist the first time and
+    # shareUrl() uses it verbatim. Failing here means write_previews() has a
+    # bug; the pages it wrote stay behind, but nothing points at them.
+    try:
+        validate_schedule(data)
+    except ScheduleInvalid as exc:
+        log.error("abort: validation failed after previews: %s", exc)
+        sys.exit(1)
 
-    os.replace(tmp_path, DATA_PATH)
+    write_schedule(data, DATA_PATH)
 
     total_showtimes = sum(len(f["showtimes"]) for f in films)
     log.info(

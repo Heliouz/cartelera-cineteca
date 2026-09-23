@@ -550,9 +550,16 @@
 
   // The link a share hands over is the film and nothing else - never the
   // sharer's own day, sede or search, which describe their browsing and not
-  // what they meant to send.
+  // what they meant to send. It points at the film's preview page (`preview`,
+  // p/<id>/), whose og: tags carry the title and poster: link unfurlers never
+  // run JavaScript, so ?film= alone only ever previews as the generic card.
+  // The page forwards people straight on to ?film=. The scraper sets
+  // `preview` only for films whose page it actually wrote, so a film without
+  // one - or an older cached schedule.json - falls back to ?film=, which
+  // always resolves, rather than to a page that might 404.
   function shareUrl(film) {
-    return location.origin + location.pathname + "?film=" + encodeURIComponent(film.id);
+    var path = film.preview || "?film=" + encodeURIComponent(film.id);
+    return new URL(path, location.href).href;
   }
 
   function syncUrl() {
@@ -1360,9 +1367,8 @@
 
   var shareToastTimer = null;
 
-  // Link previews can't carry the film: unfurlers never run JavaScript, so
-  // every URL here previews as the same og.png. The message text is the only
-  // place the film shows up before the friend taps.
+  // Names the film outright, so the message still says what it is where the
+  // preview doesn't draw (a film without a page, an app that shows no cards).
   function shareText(film) {
     return film.title + " — en la Cineteca Nacional";
   }
