@@ -136,6 +136,8 @@
     els.sheetBody = els.filmSheet ? els.filmSheet.querySelector(".sheet-body") : null;
     els.sheetContent = els.filmSheet ? els.filmSheet.querySelector(".sheet-content") : null;
     els.sheetClose = els.filmSheet ? els.filmSheet.querySelector(".sheet-close") : null;
+    els.sheetShare = els.filmSheet ? els.filmSheet.querySelector(".sheet-share") : null;
+    els.shareToast = qs("share-toast");
     els.appRoot = qs("app");
     els.buyModal = qs("buy-modal");
     els.topBar = qs("top-bar");
@@ -544,6 +546,13 @@
     if (s.film) params.set("film", s.film);
     var qsStr = params.toString();
     return location.pathname + (qsStr ? "?" + qsStr : "");
+  }
+
+  // The link a share hands over is the film and nothing else - never the
+  // sharer's own day, sede or search, which describe their browsing and not
+  // what they meant to send.
+  function shareUrl(film) {
+    return location.origin + location.pathname + "?film=" + encodeURIComponent(film.id);
   }
 
   function syncUrl() {
@@ -1342,6 +1351,101 @@
     return frag;
   }
 
+  // ---------- sharing ----------
+
+  // Sharing sends the film, never a single screening. Sharing a screening was
+  // built - a picker, an `f=` param, a note on landing - and removed: it put
+  // a decision in front of every share, and people settle the time in the
+  // chat anyway ("¿la de las 7 en Xoco?"). See CLAUDE.md.
+
+  var shareToastTimer = null;
+
+  // Link previews can't carry the film: unfurlers never run JavaScript, so
+  // every URL here previews as the same og.png. The message text is the only
+  // place the film shows up before the friend taps.
+  function shareText(film) {
+    return film.title + " — en la Cineteca Nacional";
+  }
+
+  // Called straight from the click, so the share sheet and the clipboard both
+  // still have the user activation they require.
+  function shareFilm(film) {
+    var text = shareText(film);
+    var url = shareUrl(film);
+
+    // The native sheet on phones, where it's the way people pass things on.
+    // On a desktop it's Windows' or macOS's share dialog, which is a detour
+    // from what someone at a keyboard wants: the text on their clipboard.
+    var coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+    if (coarse && navigator.share) {
+      navigator.share({ text: text, url: url }).catch(function (err) {
+        if (err && err.name === "AbortError") return; // the visitor backed out
+        copyShare(text + "\n" + url);
+      });
+      return;
+    }
+    copyShare(text + "\n" + url);
+  }
+
+  function copyShare(payload) {
+    function fallback() {
+      // execCommand is deprecated but still the only copy that works outside
+      // a secure context or where the async clipboard is refused.
+      var ta = document.createElement("textarea");
+      ta.value = payload;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      els.sheetContent.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (e) {
+        ok = false;
+      }
+      ta.remove();
+      els.sheetShare.focus();
+      showShareToast(ok ? "enlace copiado" : "no se pudo copiar el enlace");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(payload).then(function () {
+        showShareToast("enlace copiado");
+      }, fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  function showShareToast(text) {
+    var toast = els.shareToast;
+    if (!toast) return;
+    toast.textContent = text;
+    toast.hidden = false;
+    requestAnimationFrame(function () {
+      toast.classList.add("visible");
+    });
+    announce(text);
+    clearTimeout(shareToastTimer);
+    shareToastTimer = setTimeout(hideShareToast, 1800);
+  }
+
+  function hideShareToast() {
+    var toast = els.shareToast;
+    if (!toast) return;
+    clearTimeout(shareToastTimer);
+    toast.classList.remove("visible");
+    toast.hidden = true;
+  }
+
+  function bindShareButton() {
+    if (!els.sheetShare) return;
+    els.sheetShare.addEventListener("click", function () {
+      var film = findFilm(state.film);
+      if (film) shareFilm(film);
+    });
+  }
+
   // Measured rather than guessed from character counts: whether four lines
   // cut the text depends on the sheet's width and the font. Needs the sheet
   // visible to have a layout to measure.
@@ -1357,6 +1461,7 @@
     var sheet = els.filmSheet;
     if (!sheet) return;
     sheetTriggerEl = document.activeElement;
+    hideShareToast();
     state.film = film.id;
     els.sheetBody.innerHTML = "";
     els.sheetBody.appendChild(buildFilmSheetBody(film));
@@ -1385,6 +1490,7 @@
       return;
     }
     sheetPushedState = false;
+    hideShareToast();
     sheet.classList.remove("visible");
     document.documentElement.classList.remove("sheet-open");
     if (els.appRoot) els.appRoot.inert = false;
@@ -1402,6 +1508,7 @@
   function bindFilmSheetEvents() {
     var sheet = els.filmSheet;
     if (!sheet) return;
+    bindShareButton();
 
     if (els.sheetClose) {
       els.sheetClose.addEventListener("click", function () {

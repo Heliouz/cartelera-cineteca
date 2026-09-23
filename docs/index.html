@@ -28,8 +28,11 @@
 <!-- Synchronous and ahead of the stylesheet on purpose: it puts data-theme on
      <html> before anything paints. Loading it with app.js at the end of <body>
      would flash the light palette first. -->
+<!-- ?v= on the stylesheet and app.js: Pages caches assets for ten minutes,
+     so after a deploy a visitor can get the new markup with the old CSS. Bump
+     both whenever index.html starts depending on a CSS or JS change. -->
 <script src="theme.js"></script>
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css?v=20260922.3" />
 </head>
 <body>
 <noscript>
@@ -208,7 +211,14 @@
 <div id="film-sheet" hidden role="dialog" aria-modal="true" aria-labelledby="film-sheet-title">
   <div class="sheet-backdrop" aria-hidden="true"></div>
   <div class="sheet-content">
-    <div class="sheet-grab" aria-hidden="true"></div>
+    <!-- Mirrors the close button: page chrome, not content, and a corner
+         apart from it so a missed tap can't dismiss the sheet. -->
+    <button class="icon-btn sheet-share" type="button" aria-label="compartir">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div id="share-toast" class="share-toast" hidden></div>
     <button class="icon-btn sheet-close" type="button" aria-label="cerrar">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -238,7 +248,7 @@
   </div>
 </div>
 
-<script src="app.js"></script>
+<script src="app.js?v=20260922.3"></script>
 <!-- Cloudflare Web Analytics -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "128d928c27f449e19fcff13cc20df783"}'></script>
 <!-- End Cloudflare Web Analytics -->

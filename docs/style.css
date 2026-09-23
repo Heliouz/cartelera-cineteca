@@ -696,17 +696,6 @@ noscript {
   opacity: 1;
   transform: translateY(0);
 }
-.sheet-grab {
-  position: absolute;
-  top: var(--sp-2);
-  left: 50%;
-  z-index: 2;
-  width: 36px;
-  height: 4px;
-  margin-left: -18px;
-  border-radius: var(--rad-pill);
-  background: var(--ink-border);
-}
 .sheet-close {
   position: absolute;
   top: var(--sp-4);
@@ -725,7 +714,6 @@ noscript {
     transform: translateY(8px) scale(0.985);
   }
   #film-sheet.visible .sheet-content { transform: translateY(0) scale(1); }
-  .sheet-grab { display: none; }
 }
 
 html.sheet-open { overflow: hidden; }
@@ -970,6 +958,35 @@ html.sheet-open { overflow: hidden; }
   font-feature-settings: "tnum" 1;
 }
 .time-chip-sede { font-size: 11px; color: var(--ink-4); }
+/* ---------- sharing ---------- */
+
+.sheet-share {
+  position: absolute;
+  top: var(--sp-4);
+  left: var(--sp-4);
+  z-index: 2;
+}
+
+/* "enlace copiado", beside the button that copied it. */
+.share-toast {
+  position: absolute;
+  top: var(--sp-4);
+  left: calc(var(--sp-4) + 34px + var(--sp-2));
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--rad-pill);
+  background: var(--btn-fill);
+  color: var(--btn-ink);
+  font-size: 12px;
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.share-toast.visible { opacity: 1; }
 
 /* ---------- film index (por película) ---------- */
 
