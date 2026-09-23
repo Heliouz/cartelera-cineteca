@@ -138,6 +138,7 @@
     els.sheetClose = els.filmSheet ? els.filmSheet.querySelector(".sheet-close") : null;
     els.sheetShare = els.filmSheet ? els.filmSheet.querySelector(".sheet-share") : null;
     els.shareToast = qs("share-toast");
+    els.shareMenu = qs("share-menu");
     els.appRoot = qs("app");
     els.buyModal = qs("buy-modal");
     els.topBar = qs("top-bar");
@@ -1364,13 +1365,121 @@
   // built - a picker, an `f=` param, a note on landing - and removed: it put
   // a decision in front of every share, and people settle the time in the
   // chat anyway ("¿la de las 7 en Xoco?"). See CLAUDE.md.
+  //
+  // What the share button does add is a tone: the composer (#share-menu)
+  // opens on the plain message, and picking a vibe swaps in a message from
+  // that vibe's bank. It changes the words, never what the link points
+  // at. {t} is the film's title.
+
+  var SHARE_VIBES = [
+    {
+      id: "romantico",
+      emoji: "❤️",
+      label: "romántico",
+      phrases: [
+        "pasan {t} en la Cineteca y pensé en ti",
+        "podría ser una buena cita: {t}",
+        "tú, yo, unas palomitas y {t} en la Cineteca",
+        "me dieron ganas de ver {t} contigo",
+        "vi {t} en la cartelera y me acordé de ti",
+        "creo que {t} te podría gustar",
+        "{t} suena a plan para dos",
+        "podría ser nuestra próxima película: {t}",
+        "esta me recordó a ti: {t}",
+        "guardé {t} para verla contigo",
+        "se me antojó ver {t} ... pero contigo",
+        "{t} y luego un café (o dos)",
+        "me encantaría ver {t} contigo en la Cineteca",
+      ],
+    },
+    {
+      id: "amigos",
+      emoji: "🍿",
+      label: "amigos",
+      phrases: [
+        "para cuando por fin coincidamos: {t}",
+        "podría ser nuestra próxima salida: {t}",
+        "nos debemos una ida al cine: {t}",
+        "hace mucho que no vamos al cine. {t}, en la Cineteca",
+        "{t} y luego un sushi (2x1 idealmente)",
+        "para que el «hay que vernos» deje de ser mentira: {t}",
+        "llevamos meses diciendo «a ver cuándo». {t}",
+        "salir a ver {t} cuenta como vida social, ¿no?",
+        "{t} y luego a criticarla como si supiéramos",
+        "{t}, y a la salida fingimos que entendimos el final",
+        "mi plan de hoy era dormir, pero {t}",
+        "{t}, para hablar de algo que no sea el trabajo",
+        "{t}: dos horas sin ver el celular, a ver si aguantamos",
+        "quien llegue tarde a {t} paga las palomitas",
+      ],
+    },
+    {
+      id: "cinefilo",
+      emoji: "🎬",
+      label: "cinéfilo",
+      // Deliberately mamador: the cinephile as a knowing meme, one notch past
+      // sincere. Still plain lowercase, and a comment on the film, not an ask.
+      phrases: [
+        "ya llevo tres críticas leídas de {t} y está en la Cineteca",
+        "{t} en la Cineteca. no, no es lo mismo verla en Stremio",
+        "{t} en la Cineteca. yo llevo la tote bag de Mubi",
+        "hay películas que se ven y películas que se viven: {t}, en la Cineteca",
+        "{t} en la Cineteca, quien se salga antes de los créditos no entendió nada",
+        "{t} en pantalla grande, como dios manda",
+        "{t} en la Cineteca y después discusión en grupos",
+        "en la TV no se aprecia bien la fotografía. {t}, en la Cineteca",
+        "{t} en la Cineteca. el Letterboxd no se va a llenar solo",
+        "{t} en la Cineteca. la meta de 365 películas del año no se va a cumplir sola",
+      ],
+    },
+    {
+      id: "familia",
+      emoji: "👪",
+      label: "familia",
+      phrases: [
+        "plan familiar que no es ir a Costco: {t}",
+        "{t}, para variarle a la comida del domingo",
+        "a ver si esta vez nadie se duerme a la mitad: {t}",
+        "como cuando íbamos al cine: {t}",
+        "hace mucho que no salimos al cine en familia: {t}",
+        "prometo no preguntar a qué hora nos vamos: {t}",
+        "esta sí se puede ver en familia: {t}",
+        "a ver si esta vez llegamos antes de que empiece: {t}",
+        "esta vez sin pelear por el control: {t}",
+        "ahora me toca invitar a mí: {t}",
+        "sin quejas por los subtítulos, por favor: {t}",
+        "prometo no spoilear el final: {t}",
+        "{t}, con palomitas de las grandes, como antes",
+        "como cuando nos tocaba escoger película el domingo: {t}",
+        "{t}, para salir de la casa aunque sea un rato",
+      ],
+    },
+  ];
 
   var shareToastTimer = null;
+
+  // The composer's state, reset every time it opens: no vibe is the plain
+  // message. `phrase` is an index into the vibe's bank, kept so "otra frase"
+  // never lands on the one already showing.
+  var shareMenu = { vibe: null, phrase: -1 };
+
+  function isCoarsePointer() {
+    return !!(window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
+  }
 
   // Names the film outright, so the message still says what it is where the
   // preview doesn't draw (a film without a page, an app that shows no cards).
   function shareText(film) {
-    return film.title + " — en la Cineteca Nacional";
+    var vibe = shareMenu.vibe;
+    if (!vibe) return film.title + " en la Cineteca Nacional";
+    return vibe.phrases[shareMenu.phrase].replace("{t}", film.title);
+  }
+
+  function pickPhrase(vibe, avoid) {
+    var n = vibe.phrases.length;
+    if (n < 2) return 0;
+    var i = Math.floor(Math.random() * (n - 1));
+    return avoid >= 0 && i >= avoid ? i + 1 : i;
   }
 
   // Called straight from the click, so the share sheet and the clipboard both
@@ -1382,8 +1491,7 @@
     // The native sheet on phones, where it's the way people pass things on.
     // On a desktop it's Windows' or macOS's share dialog, which is a detour
     // from what someone at a keyboard wants: the text on their clipboard.
-    var coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
-    if (coarse && navigator.share) {
+    if (isCoarsePointer() && navigator.share) {
       navigator.share({ text: text, url: url }).catch(function (err) {
         if (err && err.name === "AbortError") return; // the visitor backed out
         copyShare(text + "\n" + url);
@@ -1394,6 +1502,7 @@
   }
 
   function copyShare(payload) {
+    var done = shareMenu.vibe ? "mensaje copiado" : "enlace copiado";
     function fallback() {
       // execCommand is deprecated but still the only copy that works outside
       // a secure context or where the async clipboard is refused.
@@ -1412,11 +1521,11 @@
       }
       ta.remove();
       els.sheetShare.focus();
-      showShareToast(ok ? "enlace copiado" : "no se pudo copiar el enlace");
+      showShareToast(ok ? done : "no se pudo copiar el enlace");
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(payload).then(function () {
-        showShareToast("enlace copiado");
+        showShareToast(done);
       }, fallback);
     } else {
       fallback();
@@ -1444,11 +1553,124 @@
     toast.hidden = true;
   }
 
+  function renderSharePreview() {
+    var menu = els.shareMenu;
+    var film = findFilm(state.film);
+    if (!menu || !film) return;
+    menu.querySelector(".share-preview-text").textContent = shareText(film);
+    menu.querySelector(".share-reroll").hidden = !shareMenu.vibe;
+    var buttons = menu.querySelectorAll(".vibe-btn");
+    for (var i = 0; i < buttons.length; i++) {
+      var on = !!shareMenu.vibe && buttons[i].getAttribute("data-vibe") === shareMenu.vibe.id;
+      buttons[i].setAttribute("aria-pressed", on ? "true" : "false");
+    }
+  }
+
+  function openShareMenu() {
+    var menu = els.shareMenu;
+    if (!menu) return;
+    hideShareToast();
+    shareMenu.vibe = null;
+    shareMenu.phrase = -1;
+    // "copiar" at a keyboard, where the send goes to the clipboard; the
+    // native sheet on phones.
+    menu.querySelector(".share-send").textContent =
+      isCoarsePointer() && navigator.share ? "compartir" : "copiar";
+    renderSharePreview();
+    menu.hidden = false;
+    requestAnimationFrame(function () {
+      menu.classList.add("visible");
+    });
+    els.sheetShare.setAttribute("aria-expanded", "true");
+    var first = menu.querySelector(".vibe-btn");
+    if (first) first.focus();
+  }
+
+  function closeShareMenu(restoreFocus) {
+    var menu = els.shareMenu;
+    if (!menu || menu.hidden) return;
+    menu.classList.remove("visible");
+    menu.hidden = true;
+    els.sheetShare.setAttribute("aria-expanded", "false");
+    if (restoreFocus) els.sheetShare.focus();
+  }
+
+  function buildVibeButtons() {
+    var row = els.shareMenu.querySelector(".vibe-row");
+    SHARE_VIBES.forEach(function (vibe) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "vibe-btn";
+      btn.setAttribute("data-vibe", vibe.id);
+      btn.setAttribute("aria-pressed", "false");
+      var emoji = document.createElement("span");
+      emoji.className = "vibe-emoji";
+      emoji.setAttribute("aria-hidden", "true");
+      emoji.textContent = vibe.emoji;
+      var label = document.createElement("span");
+      label.className = "vibe-label";
+      label.textContent = vibe.label;
+      btn.appendChild(emoji);
+      btn.appendChild(label);
+      btn.addEventListener("click", function () {
+        // A second tap on the chosen vibe goes back to the plain message.
+        if (shareMenu.vibe === vibe) {
+          shareMenu.vibe = null;
+          shareMenu.phrase = -1;
+        } else {
+          shareMenu.vibe = vibe;
+          shareMenu.phrase = pickPhrase(vibe, -1);
+        }
+        renderSharePreview();
+      });
+      row.appendChild(btn);
+    });
+  }
+
   function bindShareButton() {
     if (!els.sheetShare) return;
+    if (!els.shareMenu) {
+      // No composer in the markup (an old cached index.html): share plainly.
+      els.sheetShare.addEventListener("click", function () {
+        var film = findFilm(state.film);
+        if (film) shareFilm(film);
+      });
+      return;
+    }
+    var menu = els.shareMenu;
+    buildVibeButtons();
+
     els.sheetShare.addEventListener("click", function () {
+      if (menu.hidden) openShareMenu();
+      else closeShareMenu(true);
+    });
+    menu.querySelector(".share-reroll").addEventListener("click", function () {
+      if (!shareMenu.vibe) return;
+      shareMenu.phrase = pickPhrase(shareMenu.vibe, shareMenu.phrase);
+      renderSharePreview();
+    });
+    menu.querySelector(".share-send").addEventListener("click", function () {
       var film = findFilm(state.film);
-      if (film) shareFilm(film);
+      if (!film) return;
+      // Hidden, never emptied: this click's own target lives in the menu.
+      closeShareMenu(true);
+      shareFilm(film);
+    });
+
+    // A tap anywhere else in the sheet closes the menu (the sheet's own
+    // outside-click handler only looks past .sheet-content, so this one
+    // doesn't compete with it).
+    document.addEventListener("click", function (ev) {
+      if (menu.hidden) return;
+      if (menu.contains(ev.target) || els.sheetShare.contains(ev.target)) return;
+      closeShareMenu(false);
+    });
+    // Bound before the sheet's own Escape handler, so one Escape closes the
+    // menu and leaves the sheet open.
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key !== "Escape" || menu.hidden || ev.defaultPrevented) return;
+      ev.preventDefault();
+      closeShareMenu(true);
     });
   }
 
@@ -1468,6 +1690,7 @@
     if (!sheet) return;
     sheetTriggerEl = document.activeElement;
     hideShareToast();
+    closeShareMenu(false);
     state.film = film.id;
     els.sheetBody.innerHTML = "";
     els.sheetBody.appendChild(buildFilmSheetBody(film));
@@ -1497,6 +1720,7 @@
     }
     sheetPushedState = false;
     hideShareToast();
+    closeShareMenu(false);
     sheet.classList.remove("visible");
     document.documentElement.classList.remove("sheet-open");
     if (els.appRoot) els.appRoot.inert = false;

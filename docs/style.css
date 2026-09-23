@@ -76,6 +76,11 @@
   --shadow-panel:   0 1px 3px rgba(0, 0, 0, 0.05), 0 12px 32px rgba(0, 0, 0, 0.10);
   --shadow-medallion: 0 1px 2px rgba(0, 0, 0, 0.08);
 
+  /* A plane laid over the film sheet: the share composer. White on white
+     needs the shadow to separate it; dark gets a lighter plane instead. */
+  --bg-raised: #ffffff;
+  --shadow-raised: 0 1px 3px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.14);
+
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-in-out: cubic-bezier(0.45, 0.05, 0.55, 0.95);
   --dur-fast: 150ms;
@@ -137,6 +142,11 @@
 
   --chip-fill: rgba(255, 255, 255, 0.10);
   --chip-fill-press: rgba(255, 255, 255, 0.18);
+
+  /* A black shadow vanishes on #1c1f23, so elevation here is a lighter
+     plane one rung above --bg-card, plus a much deeper shadow. */
+  --bg-raised: #272b30;
+  --shadow-raised: 0 1px 3px rgba(0, 0, 0, 0.4), 0 16px 40px rgba(0, 0, 0, 0.55);
 
   /* A near-black card already turns added color into light, so the poster
      needs only a light push here. */
@@ -987,6 +997,123 @@ html.sheet-open { overflow: hidden; }
   transition: opacity var(--dur-fast) var(--ease-out);
 }
 .share-toast.visible { opacity: 1; }
+
+/* The composer, hung under the share button. It opens on the plain message,
+   so a tone is optional; see SHARE_VIBES in app.js. */
+.share-menu {
+  position: absolute;
+  top: calc(var(--sp-4) + 34px + var(--sp-2));
+  left: var(--sp-4);
+  z-index: 4;
+  width: min(340px, calc(100% - 2 * var(--sp-4)));
+  padding: var(--sp-4);
+  background: var(--bg-raised);
+  border: 1px solid var(--ink-border-soft);
+  border-radius: var(--rad-lg);
+  box-shadow: var(--shadow-raised);
+  text-align: left;
+  opacity: 0;
+  transform: translateY(-4px);
+  transform-origin: top left;
+  transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.share-menu[hidden] { display: none; }
+.share-menu.visible { opacity: 1; transform: translateY(0); }
+
+.share-menu-title {
+  margin: 0 0 var(--sp-1);
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+  color: var(--ink-1);
+}
+.share-menu-lede {
+  margin: 0 0 var(--sp-3);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+/* One row at every width: the row is the menu's one decision, and a wrap
+   would split it into a first and second choice. */
+.vibe-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+/* Filled at rest so each reads as tappable on a phone, where there's no
+   hover to find them with. No color when chosen - color means sede. */
+.vibe-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+  min-height: 56px;
+  padding: 8px 2px 6px;
+  border: 1px solid transparent;
+  border-radius: var(--rad-lg);
+  background: var(--chip-fill);
+  color: var(--ink-3);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+.vibe-btn:active { background: var(--chip-fill-press); }
+.vibe-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring-strong);
+}
+.vibe-btn[aria-pressed="true"] {
+  background: var(--chip-fill-press);
+  border-color: var(--ink-1);
+  color: var(--ink-1);
+}
+.vibe-emoji {
+  font-size: 20px;
+  line-height: 1;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+.vibe-label {
+  max-width: 100%;
+  font-size: 10.5px;
+  font-weight: var(--fw-medium);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* What will actually be sent, drawn as the message itself. */
+.share-preview {
+  margin-top: var(--sp-3);
+  padding: var(--sp-3);
+  border-radius: var(--rad-lg);
+  /* The chip tint, not --bg-edge: on the dark raised plane --bg-edge is
+     near-black and the message read as a hole in the menu. */
+  background: var(--chip-fill);
+}
+.share-preview-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-1);
+}
+.share-preview-link {
+  margin: var(--sp-1) 0 0;
+  font-size: 11px;
+  color: var(--ink-4);
+}
+
+.share-menu-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
 
 /* ---------- film index (por película) ---------- */
 

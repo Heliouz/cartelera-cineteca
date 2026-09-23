@@ -32,7 +32,7 @@
      so after a deploy a visitor can get the new markup with the old CSS. Bump
      both whenever index.html starts depending on a CSS or JS change. -->
 <script src="theme.js"></script>
-<link rel="stylesheet" href="style.css?v=20260922.3" />
+<link rel="stylesheet" href="style.css?v=20260922.5" />
 </head>
 <body>
 <noscript>
@@ -213,12 +213,32 @@
   <div class="sheet-content">
     <!-- Mirrors the close button: page chrome, not content, and a corner
          apart from it so a missed tap can't dismiss the sheet. -->
-    <button class="icon-btn sheet-share" type="button" aria-label="compartir">
+    <button class="icon-btn sheet-share" type="button" aria-label="compartir"
+            aria-haspopup="dialog" aria-expanded="false" aria-controls="share-menu">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
     <div id="share-toast" class="share-toast" hidden></div>
+    <!-- The share composer. Opens with the plain title-and-link message, so
+         sharing is still two taps; a tone is optional. The tone buttons are
+         built by app.js from SHARE_VIBES, next to their message bank. -->
+    <div id="share-menu" class="share-menu" hidden role="dialog" aria-labelledby="share-menu-title">
+      <p class="share-menu-title" id="share-menu-title">¿con qué intención?</p>
+      <p class="share-menu-lede">
+        elige un tono y te escribimos el mensaje. si no eliges, se va solo el
+        título con el enlace.
+      </p>
+      <div class="vibe-row" role="group" aria-label="tono de la invitación"></div>
+      <div class="share-preview">
+        <p class="share-preview-text" aria-live="polite"></p>
+        <p class="share-preview-link">+ enlace a la película</p>
+      </div>
+      <div class="share-menu-actions">
+        <button class="pill-btn secondary sm share-reroll" type="button" hidden>otra frase</button>
+        <button class="pill-btn sm share-send" type="button">compartir</button>
+      </div>
+    </div>
     <button class="icon-btn sheet-close" type="button" aria-label="cerrar">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -248,7 +268,7 @@
   </div>
 </div>
 
-<script src="app.js?v=20260922.4"></script>
+<script src="app.js?v=20260922.20"></script>
 <!-- Cloudflare Web Analytics -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "128d928c27f449e19fcff13cc20df783"}'></script>
 <!-- End Cloudflare Web Analytics -->
