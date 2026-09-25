@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T11:48:59.123036-06:00",
+  "generated_at": "2026-09-25T17:39:55.050025-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
     "2026-09-25",
@@ -135,22 +135,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00008162&cinemas=001",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "13:45",
-          "datetime": "2026-09-25T13:45:00-06:00",
-          "session_id": "14894",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14894&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "15:40",
-          "datetime": "2026-09-25T15:40:00-06:00",
-          "session_id": "14895",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14895&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-25",
@@ -401,14 +385,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-09-25",
-          "time": "14:00",
-          "datetime": "2026-09-25T14:00:00-06:00",
-          "session_id": "49940",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49940&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-09-26",
           "time": "14:00",
           "datetime": "2026-09-26T14:00:00-06:00",
@@ -530,14 +506,6 @@
         {
           "sede": "003",
           "date": "2026-09-25",
-          "time": "17:00",
-          "datetime": "2026-09-25T17:00:00-06:00",
-          "session_id": "49945",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49945&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-09-25",
           "time": "21:00",
           "datetime": "2026-09-25T21:00:00-06:00",
           "session_id": "49947",
@@ -622,14 +590,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-09-25",
-          "time": "16:45",
-          "datetime": "2026-09-25T16:45:00-06:00",
-          "session_id": "49963",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49963&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-09-26",
           "time": "16:45",
           "datetime": "2026-09-26T16:45:00-06:00",
@@ -692,14 +652,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009256&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-25",
-          "time": "16:15",
-          "datetime": "2026-09-25T16:15:00-06:00",
-          "session_id": "49937",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49937&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-09-26",
@@ -772,22 +724,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009278&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "13:15",
-          "datetime": "2026-09-25T13:15:00-06:00",
-          "session_id": "14922",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14922&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "16:00",
-          "datetime": "2026-09-25T16:00:00-06:00",
-          "session_id": "14923",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14923&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-25",
@@ -1102,30 +1038,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-09-25",
-          "time": "14:30",
-          "datetime": "2026-09-25T14:30:00-06:00",
-          "session_id": "52432",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52432&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "16:30",
-          "datetime": "2026-09-25T16:30:00-06:00",
-          "session_id": "52433",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52433&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-09-25",
-          "time": "16:30",
-          "datetime": "2026-09-25T16:30:00-06:00",
-          "session_id": "49955",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49955&visLang=1"
-        },
-        {
-          "sede": "002",
           "date": "2026-09-26",
           "time": "12:20",
           "datetime": "2026-09-26T12:20:00-06:00",
@@ -1420,30 +1332,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009555&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "14:10",
-          "datetime": "2026-09-25T14:10:00-06:00",
-          "session_id": "52435",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52435&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-09-25",
-          "time": "14:30",
-          "datetime": "2026-09-25T14:30:00-06:00",
-          "session_id": "49954",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49954&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "16:50",
-          "datetime": "2026-09-25T16:50:00-06:00",
-          "session_id": "52436",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52436&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-25",
@@ -1798,14 +1686,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-09-25",
-          "time": "15:30",
-          "datetime": "2026-09-25T15:30:00-06:00",
-          "session_id": "49971",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49971&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-09-26",
           "time": "15:30",
           "datetime": "2026-09-26T15:30:00-06:00",
@@ -1932,22 +1812,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009758&cinemas=001",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "13:00",
-          "datetime": "2026-09-25T13:00:00-06:00",
-          "session_id": "14912",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14912&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "16:00",
-          "datetime": "2026-09-25T16:00:00-06:00",
-          "session_id": "14913",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14913&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-25",
@@ -2137,22 +2001,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009787&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "13:20",
-          "datetime": "2026-09-25T13:20:00-06:00",
-          "session_id": "14883",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14883&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-09-25",
-          "time": "15:15",
-          "datetime": "2026-09-25T15:15:00-06:00",
-          "session_id": "49956",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49956&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-25",
@@ -2505,14 +2353,6 @@
         {
           "sede": "003",
           "date": "2026-09-25",
-          "time": "14:45",
-          "datetime": "2026-09-25T14:45:00-06:00",
-          "session_id": "49938",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49938&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-09-25",
           "time": "18:45",
           "datetime": "2026-09-25T18:45:00-06:00",
           "session_id": "49958",
@@ -2611,22 +2451,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009848&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "13:30",
-          "datetime": "2026-09-25T13:30:00-06:00",
-          "session_id": "52438",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52438&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "16:00",
-          "datetime": "2026-09-25T16:00:00-06:00",
-          "session_id": "52439",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52439&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-25",
@@ -2819,22 +2643,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009850&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "13:50",
-          "datetime": "2026-09-25T13:50:00-06:00",
-          "session_id": "52450",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52450&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "15:40",
-          "datetime": "2026-09-25T15:40:00-06:00",
-          "session_id": "52451",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52451&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-25",
@@ -3051,22 +2859,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009851&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "13:40",
-          "datetime": "2026-09-25T13:40:00-06:00",
-          "session_id": "52458",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52458&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "16:40",
-          "datetime": "2026-09-25T16:40:00-06:00",
-          "session_id": "52459",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52459&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-25",
@@ -3381,14 +3173,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-09-25",
-          "time": "14:30",
-          "datetime": "2026-09-25T14:30:00-06:00",
-          "session_id": "49948",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49948&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-09-26",
           "time": "14:30",
           "datetime": "2026-09-26T14:30:00-06:00",
@@ -3459,38 +3243,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009931&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "13:25",
-          "datetime": "2026-09-25T13:25:00-06:00",
-          "session_id": "14905",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14905&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "14:00",
-          "datetime": "2026-09-25T14:00:00-06:00",
-          "session_id": "52441",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52441&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "15:25",
-          "datetime": "2026-09-25T15:25:00-06:00",
-          "session_id": "14906",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14906&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "16:20",
-          "datetime": "2026-09-25T16:20:00-06:00",
-          "session_id": "52442",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52442&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-26",
@@ -3723,30 +3475,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009932&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "14:10",
-          "datetime": "2026-09-25T14:10:00-06:00",
-          "session_id": "52445",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52445&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "15:35",
-          "datetime": "2026-09-25T15:35:00-06:00",
-          "session_id": "14925",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14925&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "16:10",
-          "datetime": "2026-09-25T16:10:00-06:00",
-          "session_id": "52446",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52446&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-25",
@@ -4080,38 +3808,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009933&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "12:50",
-          "datetime": "2026-09-25T12:50:00-06:00",
-          "session_id": "52454",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52454&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "13:30",
-          "datetime": "2026-09-25T13:30:00-06:00",
-          "session_id": "14909",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14909&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "15:20",
-          "datetime": "2026-09-25T15:20:00-06:00",
-          "session_id": "52455",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52455&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "15:50",
-          "datetime": "2026-09-25T15:50:00-06:00",
-          "session_id": "14910",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14910&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-25",
@@ -4595,14 +4291,6 @@
         {
           "sede": "002",
           "date": "2026-09-25",
-          "time": "15:10",
-          "datetime": "2026-09-25T15:10:00-06:00",
-          "session_id": "52429",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52429&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
           "time": "17:20",
           "datetime": "2026-09-25T17:20:00-06:00",
           "session_id": "52430",
@@ -4797,38 +4485,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009936&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "13:00",
-          "datetime": "2026-09-25T13:00:00-06:00",
-          "session_id": "14918",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14918&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "14:50",
-          "datetime": "2026-09-25T14:50:00-06:00",
-          "session_id": "52426",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52426&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "15:00",
-          "datetime": "2026-09-25T15:00:00-06:00",
-          "session_id": "14919",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14919&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "17:00",
-          "datetime": "2026-09-25T17:00:00-06:00",
-          "session_id": "14920",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14920&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-09-25",
@@ -5259,30 +4915,6 @@
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009939&cinemas=001,002",
       "showtimes": [
         {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "14:15",
-          "datetime": "2026-09-25T14:15:00-06:00",
-          "session_id": "14928",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14928&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "15:00",
-          "datetime": "2026-09-25T15:00:00-06:00",
-          "session_id": "52462",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52462&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "16:05",
-          "datetime": "2026-09-25T16:05:00-06:00",
-          "session_id": "14929",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14929&visLang=1"
-        },
-        {
           "sede": "002",
           "date": "2026-09-26",
           "time": "11:10",
@@ -5485,14 +5117,6 @@
         {
           "sede": "003",
           "date": "2026-09-25",
-          "time": "16:00",
-          "datetime": "2026-09-25T16:00:00-06:00",
-          "session_id": "49941",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49941&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-09-25",
           "time": "18:15",
           "datetime": "2026-09-25T18:15:00-06:00",
           "session_id": "49950",
@@ -5642,22 +5266,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009958&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-25",
-          "time": "14:00",
-          "datetime": "2026-09-25T14:00:00-06:00",
-          "session_id": "49944",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49944&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-09-25",
-          "time": "16:30",
-          "datetime": "2026-09-25T16:30:00-06:00",
-          "session_id": "49953",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49953&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-25",
@@ -6164,22 +5772,6 @@
         {
           "sede": "002",
           "date": "2026-09-25",
-          "time": "13:00",
-          "datetime": "2026-09-25T13:00:00-06:00",
-          "session_id": "52422",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52422&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "15:30",
-          "datetime": "2026-09-25T15:30:00-06:00",
-          "session_id": "52423",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52423&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
           "time": "18:00",
           "datetime": "2026-09-25T18:00:00-06:00",
           "session_id": "52424",
@@ -6380,14 +5972,6 @@
         {
           "sede": "003",
           "date": "2026-09-25",
-          "time": "16:00",
-          "datetime": "2026-09-25T16:00:00-06:00",
-          "session_id": "49968",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49968&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-09-25",
           "time": "18:30",
           "datetime": "2026-09-25T18:30:00-06:00",
           "session_id": "49969",
@@ -6457,22 +6041,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010065&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "13:00",
-          "datetime": "2026-09-25T13:00:00-06:00",
-          "session_id": "52463",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52463&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-09-25",
-          "time": "17:00",
-          "datetime": "2026-09-25T17:00:00-06:00",
-          "session_id": "52464",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52464&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-09-25",
@@ -7093,22 +6661,6 @@
         {
           "sede": "001",
           "date": "2026-09-25",
-          "time": "14:00",
-          "datetime": "2026-09-25T14:00:00-06:00",
-          "session_id": "14915",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14915&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
-          "time": "16:30",
-          "datetime": "2026-09-25T16:30:00-06:00",
-          "session_id": "14916",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=14916&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-09-25",
           "time": "19:00",
           "datetime": "2026-09-25T19:00:00-06:00",
           "session_id": "14917",
@@ -7298,14 +6850,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010080&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-09-25",
-          "time": "15:00",
-          "datetime": "2026-09-25T15:00:00-06:00",
-          "session_id": "49973",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49973&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-10-01",
@@ -7682,6 +7226,89 @@
       "showtimes": [],
       "letterboxd": null,
       "preview": "p/HO00010121/"
+    },
+    {
+      "id": "HO00010128",
+      "title": "Una historia de Hong Gil-dong",
+      "original_title": "A Story of Hong Gil-dong",
+      "director": "Shin Dong-hun",
+      "cast": null,
+      "country": "Corea del Sur",
+      "year": 1967,
+      "duration_min": 66,
+      "classification": "C",
+      "synopsis": "Después de ser expulsado de su hogar, Hong Gil-dong, el hijo ilegítimo de un alto funcionario en la dinastía Joseon, comienza un camino de descubrimiento que lo llevará a crear su propio grupo de bandidos encargados de robar a los ricos para dar a los pobres. Esta cinta, considerada el primer largometraje animado de Corea del Sur, estuvo perdida por años hasta el 2008, cuando el Archivo de Cine Coreano (KOFA) realizó una restauración digital a partir de una copia de 16 mm proveniente de Japón.",
+      "raw_meta": "(A Story of Hong Gil-dong, Corea del Sur, 1967, Dur.: 66 mins.)",
+      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010128?referenceScheme=Cinema&allowPlaceHolder",
+      "trailer_youtube_id": null,
+      "ciclo": null,
+      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010128&cinemas=003",
+      "showtimes": [],
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-story-of-hong-gil-dong-1967/",
+        "rating": 3.3
+      },
+      "preview": "p/HO00010128/"
+    },
+    {
+      "id": "HO00010129",
+      "title": "Hopi y Chadol Bawi",
+      "original_title": "Hopi y Chadol Bawi",
+      "director": "Shin Dong-hun",
+      "cast": null,
+      "country": "Corea del Sur",
+      "year": 1967,
+      "duration_min": 74,
+      "classification": "C",
+      "synopsis": "Tras el éxito de A Story of Hong Gil-dong, se planeó una secuela, pero el director Shin Dong-hun tuvo desacuerdos con la productora, por lo que optó por hacer una especie de spin off centrado en dos personajes secundarios. La película es una emocionante y colorida aventura inspirada en el arquetipo del espadachín errante, que cuenta la historia de Hopi, un ladrón que cambia de vida después de recibir entrenamiento en artes marciales y, finalmente, defiende al país del ataque de un general.",
+      "raw_meta": "(Hopi y Chadol Bawi, Corea del Sur,, 1967, Dur.: 74 mins.)",
+      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010129?referenceScheme=Cinema&allowPlaceHolder",
+      "trailer_youtube_id": null,
+      "ciclo": null,
+      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010129&cinemas=003",
+      "showtimes": [],
+      "letterboxd": null,
+      "preview": "p/HO00010129/"
+    },
+    {
+      "id": "HO00010130",
+      "title": "Kongjui & Patchui",
+      "original_title": "Kongjui & Patchui",
+      "director": "Gang Tae-ung",
+      "cast": null,
+      "country": "Corea del Sur",
+      "year": 1977,
+      "duration_min": 75,
+      "classification": "C",
+      "synopsis": "Tras el segundo matrimonio de su padre, la joven Kongju comienza a vivir con una cruel madrastra y su hermanastra Patchui, quienes la maltratan. Para impedir que asista a una fiesta familiar, Kongju recibirá una serie de tareas imposibles que ponen a prueba su voluntad y determinación, valores importantes para la cultura popular del período Joseon. Basado en un cuento tradicional coreano, Kongjui & Patchui, es el único filme coreano en stop-motion previo al 2000, junto a Heungbu and Nolbu (1967).",
+      "raw_meta": "(Kongjui & Patchui, Corea del Sur, 1977, Dur.: 75 mins.)",
+      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010130?referenceScheme=Cinema&allowPlaceHolder",
+      "trailer_youtube_id": null,
+      "ciclo": null,
+      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010130&cinemas=003",
+      "showtimes": [],
+      "letterboxd": null,
+      "preview": "p/HO00010130/"
+    },
+    {
+      "id": "HO00010131",
+      "title": "Animación coreana el aliento de la imágenes",
+      "original_title": "Programa de cortometrajes",
+      "director": "Choe Jeonghyeon, Lee Yong-bae, Kim Hyeon-ju, An Jae-hun y Han Hye-jin,",
+      "cast": null,
+      "country": null,
+      "year": 1983,
+      "duration_min": 34,
+      "classification": "C",
+      "synopsis": "Este programa de cortometrajes presenta seis películas de destacades cineastas: Choe Jeonghyeon, Lee Yong-bae, Kim Hyeon-ju, An Jae-hun y Han Hye-jin, figuras imprescindibles del cine independiente y de animación clásica de Corea del Sur. Los filmes abordan metafórica y directamente las tensiones sociales de la época, mostrando el dolor y la búsqueda de la libertad bajo los regímenes políticos de la Corea de los años 80. Entre los títulos se encuentran Insect Net (1983), Cicatriz (1984) y Cuando llegue ese día (1987), la trilogía de Choe Jeonghyeon. Destaca también Still Unbroken (1994), ganador del Premio a la Excelencia en la primera edición de El Festival de Cortometrajes de Seúl en 1994.",
+      "raw_meta": "(Programa de cortometrajes, 1983-1998, Dur.: 34 mins.)",
+      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010131?referenceScheme=Cinema&allowPlaceHolder",
+      "trailer_youtube_id": null,
+      "ciclo": null,
+      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010131&cinemas=003",
+      "showtimes": [],
+      "letterboxd": null,
+      "preview": "p/HO00010131/"
     }
   ]
 }
