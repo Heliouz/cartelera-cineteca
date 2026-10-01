@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T17:14:37.291650-06:00",
+  "generated_at": "2026-10-01T17:26:33.282020-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
     "2026-10-01",
@@ -438,38 +438,6 @@
       ],
       "letterboxd": null,
       "preview": "p/HO00008666/"
-    },
-    {
-      "id": "HO00009139",
-      "title": "El príncipe de Nanawa",
-      "original_title": "El príncipe de Nanawa",
-      "director": "Clarisa Navas",
-      "cast": "Ángel Stegmayer Caballero",
-      "country": "Argentina-Paraguay-Colombia-Alemania",
-      "year": 2025,
-      "duration_min": 212,
-      "classification": "B",
-      "synopsis": "Una pasarela divide Argentina de Paraguay. En el aire flota el guaraní y el castellano.\r\nLa gente corre alborotada traficando de todo. En medio de ese ritmo vertiginoso, conocí a Ángel, a sus nueve años. Al escucharlo hablar me emocionó tanto que prometí volver a verlo.\r\nUn año después regresé y comenzamos a hacer una película juntos. Después de diez años, el paso de la niñez a la adolescencia se mueve en estas imágenes entre preguntas, ausencias y una potencia única de vivir y resistir contra todo.",
-      "raw_meta": "(El príncipe de Nanawa, Argentina-Paraguay-Colombia-Alemania, 2025, Dur.: 212 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009139?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": "apErqeR1IqU",
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009139&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-01",
-          "time": "16:45",
-          "datetime": "2026-10-01T16:45:00-06:00",
-          "session_id": "50196",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50196&visLang=1"
-        }
-      ],
-      "letterboxd": {
-        "url": "https://letterboxd.com/film/the-prince-of-nanawa/",
-        "rating": 3.9
-      },
-      "preview": "p/HO00009139/"
     },
     {
       "id": "HO00009256",
@@ -1152,14 +1120,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009555&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-01",
-          "time": "16:50",
-          "datetime": "2026-10-01T16:50:00-06:00",
-          "session_id": "52723",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52723&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-01",
