@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-10-05T19:34:36.188005-06:00",
+  "generated_at": "2026-10-06T12:49:47.814376-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
-    "2026-10-05",
     "2026-10-06",
     "2026-10-07",
     "2026-10-08",
     "2026-10-09",
     "2026-10-10",
-    "2026-10-11"
+    "2026-10-11",
+    "2026-10-12"
   ],
   "sedes": {
     "003": {
@@ -32,58 +32,6 @@
   },
   "films": [
     {
-      "id": "HO00001156",
-      "title": "El hombre que vio demasiado",
-      "original_title": "El hombre que vio demasiado",
-      "director": "Trisha Ziff",
-      "cast": null,
-      "country": "México",
-      "year": 2015,
-      "duration_min": 88,
-      "classification": "B15",
-      "synopsis": "Documental que rinde homenaje a una de las miradas más influyentes del fotoperiodismo mexicano: Enrique Metinides. Ignorado por mucho tiempo, ahora es reconocido como el creador de una singular estética sensacionalista sumamente refinada, muy visible en los periódicos de nota roja de la segunda mitad del siglo XX.",
-      "raw_meta": "(El hombre que vio demasiado, México, 2015, Dur.: 88 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00001156?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00001156&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-08",
-          "time": "18:00",
-          "datetime": "2026-10-08T18:00:00-06:00",
-          "session_id": "49403",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49403&visLang=1"
-        }
-      ],
-      "letterboxd": {
-        "url": "https://letterboxd.com/film/the-man-who-saw-too-much/",
-        "rating": 3.7
-      },
-      "preview": "p/HO00001156/"
-    },
-    {
-      "id": "HO00008094",
-      "title": "Borrasca en las almas",
-      "original_title": "Borrasca en las almas",
-      "director": "Ismael Rodríguez",
-      "cast": "María Elena Marqués, Roberto Cañedo, Gustavo Rojo",
-      "country": "México",
-      "year": 1954,
-      "duration_min": 104,
-      "classification": "B",
-      "synopsis": "Martha está casada con Pablo, un maestro de escuela que bebe mucho. Alicia, hermana gemela de Martha, y que fue una mujer prostituida, tuvo relaciones con Pablo cuando su hermana y él todavía eran novios. Rogelio está enamorado de Martha y por casualidad Alicia lo aloja en su casa. Allí, él la corteja y le propone matrimonio, pero luego se entera de su pasado y rompe con ella.",
-      "raw_meta": "(Borrasca en las almas, México, 1954, Dur.: 104 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00008094?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00008094&cinemas=003",
-      "showtimes": [],
-      "letterboxd": null,
-      "preview": "p/HO00008094/"
-    },
-    {
       "id": "HO00008162",
       "title": "Jíkuri. Viaje al país de los Tarahumaras",
       "original_title": "Jíkuri. Viaje al país de los tarahumaras",
@@ -100,14 +48,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00008162&cinemas=001",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-05",
-          "time": "19:10",
-          "datetime": "2026-10-05T19:10:00-06:00",
-          "session_id": "15179",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15179&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-06",
@@ -267,14 +207,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-05",
-          "time": "19:00",
-          "datetime": "2026-10-05T19:00:00-06:00",
-          "session_id": "50418",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50418&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-07",
           "time": "19:00",
           "datetime": "2026-10-07T19:00:00-06:00",
@@ -305,22 +237,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009278&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-05",
-          "time": "19:20",
-          "datetime": "2026-10-05T19:20:00-06:00",
-          "session_id": "15191",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15191&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-05",
-          "time": "20:00",
-          "datetime": "2026-10-05T20:00:00-06:00",
-          "session_id": "50440",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50440&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-06",
@@ -435,14 +351,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-05",
-          "time": "21:00",
-          "datetime": "2026-10-05T21:00:00-06:00",
-          "session_id": "50426",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50426&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-07",
           "time": "17:00",
           "datetime": "2026-10-07T17:00:00-06:00",
@@ -481,14 +389,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009426&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-05",
-          "time": "20:10",
-          "datetime": "2026-10-05T20:10:00-06:00",
-          "session_id": "52944",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52944&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-06",
@@ -643,14 +543,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-05",
-          "time": "20:30",
-          "datetime": "2026-10-05T20:30:00-06:00",
-          "session_id": "50420",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50420&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-06",
           "time": "16:00",
           "datetime": "2026-10-06T16:00:00-06:00",
@@ -705,22 +597,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009562&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-05",
-          "time": "20:00",
-          "datetime": "2026-10-05T20:00:00-06:00",
-          "session_id": "50425",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50425&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-05",
-          "time": "20:40",
-          "datetime": "2026-10-05T20:40:00-06:00",
-          "session_id": "52952",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52952&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-06",
@@ -1101,14 +977,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-05",
-          "time": "20:45",
-          "datetime": "2026-10-05T20:45:00-06:00",
-          "session_id": "50419",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50419&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-06",
           "time": "14:30",
           "datetime": "2026-10-06T14:30:00-06:00",
@@ -1250,14 +1118,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-10-05",
-          "time": "20:50",
-          "datetime": "2026-10-05T20:50:00-06:00",
-          "session_id": "52977",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52977&visLang=1"
-        },
-        {
-          "sede": "002",
           "date": "2026-10-06",
           "time": "14:40",
           "datetime": "2026-10-06T14:40:00-06:00",
@@ -1376,14 +1236,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009875&cinemas=001",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-05",
-          "time": "20:00",
-          "datetime": "2026-10-05T20:00:00-06:00",
-          "session_id": "15174",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15174&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-06",
@@ -1734,14 +1586,6 @@
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009933&cinemas=001,002",
       "showtimes": [
         {
-          "sede": "002",
-          "date": "2026-10-05",
-          "time": "20:20",
-          "datetime": "2026-10-05T20:20:00-06:00",
-          "session_id": "52954",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52954&visLang=1"
-        },
-        {
           "sede": "001",
           "date": "2026-10-06",
           "time": "13:30",
@@ -1895,14 +1739,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-05",
-          "time": "21:00",
-          "datetime": "2026-10-05T21:00:00-06:00",
-          "session_id": "50447",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50447&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-06",
           "time": "21:00",
           "datetime": "2026-10-06T21:00:00-06:00",
@@ -1965,14 +1801,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009935&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-05",
-          "time": "19:30",
-          "datetime": "2026-10-05T19:30:00-06:00",
-          "session_id": "52972",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52972&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-06",
@@ -2042,14 +1870,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009936&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-05",
-          "time": "19:30",
-          "datetime": "2026-10-05T19:30:00-06:00",
-          "session_id": "52948",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52948&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-06",
@@ -2380,14 +2200,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-10-05",
-          "time": "20:50",
-          "datetime": "2026-10-05T20:50:00-06:00",
-          "session_id": "52984",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52984&visLang=1"
-        },
-        {
-          "sede": "002",
           "date": "2026-10-06",
           "time": "18:40",
           "datetime": "2026-10-06T18:40:00-06:00",
@@ -2610,38 +2422,6 @@
       "preview": "p/HO00010063/"
     },
     {
-      "id": "HO00010064",
-      "title": "El crimen del 3er piso",
-      "original_title": "LE CRIME DU 3e ÉTAGE",
-      "director": "Rémi Bezançon",
-      "cast": "Gilles Lellouche, Laetitia Casta, Guillaume Gallienne",
-      "country": "Francia",
-      "year": 2026,
-      "duration_min": 104,
-      "classification": "B",
-      "synopsis": "Colette, una profesora universitaria especialista en la obra de Alfred Hitchcock, sospecha que su vecino ha cometido un asesinato. Su esposo François, un escritor de novelas policíacas, al principio duda de su teoría, pero termina por dejarse llevar por la disparatada investigación de Colette. A medida que se acumulan las pistas y el misterio crece, la pareja se convierte en un inesperado dúo de detectives para descifrar si realmente ocurrió un crimen en el 3er piso. Un thriller ligero y magistralmente elaborado que sirve como homenaje al Maestro del Suspenso.",
-      "raw_meta": "(LE CRIME DU 3e ÉTAGE, Francia, 2026, Dur.: 104 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010064?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010064&cinemas=002",
-      "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-05",
-          "time": "20:30",
-          "datetime": "2026-10-05T20:30:00-06:00",
-          "session_id": "52982",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52982&visLang=1"
-        }
-      ],
-      "letterboxd": {
-        "url": "https://letterboxd.com/film/bazaar-murder-in-the-building/",
-        "rating": 3.1
-      },
-      "preview": "p/HO00010064/"
-    },
-    {
       "id": "HO00010065",
       "title": "Mary y Max SUB",
       "original_title": "Mary y Max  SUB",
@@ -2658,30 +2438,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010065&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-05",
-          "time": "19:40",
-          "datetime": "2026-10-05T19:40:00-06:00",
-          "session_id": "15183",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15183&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-05",
-          "time": "21:00",
-          "datetime": "2026-10-05T21:00:00-06:00",
-          "session_id": "52935",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52935&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-05",
-          "time": "21:00",
-          "datetime": "2026-10-05T21:00:00-06:00",
-          "session_id": "50445",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50445&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-10-06",
@@ -2954,66 +2710,6 @@
       "preview": "p/HO00010071/"
     },
     {
-      "id": "HO00010072",
-      "title": "Glass: A portrait of Philip in twelve parts",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
-      "classification": "C",
-      "synopsis": "El director nominado al Premio de la Academia, Scott Hicks (“Shine”) documenta un año lleno de acontecimientos en la carrera y vida personal del distinguido compositor clásico occidental Philip Glass mientras interactúa con varios amigos y colaboradores, entre los que se encuentran Chuck Close, Ravi Shankar y Martin Scorsese.",
-      "raw_meta": null,
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010072?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010072&cinemas=002",
-      "showtimes": [],
-      "letterboxd": null,
-      "preview": "p/HO00010072/"
-    },
-    {
-      "id": "HO00010073",
-      "title": "Sinéad O'Connor: Nothing Compares",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
-      "classification": "A",
-      "synopsis": "Sinéad O'Connor, Gay Byrne, John O'Connor\r\nSinopsis: Siguiendo la carrera de la cantante Sinéad O'Connor a través de su ascenso a la fama y cómo su personalidad iconoclasta la llevó a exiliarse de la corriente pop mainstream.",
-      "raw_meta": null,
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010073?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010073&cinemas=002",
-      "showtimes": [],
-      "letterboxd": null,
-      "preview": "p/HO00010073/"
-    },
-    {
-      "id": "HO00010074",
-      "title": "Cesária Évora",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
-      "classification": "C",
-      "synopsis": "La mundialmente reconocida cantante ganadora del Grammy Cesária Évora de Cabo Verde en un nuevo e íntimo documental. Con imágenes nunca antes vistas y conocimientos sobre la vida del cantante, la película sigue las luchas y el éxito de la Diva Descalza.",
-      "raw_meta": null,
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010074?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010074&cinemas=002",
-      "showtimes": [],
-      "letterboxd": null,
-      "preview": "p/HO00010074/"
-    },
-    {
       "id": "HO00010075",
       "title": "Digger",
       "original_title": "Digger",
@@ -3030,30 +2726,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010075&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-05",
-          "time": "19:30",
-          "datetime": "2026-10-05T19:30:00-06:00",
-          "session_id": "15186",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15186&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-05",
-          "time": "20:00",
-          "datetime": "2026-10-05T20:00:00-06:00",
-          "session_id": "52974",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52974&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-05",
-          "time": "20:30",
-          "datetime": "2026-10-05T20:30:00-06:00",
-          "session_id": "50444",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50444&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-06",
@@ -3677,38 +3349,6 @@
       "preview": "p/HO00010111/"
     },
     {
-      "id": "HO00010116",
-      "title": "Así llegó la noche",
-      "original_title": "ASÍ CHEGOU A NOITE",
-      "director": "Ángel Santos Touza",
-      "cast": "Denis Gómez, Violeta Gil, Miquel Insua, Alejandro Malvido, Fran Paredes",
-      "country": "España",
-      "year": 2025,
-      "duration_min": 122,
-      "classification": "B",
-      "synopsis": "Un escultor establece su taller en una apartada zona rural de la costa gallega. Poco a poco se aísla de su entorno, cortando todo contacto con amigos y familiares. Empieza a imaginar una nueva identidad. Un día, sin embargo, el pasado viene a su encuentro.",
-      "raw_meta": "(ASÍ CHEGOU A NOITE,, España, 2025, Dur.: 122 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010116?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010116&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-05",
-          "time": "20:00",
-          "datetime": "2026-10-05T20:00:00-06:00",
-          "session_id": "50394",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50394&visLang=1"
-        }
-      ],
-      "letterboxd": {
-        "url": "https://letterboxd.com/film/and-so-the-night-fell/",
-        "rating": 3.4
-      },
-      "preview": "p/HO00010116/"
-    },
-    {
       "id": "HO00010121",
       "title": "The upsetter: The life of music of Lee Scratch Per",
       "original_title": null,
@@ -3736,78 +3376,6 @@
       ],
       "letterboxd": null,
       "preview": "p/HO00010121/"
-    },
-    {
-      "id": "HO00010125",
-      "title": "Del rancho a la televisión",
-      "original_title": "Del rancho a la televisión",
-      "director": "Ismael Rodríguez",
-      "cast": "Luis Aguilar (José Antonio Rivera) / María Victoria (Graciela del Mar) / Chela Campos (Laura) / Carlos Orellana (don Cecilio) / Andrés Soler (don Pancho) / Emma Rodríguez (Irma) / Manuel Tamés \"Régulo\" / Francisco Fuentes \"Madaleno\" / Eufrosina García \"La Flaca\" (Juana) / Armando Arriola (maestro Solfa) / Carlota Solares (doña Refugio Escalera).",
-      "country": "México",
-      "year": 1952,
-      "duration_min": 100,
-      "classification": "B",
-      "synopsis": "Oriundo de Pungarabatirimícuaro, Michoacán, el ranchero José Antonio viaja a la capital para convertirse en cantante. Ya en la famosa radiodifusora XEW, fracasa cuando, por envidias de una cantante rival, Graciela, la orquesta toca demasiado alto. José Antonio se enamora de Laura, la hija discapacitada del velador de la estación, quien también es cantante. Con la ayuda de don Pancho, padre de Laura, José Antonio consigue triunfar como cantante en la radio y más tarde en la televisión. Graciela seduce al ranchero y lo narcotiza, por lo que no puede asistir a una cita con un empresario cubano que desea contratarlo. Finalmente, José Antonio corresponde al amor de Laura.",
-      "raw_meta": "(Del rancho a la televisión, México , 1952, Dur.: 100 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010125?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010125&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-06",
-          "time": "18:00",
-          "datetime": "2026-10-06T18:00:00-06:00",
-          "session_id": "50450",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50450&visLang=1"
-        }
-      ],
-      "letterboxd": null,
-      "preview": "p/HO00010125/"
-    },
-    {
-      "id": "HO00010126",
-      "title": "Faltas a la moral",
-      "original_title": "Faltas a la moral",
-      "director": "Ismael Rodríguez",
-      "cast": "Alberto Vázquez (Pancho) / Ana Martín (Chelo Godinez) / Juan Miranda (Juancho Miranda \"El Norteño\") / Evita Muñoz “Chachita” (Doña Cata \"La Pulques\") / Katy Jurado (Lilia) / Javier Ruán (Pepe) / Andrés Soler (agente) / José Ángel \"Ferrusquilla\" (cilindrero)",
-      "country": "México",
-      "year": 1969,
-      "duration_min": 85,
-      "classification": "B",
-      "synopsis": "Rogelio vuelve a su trabajo después de una prolongada ausencia debido a que perdió una mano. Su jefe Andrés, lo convierte en empleado de confianza. Rogelio está enamorado de Marta pero ella está casada con Pablo, un maestro de escuela, que es muy duro con sus alumnos y bebe mucho. Marta tiene una hermana gemela, Alicia, que es una prostituta que desea regenerarse. Pablo está enamorado de Alicia. Rogelio le propone matrimonio a Alicia sin conocer su pasado, pero al saberlo rompe el compromiso. Alicia cree que fue Marta quien se lo dijo y decide seducir a Pablo. Marta mata de un tiro a su hermana y Pablo de suicida.",
-      "raw_meta": "(Faltas a la moral, México, 1969, Dur.: 85 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010126?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010126&cinemas=003",
-      "showtimes": [],
-      "letterboxd": null,
-      "preview": "p/HO00010126/"
-    },
-    {
-      "id": "HO00010127",
-      "title": "Charla de Cine",
-      "original_title": "THE HONEYMOON KILLERS",
-      "director": "Leonard Kastle",
-      "cast": "Shirley Stoler (Martha Beck) / Tony Lo Bianco (Raymond Fernandez) / Mary Jane Higby (Janet Fay) / Doris Roberts (Bunny) / Kip McArdle (Delphine Downing) / Marilyn Chris (Myrtle Young) / Dortha Duckworth (mamá) / Barbara Cason (Evelyn Long) / Ann Harris (Doris)",
-      "country": "Estados Unidos",
-      "year": 1969,
-      "duration_min": 115,
-      "classification": "B15",
-      "synopsis": "Martha es una solitaria enfermera gorda que cuida de su invalida madre en Mobile, Alabama. Necesitada de amor, coloca un anuncio en un periódico y poco después recibe una carta de Ray Fernandez. Se encuentran y él le roba su dote. Martha mete a su madre en un asilo y sigue a Ray. Acepta hacerse pasar por su hermana para esquilmar a varias mujeres. Los consiguientes celos de Martha llevarán al asesinato. En Grand Rapids, Michigan, una señora es asesinada y su hijo ahogado en una lavadora de ropa. Ella piensa por un momento rendirse a la policía pero se da cuenta de que Ray jamás se entregará totalmente a ella, ni a ninguna otra mujer.",
-      "raw_meta": "(THE HONEYMOON KILLERS, Estados Unidos, 1969, Dur.: 115 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010127?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010127&cinemas=003",
-      "showtimes": [],
-      "letterboxd": {
-        "url": "https://letterboxd.com/film/the-honeymoon-killers/",
-        "rating": 3.6
-      },
-      "preview": "p/HO00010127/"
     },
     {
       "id": "HO00010129",
@@ -3855,14 +3423,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010130&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-05",
-          "time": "19:00",
-          "datetime": "2026-10-05T19:00:00-06:00",
-          "session_id": "50211",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50211&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-10-07",
