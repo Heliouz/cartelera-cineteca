@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T17:58:20.795257-06:00",
+  "generated_at": "2026-10-08T18:44:54.178301-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
     "2026-10-08",
@@ -31,38 +31,6 @@
     }
   },
   "films": [
-    {
-      "id": "HO00001156",
-      "title": "El hombre que vio demasiado",
-      "original_title": "El hombre que vio demasiado",
-      "director": "Trisha Ziff",
-      "cast": null,
-      "country": "México",
-      "year": 2015,
-      "duration_min": 88,
-      "classification": "B15",
-      "synopsis": "Documental que rinde homenaje a una de las miradas más influyentes del fotoperiodismo mexicano: Enrique Metinides. Ignorado por mucho tiempo, ahora es reconocido como el creador de una singular estética sensacionalista sumamente refinada, muy visible en los periódicos de nota roja de la segunda mitad del siglo XX.",
-      "raw_meta": "(El hombre que vio demasiado, México, 2015, Dur.: 88 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00001156?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00001156&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-08",
-          "time": "18:00",
-          "datetime": "2026-10-08T18:00:00-06:00",
-          "session_id": "49403",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=49403&visLang=1"
-        }
-      ],
-      "letterboxd": {
-        "url": "https://letterboxd.com/film/the-man-who-saw-too-much/",
-        "rating": 3.7
-      },
-      "preview": "p/HO00001156/"
-    },
     {
       "id": "HO00006972",
       "title": "Amor a la vuelta de la esquina",
@@ -1321,14 +1289,6 @@
       "showtimes": [
         {
           "sede": "001",
-          "date": "2026-10-08",
-          "time": "18:00",
-          "datetime": "2026-10-08T18:00:00-06:00",
-          "session_id": "15275",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15275&visLang=1"
-        },
-        {
-          "sede": "001",
           "date": "2026-10-09",
           "time": "13:00",
           "datetime": "2026-10-09T13:00:00-06:00",
@@ -1782,14 +1742,6 @@
         {
           "sede": "002",
           "date": "2026-10-08",
-          "time": "17:50",
-          "datetime": "2026-10-08T17:50:00-06:00",
-          "session_id": "53120",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53120&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-08",
           "time": "19:50",
           "datetime": "2026-10-08T19:50:00-06:00",
           "session_id": "53121",
@@ -1859,14 +1811,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009875&cinemas=001",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-08",
-          "time": "18:00",
-          "datetime": "2026-10-08T18:00:00-06:00",
-          "session_id": "15257",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15257&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-08",
@@ -2307,14 +2251,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009932&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-08",
-          "time": "17:30",
-          "datetime": "2026-10-08T17:30:00-06:00",
-          "session_id": "53500",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53500&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-08",
@@ -4072,14 +4008,6 @@
         {
           "sede": "002",
           "date": "2026-10-08",
-          "time": "18:00",
-          "datetime": "2026-10-08T18:00:00-06:00",
-          "session_id": "53118",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53118&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-08",
           "time": "20:30",
           "datetime": "2026-10-08T20:30:00-06:00",
           "session_id": "53119",
@@ -4197,14 +4125,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010065&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-08",
-          "time": "17:40",
-          "datetime": "2026-10-08T17:40:00-06:00",
-          "session_id": "15268",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15268&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-10-08",
@@ -4685,35 +4605,6 @@
       "preview": "p/HO00010065/"
     },
     {
-      "id": "HO00010071",
-      "title": "Patti Smith: Dream of life",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
-      "classification": "A",
-      "synopsis": "En esta ocasión se abordará la influencia de el genero punk en Estados Unidos, a través de la obra de la artista multidisciplinaria Patti Smith, así como su legado en la música contemporánea.",
-      "raw_meta": null,
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010071?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010071&cinemas=002",
-      "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-08",
-          "time": "18:00",
-          "datetime": "2026-10-08T18:00:00-06:00",
-          "session_id": "52765",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=52765&visLang=1"
-        }
-      ],
-      "letterboxd": null,
-      "preview": "p/HO00010071/"
-    },
-    {
       "id": "HO00010075",
       "title": "Digger",
       "original_title": "Digger",
@@ -4730,14 +4621,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010075&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-08",
-          "time": "17:45",
-          "datetime": "2026-10-08T17:45:00-06:00",
-          "session_id": "50383",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50383&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-08",
@@ -6921,15 +6804,15 @@
     {
       "id": "HO00010154",
       "title": "Charla Tin Tan: El Rey del Spanglish",
-      "original_title": null,
-      "director": null,
+      "original_title": "Charla Tin Tan El Rey del Spanglish",
+      "director": "Ilan Stavans,",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "México",
+      "year": 2026,
+      "duration_min": 120,
       "classification": "s/c",
       "synopsis": "Ilan Stavans, profesor del Amherst College sobre el tema Tin Tan: el rey del spanglish. El doctor Stavans tiene como uno de sus intereses principales el estudio de la lengua y la cultura. En lo que tiene que ver con el cine, ha publicado ensayos sobre Cantinflas y, especialmente, sobre Tin Tan.",
-      "raw_meta": null,
+      "raw_meta": "(Charla Tin Tan El Rey del Spanglish, México, 2026, Dur.: 120 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010154?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": null,
@@ -6950,15 +6833,15 @@
     {
       "id": "HO00010155",
       "title": "Charlas Minimalismo Estadounidense",
-      "original_title": null,
-      "director": null,
+      "original_title": "MINIMALISMO ESTADOUNIDENSE",
+      "director": "Scott Hicks",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Estados Unidos / Australia",
+      "year": 2007,
+      "duration_min": 119,
       "classification": "C",
       "synopsis": "Se hablará sobre uno de los representantes de la música clásica minimalista de los Estados Unidos, Philip Glass, desde su origen en Europa del Este, su obra y cómo fue adquiriendo su estilo propio.",
-      "raw_meta": null,
+      "raw_meta": "(MINIMALISMO ESTADOUNIDENSE, Estados Unidos / Australia, 2007, Dur.: 119 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010155?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": null,
@@ -6970,35 +6853,38 @@
     {
       "id": "HO00010156",
       "title": "Charlas Sinéad ó connor, gran voz activista",
-      "original_title": null,
-      "director": null,
+      "original_title": "SINÉAD O´CONNOR",
+      "director": "Kathryn Ferguson",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "GRAN VOZ ACTIVISTA, Reino Unido / Irlanda",
+      "year": 2022,
+      "duration_min": 97,
       "classification": "A",
       "synopsis": "Será la ocasión de hablar de esta cantante irlandesa que se caracterizó por tener una gran voz y por usarla a favor de las causas que apoyaba, así como de la influencia de su trabajo en la industria.",
-      "raw_meta": null,
+      "raw_meta": "(SINÉAD O´CONNOR, GRAN VOZ ACTIVISTA, Reino Unido / Irlanda, 2022, Dur.: 97 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010156?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010156&cinemas=002",
       "showtimes": [],
-      "letterboxd": null,
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/nothing-compares/",
+        "rating": 3.8
+      },
       "preview": "p/HO00010156/"
     },
     {
       "id": "HO00010157",
       "title": "Charlas La diva de los pies descalzos",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "original_title": "-LA DIVA DE LOS PIES DESCALZOS",
+      "director": "Ana Sofia Fonseca",
+      "cast": "PROYECCIÓN\n(Cesária Évora; Ana Sofia Fonseca, 94 min.)",
+      "country": "Portugal",
+      "year": 2022,
+      "duration_min": 94,
       "classification": "C",
       "synopsis": "Se conversará sobre la cantante de Cabo Verde, Cesárea, quien cantaba morna o coladeira, y su impacto en la cultura y tradición.",
-      "raw_meta": null,
+      "raw_meta": "(-LA DIVA DE LOS PIES DESCALZOS, Portugal, 2022, Dur.: 94 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010157?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": null,
@@ -7010,15 +6896,15 @@
     {
       "id": "HO00010158",
       "title": "Charlas El genio del DUB",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "original_title": "Charlas El genio del DUB -",
+      "director": "Adam Bhala Lough",
+      "cast": "Proyección:\n         (The upsetter: the life of music of Lee Scratch Perry; Ethan Higbee, Adam Bhala Lough, 95 min.)",
+      "country": "Estados Unidos",
+      "year": 2008,
+      "duration_min": 95,
       "classification": "C",
       "synopsis": "Se conversará sobre el músico jamaiquino creador del subgénero Dub, así como de su influencia en la producción musical de los grupos de su tiempo y su legado.",
-      "raw_meta": null,
+      "raw_meta": "(Charlas El genio del DUB -, Estados Unidos, 2008, Dur.: 95 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010158?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": null,
@@ -7039,15 +6925,15 @@
     {
       "id": "HO00010212",
       "title": "Presentación Editorial Programa Mensual Cineteca",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "original_title": "PRESENTACIÓN EDITORIAL NUEVO PROGRAMA MENSUAL DE CINETECA NACIONAL",
+      "director": "Gustavo E. Ramírez, Abel Muñoz Hénonin",
+      "cast": "Nelson Carro \nAbel Muñoz Hénonin\nBianca Ashanti \nGustavo E. Ramírez\nHugo Lara",
+      "country": "México",
+      "year": 2026,
+      "duration_min": 120,
       "classification": "s/c",
       "synopsis": "Surgido en 1974, el Programa Mensual de la Cineteca Nacional es la publicación cinematográfica en activo más antigua de México. En 2026, cambia de forma y\r\n\r\nvuelve al papel con un nuevo concepto: gráfica, memoria y reflexión para unir a la comunidad del cine.",
-      "raw_meta": null,
+      "raw_meta": "(PRESENTACIÓN EDITORIAL NUEVO PROGRAMA MENSUAL DE CINETECA NACIONAL, México, 2026, Dur.: 120 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010212?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": null,
