@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-10-17T16:44:23.394041-06:00",
+  "generated_at": "2026-10-18T10:24:33.637094-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
-    "2026-10-17",
     "2026-10-18",
     "2026-10-19",
     "2026-10-20",
     "2026-10-21",
     "2026-10-22",
-    "2026-10-23"
+    "2026-10-23",
+    "2026-10-24"
   ],
   "sedes": {
     "003": {
@@ -125,14 +125,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-17",
-          "time": "17:00",
-          "datetime": "2026-10-17T17:00:00-06:00",
-          "session_id": "50818",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50818&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-18",
           "time": "17:00",
           "datetime": "2026-10-18T17:00:00-06:00",
@@ -195,14 +187,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00008666&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "18:15",
-          "datetime": "2026-10-17T18:15:00-06:00",
-          "session_id": "50837",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50837&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-10-18",
@@ -295,7 +279,16 @@
       "trailer_youtube_id": null,
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00008866&cinemas=003",
-      "showtimes": [],
+      "showtimes": [
+        {
+          "sede": "003",
+          "date": "2026-10-24",
+          "time": "18:45",
+          "datetime": "2026-10-24T18:45:00-06:00",
+          "session_id": "51037",
+          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=51037&visLang=1"
+        }
+      ],
       "letterboxd": null,
       "preview": "p/HO00008866/"
     },
@@ -316,14 +309,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009278&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "20:45",
-          "datetime": "2026-10-17T20:45:00-06:00",
-          "session_id": "50828",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50828&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-18",
@@ -430,22 +415,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-17",
-          "time": "17:00",
-          "datetime": "2026-10-17T17:00:00-06:00",
-          "session_id": "50811",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50811&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "21:00",
-          "datetime": "2026-10-17T21:00:00-06:00",
-          "session_id": "50840",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50840&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-18",
           "time": "17:00",
           "datetime": "2026-10-18T17:00:00-06:00",
@@ -508,38 +477,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009426&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "16:30",
-          "datetime": "2026-10-17T16:30:00-06:00",
-          "session_id": "50817",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50817&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "17:10",
-          "datetime": "2026-10-17T17:10:00-06:00",
-          "session_id": "53589",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53589&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "18:30",
-          "datetime": "2026-10-17T18:30:00-06:00",
-          "session_id": "50812",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50812&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "19:40",
-          "datetime": "2026-10-17T19:40:00-06:00",
-          "session_id": "53588",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53588&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-18",
@@ -798,14 +735,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-17",
-          "time": "19:15",
-          "datetime": "2026-10-17T19:15:00-06:00",
-          "session_id": "50838",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50838&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-18",
           "time": "15:15",
           "datetime": "2026-10-18T15:15:00-06:00",
@@ -908,38 +837,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009562&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "16:30",
-          "datetime": "2026-10-17T16:30:00-06:00",
-          "session_id": "53562",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53562&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "18:00",
-          "datetime": "2026-10-17T18:00:00-06:00",
-          "session_id": "50831",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50831&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "18:30",
-          "datetime": "2026-10-17T18:30:00-06:00",
-          "session_id": "53561",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53561&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "20:50",
-          "datetime": "2026-10-17T20:50:00-06:00",
-          "session_id": "53560",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53560&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-18",
@@ -1206,14 +1103,6 @@
       "showtimes": [
         {
           "sede": "001",
-          "date": "2026-10-17",
-          "time": "18:00",
-          "datetime": "2026-10-17T18:00:00-06:00",
-          "session_id": "15812",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15812&visLang=1"
-        },
-        {
-          "sede": "001",
           "date": "2026-10-22",
           "time": "13:00",
           "datetime": "2026-10-22T13:00:00-06:00",
@@ -1323,14 +1212,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-17",
-          "time": "21:00",
-          "datetime": "2026-10-17T21:00:00-06:00",
-          "session_id": "50822",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50822&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-18",
           "time": "21:00",
           "datetime": "2026-10-18T21:00:00-06:00",
@@ -1393,14 +1274,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009790&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "19:00",
-          "datetime": "2026-10-17T19:00:00-06:00",
-          "session_id": "50834",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50834&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-10-18",
@@ -1472,14 +1345,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-17",
-          "time": "17:00",
-          "datetime": "2026-10-17T17:00:00-06:00",
-          "session_id": "50832",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50832&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-18",
           "time": "17:00",
           "datetime": "2026-10-18T17:00:00-06:00",
@@ -1539,14 +1404,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009875&cinemas=001",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "18:30",
-          "datetime": "2026-10-17T18:30:00-06:00",
-          "session_id": "15649",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15649&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-18",
@@ -1645,22 +1502,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-17",
-          "time": "16:15",
-          "datetime": "2026-10-17T16:15:00-06:00",
-          "session_id": "50825",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50825&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "20:00",
-          "datetime": "2026-10-17T20:00:00-06:00",
-          "session_id": "50829",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50829&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-18",
           "time": "16:15",
           "datetime": "2026-10-18T16:15:00-06:00",
@@ -1755,14 +1596,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009931&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "17:50",
-          "datetime": "2026-10-17T17:50:00-06:00",
-          "session_id": "53569",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53569&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-18",
@@ -1965,22 +1798,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-10-17",
-          "time": "18:10",
-          "datetime": "2026-10-17T18:10:00-06:00",
-          "session_id": "53597",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53597&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "20:10",
-          "datetime": "2026-10-17T20:10:00-06:00",
-          "session_id": "53596",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53596&visLang=1"
-        },
-        {
-          "sede": "002",
           "date": "2026-10-18",
           "time": "11:40",
           "datetime": "2026-10-18T11:40:00-06:00",
@@ -2173,22 +1990,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-10-17",
-          "time": "18:10",
-          "datetime": "2026-10-17T18:10:00-06:00",
-          "session_id": "53608",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53608&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "20:30",
-          "datetime": "2026-10-17T20:30:00-06:00",
-          "session_id": "53609",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53609&visLang=1"
-        },
-        {
-          "sede": "002",
           "date": "2026-10-18",
           "time": "13:10",
           "datetime": "2026-10-18T13:10:00-06:00",
@@ -2373,14 +2174,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-17",
-          "time": "20:30",
-          "datetime": "2026-10-17T20:30:00-06:00",
-          "session_id": "50841",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50841&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-18",
           "time": "14:15",
           "datetime": "2026-10-18T14:15:00-06:00",
@@ -2467,22 +2260,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009935&cinemas=002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "16:50",
-          "datetime": "2026-10-17T16:50:00-06:00",
-          "session_id": "53586",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53586&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "19:20",
-          "datetime": "2026-10-17T19:20:00-06:00",
-          "session_id": "53585",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53585&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-18",
@@ -2600,30 +2377,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009936&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "16:40",
-          "datetime": "2026-10-17T16:40:00-06:00",
-          "session_id": "53580",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53580&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "17:40",
-          "datetime": "2026-10-17T17:40:00-06:00",
-          "session_id": "15645",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15645&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "18:50",
-          "datetime": "2026-10-17T18:50:00-06:00",
-          "session_id": "53579",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53579&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-18",
@@ -3106,14 +2859,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-10-17",
-          "time": "19:50",
-          "datetime": "2026-10-17T19:50:00-06:00",
-          "session_id": "53568",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53568&visLang=1"
-        },
-        {
-          "sede": "002",
           "date": "2026-10-18",
           "time": "19:50",
           "datetime": "2026-10-18T19:50:00-06:00",
@@ -3158,38 +2903,6 @@
         "rating": 4.1
       },
       "preview": "p/HO00009958/"
-    },
-    {
-      "id": "HO00009960",
-      "title": "La copia perfecta",
-      "original_title": "L’AFFAIRE BOJARSKI",
-      "director": "Jean-Paul Salomé",
-      "cast": "Reda Kateb, Sara Giraudeau, Bastien Bouillon",
-      "country": "Francia",
-      "year": 2025,
-      "duration_min": 128,
-      "classification": "B15",
-      "synopsis": "Basado en hechos reales en la Francia de la posguerra, el filme cuenta la historia de Jan Bojarski, un refugiado polaco, que acaparó los titulares al convertirse en el falsificador más ingenioso de su tiempo. Durante años, Bojarski fabricó billetes tan perfectos que engañaban al mismísimo Banco de Francia. Su trabajo atrajo la atención del comisario Mattei, y lo que empezó como un secreto muy bien guardado se convirtió en una persecución obsesiva. El relato sumerge al espectador en las fascinantes técnicas artesanales de un auténtico artista de la falsificación que llevaba una peligrosa doble vida con repercusiones personales.",
-      "raw_meta": "(L’AFFAIRE BOJARSKI, Francia, 2025, Dur.: 128 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009960?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": null,
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009960&cinemas=001",
-      "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "18:15",
-          "datetime": "2026-10-17T18:15:00-06:00",
-          "session_id": "15642",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15642&visLang=1"
-        }
-      ],
-      "letterboxd": {
-        "url": "https://letterboxd.com/film/the-money-maker-2025/",
-        "rating": 3.5
-      },
-      "preview": "p/HO00009960/"
     },
     {
       "id": "HO00010059",
@@ -3448,62 +3161,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010065&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "17:00",
-          "datetime": "2026-10-17T17:00:00-06:00",
-          "session_id": "53602",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53602&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "18:05",
-          "datetime": "2026-10-17T18:05:00-06:00",
-          "session_id": "15631",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15631&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "18:30",
-          "datetime": "2026-10-17T18:30:00-06:00",
-          "session_id": "50836",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50836&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "19:00",
-          "datetime": "2026-10-17T19:00:00-06:00",
-          "session_id": "53601",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53601&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "20:00",
-          "datetime": "2026-10-17T20:00:00-06:00",
-          "session_id": "15632",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15632&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "21:00",
-          "datetime": "2026-10-17T21:00:00-06:00",
-          "session_id": "53600",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53600&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "21:00",
-          "datetime": "2026-10-17T21:00:00-06:00",
-          "session_id": "50842",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50842&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-18",
@@ -3898,54 +3555,6 @@
       "showtimes": [
         {
           "sede": "001",
-          "date": "2026-10-17",
-          "time": "17:00",
-          "datetime": "2026-10-17T17:00:00-06:00",
-          "session_id": "15635",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15635&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "17:30",
-          "datetime": "2026-10-17T17:30:00-06:00",
-          "session_id": "53594",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53594&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "17:45",
-          "datetime": "2026-10-17T17:45:00-06:00",
-          "session_id": "50821",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50821&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "19:30",
-          "datetime": "2026-10-17T19:30:00-06:00",
-          "session_id": "15636",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15636&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "20:20",
-          "datetime": "2026-10-17T20:20:00-06:00",
-          "session_id": "53593",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53593&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "20:30",
-          "datetime": "2026-10-17T20:30:00-06:00",
-          "session_id": "50845",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50845&visLang=1"
-        },
-        {
-          "sede": "001",
           "date": "2026-10-18",
           "time": "12:00",
           "datetime": "2026-10-18T12:00:00-06:00",
@@ -4282,14 +3891,6 @@
       "showtimes": [
         {
           "sede": "001",
-          "date": "2026-10-17",
-          "time": "17:15",
-          "datetime": "2026-10-17T17:15:00-06:00",
-          "session_id": "15622",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15622&visLang=1"
-        },
-        {
-          "sede": "001",
           "date": "2026-10-18",
           "time": "12:20",
           "datetime": "2026-10-18T12:20:00-06:00",
@@ -4384,30 +3985,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010078&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "16:30",
-          "datetime": "2026-10-17T16:30:00-06:00",
-          "session_id": "50824",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50824&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "19:40",
-          "datetime": "2026-10-17T19:40:00-06:00",
-          "session_id": "15623",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15623&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "21:00",
-          "datetime": "2026-10-17T21:00:00-06:00",
-          "session_id": "50844",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50844&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-18",
@@ -4554,14 +4131,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-17",
-          "time": "20:00",
-          "datetime": "2026-10-17T20:00:00-06:00",
-          "session_id": "50815",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50815&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-18",
           "time": "16:00",
           "datetime": "2026-10-18T16:00:00-06:00",
@@ -4656,30 +4225,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010094&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "17:20",
-          "datetime": "2026-10-17T17:20:00-06:00",
-          "session_id": "53573",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53573&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "19:30",
-          "datetime": "2026-10-17T19:30:00-06:00",
-          "session_id": "53572",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53572&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "19:50",
-          "datetime": "2026-10-17T19:50:00-06:00",
-          "session_id": "15646",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15646&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-10-18",
@@ -4930,30 +4475,6 @@
       "showtimes": [
         {
           "sede": "002",
-          "date": "2026-10-17",
-          "time": "17:40",
-          "datetime": "2026-10-17T17:40:00-06:00",
-          "session_id": "53565",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53565&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "19:10",
-          "datetime": "2026-10-17T19:10:00-06:00",
-          "session_id": "53564",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53564&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "20:40",
-          "datetime": "2026-10-17T20:40:00-06:00",
-          "session_id": "53582",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53582&visLang=1"
-        },
-        {
-          "sede": "002",
           "date": "2026-10-18",
           "time": "12:20",
           "datetime": "2026-10-18T12:20:00-06:00",
@@ -5181,46 +4702,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010096&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "17:00",
-          "datetime": "2026-10-17T17:00:00-06:00",
-          "session_id": "15626",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15626&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "18:00",
-          "datetime": "2026-10-17T18:00:00-06:00",
-          "session_id": "53574",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53574&visLang=1"
-        },
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "19:00",
-          "datetime": "2026-10-17T19:00:00-06:00",
-          "session_id": "15627",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15627&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-17",
-          "time": "19:00",
-          "datetime": "2026-10-17T19:00:00-06:00",
-          "session_id": "50833",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=50833&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-17",
-          "time": "20:00",
-          "datetime": "2026-10-17T20:00:00-06:00",
-          "session_id": "53592",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53592&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-18",
@@ -5749,7 +5230,16 @@
       "trailer_youtube_id": null,
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010134&cinemas=003",
-      "showtimes": [],
+      "showtimes": [
+        {
+          "sede": "003",
+          "date": "2026-10-24",
+          "time": "21:00",
+          "datetime": "2026-10-24T21:00:00-06:00",
+          "session_id": "51036",
+          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=51036&visLang=1"
+        }
+      ],
       "letterboxd": null,
       "preview": "p/HO00010134/"
     },
@@ -5929,14 +5419,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010220&cinemas=001",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-17",
-          "time": "18:00",
-          "datetime": "2026-10-17T18:00:00-06:00",
-          "session_id": "15639",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15639&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-18",
