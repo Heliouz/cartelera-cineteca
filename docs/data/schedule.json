@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T16:46:56.230138-06:00",
+  "generated_at": "2026-10-22T17:43:36.401165-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
     "2026-10-22",
@@ -170,14 +170,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00008486&cinemas=003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-22",
-          "time": "17:00",
-          "datetime": "2026-10-22T17:00:00-06:00",
-          "session_id": "51008",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=51008&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-10-23",
@@ -591,22 +583,6 @@
         {
           "sede": "003",
           "date": "2026-10-22",
-          "time": "16:30",
-          "datetime": "2026-10-22T16:30:00-06:00",
-          "session_id": "51013",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=51013&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-22",
-          "time": "17:10",
-          "datetime": "2026-10-22T17:10:00-06:00",
-          "session_id": "53843",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53843&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-22",
           "time": "18:30",
           "datetime": "2026-10-22T18:30:00-06:00",
           "session_id": "51023",
@@ -921,14 +897,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009562&cinemas=002,003",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-22",
-          "time": "16:30",
-          "datetime": "2026-10-22T16:30:00-06:00",
-          "session_id": "53831",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53831&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-22",
@@ -2264,14 +2232,6 @@
         {
           "sede": "002",
           "date": "2026-10-22",
-          "time": "16:50",
-          "datetime": "2026-10-22T16:50:00-06:00",
-          "session_id": "53857",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53857&visLang=1"
-        },
-        {
-          "sede": "002",
-          "date": "2026-10-22",
           "time": "19:20",
           "datetime": "2026-10-22T19:20:00-06:00",
           "session_id": "53858",
@@ -2458,14 +2418,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009936&cinemas=001,002",
       "showtimes": [
-        {
-          "sede": "002",
-          "date": "2026-10-22",
-          "time": "16:40",
-          "datetime": "2026-10-22T16:40:00-06:00",
-          "session_id": "53834",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53834&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-22",
@@ -2861,14 +2813,6 @@
         {
           "sede": "003",
           "date": "2026-10-22",
-          "time": "16:30",
-          "datetime": "2026-10-22T16:30:00-06:00",
-          "session_id": "51011",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=51011&visLang=1"
-        },
-        {
-          "sede": "003",
-          "date": "2026-10-22",
           "time": "18:45",
           "datetime": "2026-10-22T18:45:00-06:00",
           "session_id": "51022",
@@ -3019,7 +2963,7 @@
       "year": null,
       "duration_min": null,
       "classification": "B",
-      "synopsis": null,
+      "synopsis": "Situada en 1949, Fatherland narra la relación entre el escritor Thomas Mann y su hija Erika. Tras 16 años de exilio huyendo del régimen nazi, padre e hija inician un viaje que los llevará desde Fráncfort hasta Weimar. En este camino no sólo se enfrentarán a una patria en ruinas, sino también a las fracturas dentro de su propia familia. La más reciente película de Pawel Pawlikowski reflexiona sobre la culpa, el trauma de la posguerra y la falsa desnazificación en la Alemania dividida por la Guerra Fría.",
       "raw_meta": null,
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010058?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
@@ -3456,14 +3400,6 @@
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010065&cinemas=001,002,003",
       "showtimes": [
         {
-          "sede": "002",
-          "date": "2026-10-22",
-          "time": "17:00",
-          "datetime": "2026-10-22T17:00:00-06:00",
-          "session_id": "53853",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53853&visLang=1"
-        },
-        {
           "sede": "001",
           "date": "2026-10-22",
           "time": "17:40",
@@ -3887,14 +3823,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010075&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-22",
-          "time": "17:00",
-          "datetime": "2026-10-22T17:00:00-06:00",
-          "session_id": "15790",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15790&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-22",
@@ -4495,14 +4423,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010078&cinemas=001,003",
       "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-22",
-          "time": "16:30",
-          "datetime": "2026-10-22T16:30:00-06:00",
-          "session_id": "51012",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=51012&visLang=1"
-        },
         {
           "sede": "003",
           "date": "2026-10-22",
@@ -5258,8 +5178,8 @@
         {
           "sede": "002",
           "date": "2026-10-23",
-          "time": "19:10",
-          "datetime": "2026-10-23T19:10:00-06:00",
+          "time": "18:40",
+          "datetime": "2026-10-23T18:40:00-06:00",
           "session_id": "53934",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53934&visLang=1"
         },
@@ -5452,14 +5372,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010096&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-22",
-          "time": "17:00",
-          "datetime": "2026-10-22T17:00:00-06:00",
-          "session_id": "15770",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=15770&visLang=1"
-        },
         {
           "sede": "001",
           "date": "2026-10-22",
@@ -5846,15 +5758,15 @@
     {
       "id": "HO00010122",
       "title": "La venganza del Charro Negro",
-      "original_title": null,
-      "director": null,
-      "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "original_title": "La venganza del Charro Negro",
+      "director": "Marvick Núñez",
+      "cast": "Voces originales de Benny Emmanuel, Emilio Treviño, Mayté Cordeiro, Erick Elías, Annie Rojas y Eduardo España",
+      "country": "México",
+      "year": 2026,
+      "duration_min": 79,
       "classification": "A",
       "synopsis": "El temido Charro Negro regresa para vengarse de Leo San Juan, obligándolo a adentrarse en el inframundo para rescatar a su hermano Nando. Este malévolo plan toma fuerza cuando todas las criaturas que Leo y sus amigos derrotaron en sus anteriores aventuras, como la Llorona y el Chupacabras, vuelven para tomar revancha. Ante dicha amenaza, el carismático grupo de amigos deberá reencontrarse, ayudar a los hermanos, enfrentar a sus enemigos del pasado y, por fin, derrotar al maligno Charro Negro.",
-      "raw_meta": null,
+      "raw_meta": "(La venganza del Charro Negro, México, 2026, Dur.: 79 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010122?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": null,
@@ -7384,8 +7296,8 @@
         {
           "sede": "002",
           "date": "2026-10-23",
-          "time": "20:30",
-          "datetime": "2026-10-23T20:30:00-06:00",
+          "time": "20:00",
+          "datetime": "2026-10-23T20:00:00-06:00",
           "session_id": "53865",
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=002&txtSessionId=53865&visLang=1"
         },
@@ -7469,7 +7381,7 @@
       "year": null,
       "duration_min": null,
       "classification": "A",
-      "synopsis": null,
+      "synopsis": "Sombras en el ocaso es un documental que explora el peso del linaje y la búsqueda de identidad en una tradición en declive. Ante una modernidad que cuestiona la tauromaquia, el torero Lorenzo Garza Gaona lucha por sostener su legado en el ruedo: el lugar donde el pasado brilla con fuerza y el presente, ineludible, impone su sombra.",
       "raw_meta": null,
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010206?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
@@ -7489,7 +7401,7 @@
       "year": null,
       "duration_min": null,
       "classification": "B",
-      "synopsis": null,
+      "synopsis": "Poco antes de la Primera Guerra Mundial, el director Hans Schomburgk viajó a Togo para filmar en el protectorado alemán de «Togoland». Hoy, sus filmes siguen siendo desconocidos en el continente africano. Más de un siglo después, volvemos a los lugares en donde rodó y, junto con los actuales togoleses, cuestionamos el trasfondo histórico de las imágenes y los efectos del colonialismo actualmente.",
       "raw_meta": null,
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010207?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
@@ -7518,7 +7430,7 @@
       "year": null,
       "duration_min": null,
       "classification": "A",
-      "synopsis": null,
+      "synopsis": "A partir de películas etnográficas, fotografías y grabaciones sonoras de la década de los sesenta, este filme de carácter ensayístico recorre el tarantismo, un ritual de posesión espiritual del sur de Italia. Al entrelazar voces del pasado y del presente, explora su compleja historia y actual movilización como espectáculo turístico, espacio politizado del folclore y forma de empoderamiento femenino.",
       "raw_meta": null,
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010208?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
@@ -7547,7 +7459,7 @@
       "year": null,
       "duration_min": null,
       "classification": "A",
-      "synopsis": null,
+      "synopsis": "Cine Libertad, fue el primer cine de barrio en Tijuana, abrió en 1954 y cerró en 1964; tras 53 años de abandono, reabre sus puertas. A través de fotografías y películas caseras, antiguos trabajadores y espectadores narran la historia de este espacio y de su colonia, creando una comunidad del recuerdo. Así, este lugar de memoria resiste al tiempo para evitar que el olvido lo alcance.",
       "raw_meta": null,
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010209?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
@@ -7576,7 +7488,7 @@
       "year": null,
       "duration_min": null,
       "classification": "B",
-      "synopsis": null,
+      "synopsis": "Nika es una de las hijas más jóvenes de una familia de nómadas de la península de Yamal, una comunidad indígena de pastores de renos que habita en el extremo norte de Siberia, Rusia. Muy pronto, la administración del pueblo más cercano la llevará a un internado, separándola de su familia y de su hogar por mucho tiempo. Por ello, un maestro nómada debe prepararla para su partida.",
       "raw_meta": null,
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010210?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
@@ -7605,7 +7517,7 @@
       "year": null,
       "duration_min": null,
       "classification": "A",
-      "synopsis": null,
+      "synopsis": "En el bosque nublado de Oaxaca, Gaspar, un respetado líder comunitario, intenta mantener el equilibrio entre la defensa de su territorio y la gestión de la primera venta regional de bonos de carbono a Estados Unidos. Sin embargo, el proceso desata tensiones internas, así como dilemas culturales y éticos que lo obligarán a cuestionar las verdaderas intenciones del mercado ambiental global.",
       "raw_meta": null,
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010211?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
@@ -7696,15 +7608,15 @@
     {
       "id": "HO00010241",
       "title": "Naza",
-      "original_title": null,
-      "director": null,
+      "original_title": "NAZA",
+      "director": "Yuval Abraham, Rachel Szor",
       "cast": null,
-      "country": null,
-      "year": null,
-      "duration_min": null,
+      "country": "Reino Unido",
+      "year": 2026,
+      "duration_min": 77,
       "classification": "B",
-      "synopsis": null,
-      "raw_meta": null,
+      "synopsis": "En conversaciones secretas que tienen lugar de noche desde las azoteas de Tel Aviv, dan sus testimonios quienes diseñaron y operaron la matanza sistemática de civiles palestinos en Gaza por parte de Israel.",
+      "raw_meta": "(NAZA, Reino Unido, 2026, Dur.: 77 mins.)",
       "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00010241?referenceScheme=Cinema&allowPlaceHolder",
       "trailer_youtube_id": null,
       "ciclo": null,
@@ -7751,7 +7663,10 @@
           "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=51260&visLang=1"
         }
       ],
-      "letterboxd": null,
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/naza/",
+        "rating": 4.5
+      },
       "preview": "p/HO00010241/"
     },
     {
