@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T17:19:36.440295-06:00",
+  "generated_at": "2026-10-29T17:37:07.035210-06:00",
   "source": "https://www.cinetecanacional.net/",
   "days": [
     "2026-10-29",
@@ -459,14 +459,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-29",
-          "time": "16:45",
-          "datetime": "2026-10-29T16:45:00-06:00",
-          "session_id": "51283",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=51283&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-30",
           "time": "16:00",
           "datetime": "2026-10-30T16:00:00-06:00",
@@ -607,38 +599,6 @@
         "rating": 4.0
       },
       "preview": "p/HO00009424/"
-    },
-    {
-      "id": "HO00009426",
-      "title": "Memorias de un cuerpo que arde",
-      "original_title": "Memorias de un cuerpo que arde",
-      "director": "Antonella Sudasassi Furniss",
-      "cast": "Sol Carballo, Paulina Bernini, Juliana Filloy, Liliana Biamonte, Juan Luis Araya Sánchez, Gabriel Araya Herrera",
-      "country": "Costa Rica-España",
-      "year": 2024,
-      "duration_min": 90,
-      "classification": "B15",
-      "synopsis": "Ana, Patricia y Mayela deciden que la vida no es sólo un archivo de recuerdos y emprenden un viaje a través de sus memorias para contar su historia, sus secretos, sus deseos, sus anhelos. En un acto de valentía íntima, desafían las expectativas sociales y se embarcan en una travesía personal para reclamar su libertad, su cuerpo y su derecho a sentir y gozar, demostrando que el deseo no tiene fecha de caducidad. La directora Antonella Sudasassi desarrolla una obra que mezcla testimonios reales y una puesta en escena guionizada, creando un diálogo colectivo que nos invita a reflexionar el camino que recorrieron nuestras ancestras para que hoy en día nuestra vida sea distinta y mejor a la de ellas.",
-      "raw_meta": "(Memorias de un cuerpo que arde, Costa Rica-España, 2024, Dur.: 90 mins.)",
-      "poster": "https://rbvfcn.cinetecanacional.net/CDN/media/entity/get/FilmPosterGraphic/HO00009426?referenceScheme=Cinema&allowPlaceHolder",
-      "trailer_youtube_id": "hMHksjYg-fE",
-      "ciclo": null,
-      "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00009426&cinemas=003",
-      "showtimes": [
-        {
-          "sede": "003",
-          "date": "2026-10-29",
-          "time": "17:00",
-          "datetime": "2026-10-29T17:00:00-06:00",
-          "session_id": "51288",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=51288&visLang=1"
-        }
-      ],
-      "letterboxd": {
-        "url": "https://letterboxd.com/film/memories-of-a-burning-body/",
-        "rating": 3.9
-      },
-      "preview": "p/HO00009426/"
     },
     {
       "id": "HO00009477",
@@ -2500,14 +2460,6 @@
       "showtimes": [
         {
           "sede": "003",
-          "date": "2026-10-29",
-          "time": "16:45",
-          "datetime": "2026-10-29T16:45:00-06:00",
-          "session_id": "51312",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=003&txtSessionId=51312&visLang=1"
-        },
-        {
-          "sede": "003",
           "date": "2026-10-30",
           "time": "14:30",
           "datetime": "2026-10-30T14:30:00-06:00",
@@ -3402,14 +3354,6 @@
       "ciclo": null,
       "official_url": "https://www.cinetecanacional.net/detallePelicula.php?FilmId=HO00010075&cinemas=001,002,003",
       "showtimes": [
-        {
-          "sede": "001",
-          "date": "2026-10-29",
-          "time": "17:00",
-          "datetime": "2026-10-29T17:00:00-06:00",
-          "session_id": "16047",
-          "buy_url": "https://rbvfcn.cinetecanacional.net/Ticketing/visSelectTickets.aspx?cinemacode=001&txtSessionId=16047&visLang=1"
-        },
         {
           "sede": "002",
           "date": "2026-10-29",
